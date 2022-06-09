@@ -13,15 +13,13 @@ public class MvcConfig implements WebMvcConfigurer{
     public void addViewControllers(ViewControllerRegistry registry) {
         //Map the browser's URL to a specific View (HTML) inside resources/templates directory
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/index.html").setViewName("index");
-        registry.addViewController("/aboutus.html").setViewName("aboutus");
-        registry.addViewController("/login.html").setViewName("login");
-        registry.addViewController("/member.html").setViewName("member");
-        registry.addViewController("/watchlist.html").setViewName("watchlist");
-        registry.addViewController("/msgDetail.html").setViewName("msgDetail");
-        registry.addViewController("/msgInbox.html").setViewName("msgInbox");
-
-
+        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/aboutus").setViewName("aboutus");
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/member").setViewName("member");
+        registry.addViewController("/watchlist").setViewName("watchlist");
+        registry.addViewController("/msgDetail").setViewName("msgDetail");
+        registry.addViewController("/msgInbox").setViewName("msgInbox");
 
 
 

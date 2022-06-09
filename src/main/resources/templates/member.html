@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +19,8 @@
 <body onload="onloadInitMember()">
     <!-- bootstrap nav bar -->
          <!-- header  -->
-         <header class="headerContent">
-        </header>
+    <div th:insert="fragments/navbar.html :: navbar"></div>
+    <!--<header class="headerContent"></header>-->
     
 
     <!-- start of content -->
@@ -117,27 +117,23 @@
     </nav>
 
     <!-- footer -->
-    <footer class="footerContent">
-    </footer>
+    <div th:insert="fragments/footer.html :: footer"></div>
+    <!--<footer class="footerContent"></footer>-->
 
     <!-- script needs to be at the end of the page -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
     crossorigin="anonymous"></script>
     
-  
+    <!-- header and footer -->
+    <!--<script src="./js/headerContent.js"></script>
+    <script src="./js/footerContent.js"></script>-->
  
-    <!-- login script -->
     <script src="./js/login.js"></script>
-    <script src="./js/test.js"></script>
-
     <script src="./js/member.js"></script>
+    <script src="./js/test.js"></script>
     <script src="./js/smartFindsClass.js"></script>
     <script src="./js/smartFindsOps.js"></script>
-
-      <!-- header and footer -->
-      <script src="./js/headerContent.js"></script>
-      <script src="./js/footerContent.js"></script>
     
 </body>
 </html>

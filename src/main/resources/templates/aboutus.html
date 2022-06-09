@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,13 +35,13 @@
 <body>
    
       <!-- header  -->
-      <header class="headerContent">
-      </header>
+      <div th:insert="fragments/navbar.html :: navbar"></div>
+      <!--<header class="headerContent"></header>-->
  
     <!--<div class="spacer"></div>-->
     <!-- line added for effect : shadow p-3 mb-5" style="background-image: url(images/sungei1.jpg); min-height: 100%; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; height: 1080px; padding-top: 5px;"--> 
     
-    <main class="container-fluid     mb-1">
+    <main class="container-fluid  mb-1">
       <!-- grid system for mission, vision, about us -->
  
          <div class="row mt-3"> 
@@ -222,8 +222,8 @@
     <div class="spacer"></div>
  
     <!-- footer-->
-    <footer class="footerContent">
-    </footer>
+    <!--<footer class="footerContent"></footer>-->
+      <div th:insert="fragments/footer.html :: footer"></div>
   
      <!--script needs to be at the end of the page-->
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -236,9 +236,9 @@
     <script src="./js/login.js"></script>
     <script src="./js/aboutus.js"></script>
 
-    <!-- header and footer -->
+    <!-- header and footer
     <script src="./js/headerContent.js"></script>
-    <script src="./js/footerContent.js"></script>
+    <script src="./js/footerContent.js"></script>-->
  
   
 

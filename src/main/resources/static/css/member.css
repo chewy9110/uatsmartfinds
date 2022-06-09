@@ -1,0 +1,66 @@
+.uploadPICtbl {
+    margin-bottom: 10px;
+
+}
+
+.uploadPICtbl td {
+    /*align-content: center;
+    align-items: center;
+    text-align: center;*/
+}
+
+.uploadPICtbl button {
+    display: none;
+    margin: 10px;
+}
+
+.uploadPICtbl img {
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+}
+
+#soldIcon0, #soldIcon1, #soldIcon2, #soldIcon3, #soldIcon4, #soldIcon5 {
+    height: 38px;
+    display: none;
+}
+
+/* pagination also repeated in index.css */
+.pagination { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    padding: 40px;
+}
+
+/* this code is for adjusting margin for cards */
+.row {
+    margin: 20px;
+}
+
+.carousel-inner {
+    display: flex;
+    margin-top: 50px;
+}
+
+.carousel-inner img {
+    height : 350px;
+    width : auto;
+}
+
+/*
+.carousel-car h5 {
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 70px;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}*/
+  
+/* ending of - this code is for adjusting margin for cards */
+/*#btn-sold0 {
+    display: none;
+}*/

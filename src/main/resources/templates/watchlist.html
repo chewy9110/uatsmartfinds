@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href= 'css/reset3.css' rel= 'stylesheet'>
+    <link href= 'css/watchlist.css' rel= 'stylesheet'>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:wght@500&family=Lora:wght@500&family=Noto+Serif:wght@700&family=PT+Serif+Caption&family=Sacramento&family=Signika+Negative:wght@600&family=Space+Mono&display=swap&family=Fredoka+One&display=swap&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/common.css">
+    <title>SmarTFinds - Where you can trade and find anything you want.</title>
+</head>
+
+<body onload="onloadInitWatchList()";>     
+ <!--nav bar-->
+    <!-- header  -->
+    <header class="headerContent">
+    </header>
+
+<!--img carousel-->
+<div class="container-fluid bg-color">
+    <div class="container"></div>
+</div><!-- end of img carousel-->   
+
+
+<!--recommended-->
+<div class="bg-img" style="background-image: url();">
+    <div class="container" style="color: rgb(9, 12, 8); background-color: rgb(249, 246, 246, 0.8); width: 800px;">
+        <h1>WATCHLIST</h1>
+        <p><b>~ Things I love till the end of time ~</b></p>
+    </div><!-- end of container-->   
+</div><!-- end of bg-img-->   
+
+<!--pagination-->
+<nav aria-label="main items page">
+    <ul class="pagination justify-content-center"></ul>
+</nav>
+
+<!-- grid card-->
+<div id="rowproductList" class="row row-cols-1 row-cols-md-3 g-4 pb-12 btn-color bg-img" style="background-image: url(); margin-right: auto;">
+  <!--<div class="item1">
+          <div class="card h-90 shadow p-3 mb-5 bg-body rounded">
+              <img src="./products/Boiler1.jpg" class="card-img-top" alt="item1">
+          <div class="card-body">
+          <h5 class="card-title">20L WATER DISPENSER BOILER</h5>
+          <div class="container-star d-flex flex-row-reverse">
+              <i class="bi1 bi-star-fill"></i>
+              <i class="bi2 bi-star-fill"></i>
+              <i class="bi3 bi-star-fill"></i>
+          </div>
+          <small class="text-muted price">$200</small>
+          <p class="card-text overflow-scroll" style="max-height: 3rem;">Temperature 30-100 degree Celsius. Size:40(d)x60(h)cm</p>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+          See full item details
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete1">Delete</button>
+          <a href="msgDetail.html" class="btn" >Chat now<img src="images/message.svg"></a>
+      </div>
+
+      <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>-->
+</div><!--end of rowproductList-->
+
+<!-- Product modal-->
+<div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <img id="itemImage" src="./products/Boiler1.jpg" class="card-img-top" alt="item1">
+        <div class="modal-body">
+            <h5 id="itemTitle" class="card-title"></h5>
+            <small id="itemPrice" class="text-muted price"></small>
+            <p id="itemDescription" class="card-text"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#exampleModal">Close</button>
+            <a href="msgInbox.html" type="button" class="btn btn-primary">Send a message <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+            </svg></a>
+        </div><!-- end of modal-footer-->
+      </div><!-- end of modal-content-->
+    </div><!-- end of modal-dialog-->
+</div><!-- end of modal-fade-->
+
+<!-- unwatch modal-->
+<div class="modal fade modal-dialog-scrollable" id="unwatchModal" tabindex="-1" aria-labelledby="unwatchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="unwatchModalLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h5 id="itemTitle1" class="card-title"></h5>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#unwatchModal" onClick="removeWatchItem()">OK</button>
+        </div>
+      </div><!-- end of modal-content-->
+    </div><!--end of modal-dialog-->
+</div><!-- end of modal-fade-->
+
+  <!--footer-->
+  <footer class="footerContent">
+  </footer>
+
+  <!--script needs to be at the end of the page-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  
+   <!-- login script -->
+   <script src="./js/login.js"></script>
+   <script src="./js/test.js"></script>
+
+    <!-- header and footer -->
+    <script src="./js/headerContent.js"></script>
+    <script src="./js/footerContent.js"></script>
+
+
+  <script src="./js/smartFindsClass.js"></script>
+  <script src="./js/smartFindsOps.js"></script>
+  <script src="./js/watchlistClass.js"></script>
+  <script src="./js/watchlistOps.js"></script>
+
+</body>
+</html>

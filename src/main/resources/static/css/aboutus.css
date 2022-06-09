@@ -1,0 +1,323 @@
+ * {
+    box-sizing:border-box;
+ }   
+
+  body {
+  background: #eff0f2
+}  
+
+/* customise navbar bg color*/
+.navbar-brand {
+  background-color: #eff0f2;
+}    
+ /* this code is for navbar background color */
+.navbar-index {
+  background-color:  #706f70;      
+}    
+
+
+/*eff0f2 grey*/
+/* 706f70 black*/
+
+
+ /* about us - common */
+
+ h1 { font-size: 60px; }    
+ h2 { font-size: 40px; }
+ h3 { font-size: 18px; }  
+ h4 { font-size: 16px; }
+ h5 { font-size: 14px; }
+ p { font-size : 14px; }
+ 
+ h1, h2, h3, h4, h5 {
+    
+    font-family:  sans-serif, 'Signika Negative' ; 
+    font-weight:normal;
+     /* color:black; */
+     
+ }  
+ 
+ .text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-normal {
+  font-weight:normal;
+}
+
+.banner-img {
+  object-fit: cover;
+  width: 100%;
+   height: 400px;
+}
+ 
+ .spacer {
+    height:69px;    /* hardcoded */
+    width:100%;
+}
+ 
+  .bg-box-sungei1 {
+  background-image: url("");
+  min-height: 100%; 
+  background-attachment: fixed;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  /* height: 300px;   */
+   /* margin-top: 20px; 
+  padding-bottom: 100px; */
+  object-fit: cover;
+   
+}  
+ 
+/* .bg-box-story {
+  color: rgb(9, 12, 8); 
+  background-color: rgb(249, 246, 246, 0.8); 
+   width:50%; 
+   margin-top: 20px; 
+  
+}   */
+
+ /* height: 300px;   */
+  .bg-box-story {
+  /* background-image: url("../images/GreyS3a.png");  */
+  background-image: url("../images/GreyTop5.png"); 
+  min-height: 100%; 
+  background-attachment: relative;
+  background-position: center; 
+  background-repeat:  no-repeat; 
+  background-size: cover; 
+    opacity: 100%;  
+ 
+    color: rgb(9, 12, 8);   
+  /* color: white; */
+   background-color: rgb(249, 246, 246, 0.8);   
+   width:100%; 
+   /* margin-top:  20px; 
+  padding-bottom: 20px; */
+   object-fit: cover;  
+  /* border-radius: 0px 0px 150px 0px; */
+}   
+
+ /* height: 250px;   */
+ /* background-color: rgb(249, 246, 246, 0.8);  */
+/* .bg-box-mission {
+  color: rgb(9, 12, 8); 
+  
+  width: 100%; 
+ 
+  padding-top: 20px;
+} */
+
+.bg-box-mission {
+  /* background-image: url("../images/GreyS10.png"); */
+  /* background-image: url("../images/GreyLeft4.png");  */
+  /* background-image: url("../images/GreyS14.png"); */
+  background-image: url("../images/GreyThrashLeft7.png");
+  min-height: 100%; 
+  background-attachment: relative;
+  background-position: center; 
+  background-repeat:  no-repeat; 
+  background-size: cover; 
+ 
+  /* margin-top:  20px; 
+  padding-bottom: 20px; */
+  object-fit: cover;  
+  width:100%; 
+  
+  /* border-radius: 0px 0px 150px 0px; */
+} 
+
+
+/* height: 300px;   */
+/* .bg-box-mission {
+  color: rgb(9, 12, 8); 
+  background-color: rgb(249, 246, 246, 0.8);
+   width:  100%; 
+   
+   padding-top: 20px; 
+} */
+
+
+.bg-box-vision {
+  /* background-image: url("../images/GreyS8.png"); */
+  /* background-image: url("../images/GreyRight4.png"); */
+  /* background-image: url("../images/GreyS16.png"); */
+  background-image: url("../images/GreyThrashRight12.png");
+  background-repeat:  no-repeat; 
+   min-height: 100%; 
+  background-attachment: relative;
+  background-position: center; 
+  background-repeat:  no-repeat; 
+  background-size: cover; 
+  
+   margin-top:  20px; 
+  padding-bottom: 20px;  
+  /* object-fit: cover; */
+
+  width:100%; 
+  /* border-radius: 0px 0px 150px 0px; */
+   
+} 
+
+.bg-meet-our-team {
+  background-image: url("../images/GreyPlain.png");
+  min-height: 100%; 
+  background-attachment: relative;
+  background-position: center; 
+  background-repeat:  no-repeat; 
+  background-size: cover; 
+  /* height: 300px;   */
+   /* margin-top:  20px; 
+  padding-bottom: 20px; */
+  object-fit: cover;
+  /* border-radius: 0px 0px 150px 0px; */
+} 
+
+.spacer {
+  height:5px;    
+  width:100%;
+} 
+
+/*  about us - fixed header */
+ /* .fixed-top {
+    position: fixed;
+    left:0px;
+    top:0px;
+
+     background-color: white;
+     z-index:999;   
+    
+  }   */
+
+  /* .about-header{
+      display:flex;
+      width:100%; 
+      align-items:center;
+      height:69px;      hardcoded  
+
+      border-bottom:1px solid seashell;
+      padding : 0 10px;
+      background-color: white ;
+   
+  } */
+
+ 
+/* about us - fixed footer */
+/* .fixed-bottom {
+    position: fixed;
+    left:0px;
+     bottom:0px;
+      background-color: white;  
+     z-index:999;   
+    
+    
+  }  */
+
+  .about-footer{
+    display:flex;
+    width:100%; 
+    align-items:center;
+      height:69px;      /* hardcoded */
+    border-top:1px solid seashell;
+
+    padding : 0 10px;
+  
+}
+
+
+ /* wrapper - to image size in card */
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper:after {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+  .wrapper img {
+  width: auto;
+  height: 100%;
+  max-width: none;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}  
+/* 
+.wrapper img {
+   background-color: yellow;
+   max-height:120px;
+   width:auto;
+   display: block;
+   object-fit: cover;
+}   */
+
+/* card hover effect */
+.card{
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+cursor: pointer;
+}
+
+.card:hover{
+   transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+/* 
+.card:hover {
+  transform:scale(1.1);
+} */
+
+.card-img-rounded{
+  /* border-radius: 20%; */
+
+  border-radius: 0px 0px 150px 0px;
+}
+
+
+ 
+@media only screen and (max-width: 578px) {
+
+  .bg-box-story {
+    background-image: url("../images/GreyPlain2bottom.png"); 
+    width:99%;
+  }
+
+  .bg-box-mission {
+    background-image: url("../images/GreyPlain2bottom.png"); 
+    width:99%;
+    text-align: left;
+  }
+
+  .bg-box-vision {
+    background-image: url("../images/GreyPlain2bottom.png"); 
+    width:99%;
+    
+  }
+
+
+
+
+
+
+}

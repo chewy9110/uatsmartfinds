@@ -1,0 +1,17 @@
+
+.aboutus-favicon-container  img {
+      height: 25px;
+       width:  25px;  
+  
+  }
+
+.aboutus-favicon-container .favnav1 {
+  position: relative; 
+  padding:5px;
+}
+ 
+.aboutus-favicon-container .favnav1:hover {
+  top: -2px;  
+  right: -5px;   
+}
+ 

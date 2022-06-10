@@ -20,11 +20,11 @@
     <title>SmarTFinds - Where you can trade and find anything you want.</title>
     <link rel="icon" type="image/x-icon" href="images/smartfindminilogo.png">
 </head>
-<body >
+<body onload="filter()">
 
       <!-- header bootstrap nav bar -->
-      <div th:insert="fragments/navbar.html :: navbar"></div>
       <!--<header class="headerContent"></header>-->
+      <div th:insert="fragments/navbar.html :: navbar"></div>
 
 
 <!--img carousel-->
@@ -222,7 +222,7 @@
 <script src="js/footerContent.js"></script>-->
 
 <!--<script src="js/watchlistClass.js"></script>-->
-<script src="js/watchlistOps.js"></script>
+<!--<script src="js/watchlistOps.js"></script>-->
 
 
 </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,8 +26,8 @@
 <body>
   <!-- bootstrap nav bar -->
       <!-- header  -->
-      <header class="headerContent">
-      </header> 
+  <div th:insert="fragments/navbar.html :: navbar"></div>
+      <!--<header class="headerContent"></header> -->
  
  <!-- main -->
 <main class="container-fluid g-0 p-0"> 
@@ -97,8 +97,8 @@
     <div class="spacer"></div>
     
     <!-- footer-->
-    <footer class="footerContent">
-    </footer>
+  <div th:insert="fragments/footer.html :: footer"></div>
+    <!--<footer class="footerContent"></footer>-->
  
     <!-- script needs to be at the end of the page -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
@@ -106,9 +106,9 @@
     crossorigin="anonymous"></script>
 
  
-   <!-- header and footer -->
+   <!-- header and footer
    <script src="./js/headerContent.js"></script>
-   <script src="./js/footerContent.js"></script>
+   <script src="./js/footerContent.js"></script>-->
  
    <!-- login script -->
    <script src="./js/test.js"></script>

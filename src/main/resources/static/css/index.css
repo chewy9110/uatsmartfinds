@@ -50,14 +50,14 @@ and login */
 /* end of move common.css*/
 
 
-/* customise navbar bg color*/
+/* customise navbar bg color
 .navbar-brand {
   background-color: #eff0f2;
-}    
- /* this code is for navbar background color */
+}    */
+  this code is for navbar background color
 .navbar-index {
   background-color: #5d5d0d;   
-}    
+}
 
 
 /* this code is for adjusting margin for cards */

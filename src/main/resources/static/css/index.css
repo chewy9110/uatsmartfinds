@@ -39,21 +39,7 @@ and login */
   justify-content: center;
 } */
 
-/* 
-.navbar-text {
-  font-family: 'Josefin Sans', sans-serif;
-  color: black;
-  display: flex;
-  font-size: 10px;
-  } */
 
-/* end of move common.css*/
-
-
-/* customise navbar bg color
-.navbar-brand {
-  background-color: #eff0f2;
-}    */
   this code is for navbar background color
 .navbar-index {
   background-color: #5d5d0d;   

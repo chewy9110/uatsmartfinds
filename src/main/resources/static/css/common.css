@@ -1,129 +1,14 @@
 body {
-   /*background-image: linear-gradient(to bottom, #aeb6bf, #eee8d0);*/
+    /*background-image: linear-gradient(to bottom, #aeb6bf, #eee8d0);*/
     padding-top: 90px;
     padding-bottom: 50px;
 }
-
-
-.bg-color {
-    /* border-bottom: solid 3px gray; 
-     box-shadow: 2px 2px 35px 2px #8a8a1d; 
-
-    background-color: #97973c; /* background color mask so that content don't appear below when scrolled up */
-}
-
+ 
 .bg-footer {
     font-family: 'Josefin Sans', sans-serif;
     background-color: #eee8d0;    
 }
-
-.navbar-brand {
-    background-color: #eee8d0;
-    border-radius: 8px;
-    margin: 5px;
-   
-}
-
-
- .navbar-container {
-    font-family: 'Signika Negative', sans-serif;
-    background-color: #868620;
-    border-bottom: solid 3px gray;
-    box-shadow: 2px 2px 35px 2px #8a8a1d;
-    
-} 
-
-
-/* .testBorder {
-    border: solid 3px gray;
-} */
-
-/* this code is for navbar button. Home, about us
-and login */
-/* li a {
-    font-family: 'Signika Negative', sans-serif;
-    display: flex;
-    color: whitesmoke;
-    text-align: center;
-    text-align: space-between;
-    padding: 14px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 0.3s;
-    opacity: 0.6;
-
-    align-items: center;
-    justify-content: space-between;
-  } */
   
-  /* this code is for fade in animation navbar button. Home, about us
-  and login */
-  /* .collapse a:hover {
-    background-color: #1d4917;
-    opacity: 1;
-  } */
-
-  /* this code is for navbar options font */
-  /* .collapse a {
-    font-family: 'Signika Negative', sans-serif;
-    display: flex;
-    justify-content: center;
-  } */
- 
-  /* move to common.css */
-  /* this code is for navbar button. Home, about us
-and login */
-  li a {
-  display: flex;
-  color: whitesmoke;
-  text-align: center;  
-  align-items:space-between; ;
-  justify-content:between;
-  padding: 14px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.3s;
-  opacity: 0.6;
-}  
-
-
-/* this code is for fade in animation navbar button. Home, about us
-and login */
-  li a:hover {
-  background-color: #1d4917;
- 
-   opacity: 1; 
-}  
-
-
-/* this code is for navbar background color */
- .navbar-index {
-  background-color: #868620;
- 
-  border-bottom: solid 3px gray;
-  box-shadow: 2px 2px 35px 2px #7a7a75; 
-}  
-
-
-/* this code is for navbar options font */
-  .collapse a {
-  font-family: 'Signika Negative', sans-serif;
-  display: flex;
-  justify-content: center;
-   
-}  
-
- 
-/* .navbar-text {
-  font-family: 'Josefin Sans', sans-serif;
-  color: black;
-  display: flex;
-  font-size: 10px;
-  }  */
-
-/* end of move common.css*/
 
 .text-right {
   text-align: right;
@@ -133,5 +18,87 @@ and login */
   text-align: center;
 }
  
+/* -----------------------------------------------*/
+/* start of nav bar customisation
+/* -----------------------------------------------*/
+
+/* the entire bar frame */
+.navbar-custom {
+ font-family: 'Josefin Sans', sans-serif;
+ background-color: #868620;
+ font-size:16px;
+ z-index:2;
+ box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+
+
+.navbar-custom .navbar-nav  {
+  text-align: center;
+}
+
+/* change the brand and text color */
+/* the icon */
+.navbar-custom .navbar-brand { 
+    background-color:  #eee8d0;;   
+}
+
+/* the navbar text */
+.navbar-custom .navbar-text {
+    color:#868620;;
+}
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color:white;
+    /* margin-right:20px; */
+    border-radius: 5px 5px 5px 5px;
+    margin-left:15px;
+    margin-right:15px;
+}
+ 
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,   
+.navbar-custom .nav-item:hover .nav-link, 
+.navbar-custom .nav-item:focus .nav-link
+ {
+    color:  #868620;
+    background-color: white;
+    opacity: 1 ; 
+ 
+}
+
+ /*Code to change color of active link*/
+ /* .navbar-custom .nav-item.active  .nav-link:hover  {
+   color: black;; 
+  background-color: rgb(246, 244, 244);;
+  opacity: 1 ;
+}   */
+
+/* change the color of dropdown menu */
+.navbar-custom .nav-item .dropdown-menu {
+     background-color: white;
+    
+}
+
+/* change the color of active or hovered links of dropdown menu*/
+.navbar-custom .nav-item   .dropdown-item.active  ,
+.navbar-custom .nav-item  .dropdown-item:hover 
+
+ {
+ 
+    color: white;
+    background-color:  #868620;
+    opacity: 1 ; 
+    transition: 0.3s;
+}
+ 
+.navbar-custom .nav-item .dropdown-item {
+   text-align: center;   
+}
+
+
+/* -----------------------------------------------*/
+/* end of nav bar customisation
+/* -----------------------------------------------*/ 
  
  

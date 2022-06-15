@@ -49,7 +49,7 @@ function ValidateEmail(inputText, pw) {
   if(inputText.match(mailformat)) {
       console.log("Valid email address!");
       if ( checkLogin(inputText, pw) ) {
-        location.href = "./member.html";
+        location.href = "./member";
         //document.form1.text1.focus();
         //console.log("validate email" + datastr);
         return true;

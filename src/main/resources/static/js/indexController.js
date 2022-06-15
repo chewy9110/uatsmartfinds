@@ -131,7 +131,7 @@ class ProductController {
                   See full item details
                 </button>
 
-                <i class="btn">  <!--  <img src="images/message.svg" >-->
+                <i class="btn">  <!--  <img src="products/message.svg" >-->
                  
                 <!-- send msg box  -->
                   <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
@@ -141,7 +141,7 @@ class ProductController {
                   "toUid":"${item.ownerId}"
                   }'
                   data-bs-dismiss="modal">
-                  <img src="images/message_white.svg" >&nbspChat now</a>
+                  <img src="products/message_white.svg" >&nbspChat now</a>
                 </i>
                 </div>
                 <div>

@@ -4,10 +4,7 @@ package com.smartfinds.smartfinds.controller;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import com.smartfinds.smartfinds.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
@@ -25,6 +22,21 @@ public class ProductController {
     {
         return productService.all();
     }
+
+
+    @CrossOrigin
+    @GetMapping("/{ownerid}")
+    public Product findProductById(@PathVariable Integer id) {
+        return productService.findById( id );
+    }
+
+
+    @CrossOrigin
+    @DeleteMapping("/{ownerid}")
+    public void delete(@PathVariable Integer id) {
+        productService.delete( id );
+    }
+
 
 
 

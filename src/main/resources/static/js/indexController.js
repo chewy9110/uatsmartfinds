@@ -8,24 +8,38 @@ class ProductController {
        this.currLoginID =  msgUtilLoginId();
     }
 
-    addProduct(itemNum, ownerId, productId, name, description, imageURL1, imageURL2, imageURL3, price, ownerDisplayName) {
+       filterExcludeOwnerID(id) {
+          // this function will filter allProducts and return an array of objects
+          // which DOES NOT BELONG to id
+          // console.log("Current login *****", id);
+          const productsExcludeID = this.products.filter(currlist => (
+              currlist.ownerID != id
+          ));
 
-        let imageURL = {imageURL1, imageURL2, imageURL3};
-
-        const productItem = {
-            itemNum: itemNum,
-            ownerId: ownerId,
-            productId: productId,
-            name: name,
-            description: description, 
-            imageURL : imageURL,
-            price: price,
-            ownerDisplayName:ownerDisplayName,
-            
+           console.log(productsExcludeID);
+          return productsExcludeID;
         }
-        this.products.push(productItem);
-        products.displayProduct();
-    }
+
+    addProduct(ownerId, productId, name, description, imageURL1, imageURL2, imageURL3, price, ownerDisplayName, soldStatus, watchListCount,itemNum) {
+
+      let imageURL = {imageURL1, imageURL2, imageURL3};
+
+      const productItem = {
+          ownerId: ownerId,
+          productId: productId,
+          name: name,
+          description: description,
+          imageURL : imageURL,
+          price: price,
+          ownerDisplayName:ownerDisplayName,
+          soldStatus : soldStatus,
+          watchListCount:watchListCount,
+          itemNum: itemNum
+
+      }
+      this.products.push(productItem);
+      products.displayProduct();
+  }
     
 
     displayProduct() {
@@ -196,14 +210,16 @@ function carouselIndicator() {
 }
 
 
+
 function filter() {
   publicPageCheck();
   //memberPageCheck();
 
- const prod =  this.products.filter(currlist => (
+ const prod = products.filterExcludeOwnerID(currlist => (
     currlist.ownerID != id));
-
+console.log(prod);
 products.displayProduct(prod);
+
 }
 
 

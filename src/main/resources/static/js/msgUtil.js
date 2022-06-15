@@ -36,22 +36,22 @@ function msgUtilUserImgUrl(uid) {
     const userList = [];
     let user = {userId:"", userDisplayName:"", userImgUrl:""};
 
-     user = {userId:"100", userDisplayName:"Cheong Yuen Thye", userImgUrl:"images/z01_male_placeholder.png"};
+     user = {userId:"100", userDisplayName:"Cheong Yuen Thye", userImgUrl:"products/z01_male_placeholder.png"};
      userList.push(user);
 
-    user = {userId:"101", userDisplayName:"Desmond Chia", userImgUrl:"images/smartfindweblogo.jpg"};
+    user = {userId:"101", userDisplayName:"Desmond Chia", userImgUrl:"products/smartfindweblogo.jpg"};
     userList.push(user);
 
-    user = {userId:"102", userDisplayName:"Andrew Sim", userImgUrl:"images/z03_male_placeholder.png"};
+    user = {userId:"102", userDisplayName:"Andrew Sim", userImgUrl:"products/z03_male_placeholder.png"};
     userList.push(user);
   
-    user = {userId:"103", userDisplayName:"Chew Kim Beng", userImgUrl:"images/placeholder.gif"};
+    user = {userId:"103", userDisplayName:"Chew Kim Beng", userImgUrl:"products/placeholder.gif"};
     userList.push(user);
 
-    user = {userId:"104", userDisplayName:"Buyer1", userImgUrl:"images/salestag.jpg"};
+    user = {userId:"104", userDisplayName:"Buyer1", userImgUrl:"products/salestag.jpg"};
     userList.push(user);
 
-    user = {userId:"105", userDisplayName:"Seller1", userImgUrl:"images/z03_male_placeholder.png"};
+    user = {userId:"105", userDisplayName:"Seller1", userImgUrl:"products/z03_male_placeholder.png"};
     userList.push(user);
 
     

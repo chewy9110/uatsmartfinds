@@ -44,21 +44,21 @@ function clearImage(position) {
     switch (uploadImages.length)
     {
         case 0:
-            frame0.src = "./images/placeholder.gif"
-            frame1.src = "./images/placeholder.gif"
-            frame2.src = "./images/placeholder.gif"
+            frame0.src = "./products/placeholder.gif"
+            frame1.src = "./products/placeholder.gif"
+            frame2.src = "./products/placeholder.gif"
             document.getElementById('btnRemove0').style.display = "none";
             document.getElementById('btnRemove1').style.display = "none";
             document.getElementById('btnRemove2').style.display = "none";
             break;
         case 1:
-            frame1.src = "./images/placeholder.gif"
-            frame2.src = "./images/placeholder.gif"
+            frame1.src = "./products/placeholder.gif"
+            frame2.src = "./products/placeholder.gif"
             document.getElementById('btnRemove1').style.display = "none";
             document.getElementById('btnRemove2').style.display = "none";
             break;
         case 2:
-            frame2.src = "./images/placeholder.gif"
+            frame2.src = "./products/placeholder.gif"
             document.getElementById('btnRemove2').style.display = "none";
             break;
     }

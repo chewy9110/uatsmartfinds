@@ -64,9 +64,9 @@ class wlProducts {
                 <p class="card-text overflow-scroll" style="max-height: 3rem;">${item.description}</p>
                 <div class="d-flex flex-row justify-content-between">
                   <button type="button" id="${moreBtnId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">See full item details</button>
-                  <a href="msgDetail.html" class="btn">Chat now<img src="images/message.svg"></a>
+                  <a href="msgDetail.html" class="btn">Chat now<img src="products/message.svg"></a>
                   <button type="button" id="${unwatchBtnId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#unwatchModal" >
-                  <img src="./images/remove_red_eye_black_24dp.svg" />
+                  <img src="./products/remove_red_eye_black_24dp.svg" />
                   </button>
                 </div>
               </div>

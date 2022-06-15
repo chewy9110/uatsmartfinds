@@ -9,7 +9,7 @@ const navContent = `
 <div class="container-fluid navbar-index">
    
 <a class="navbar-brand" href="index.html" style="background-color: #eee8d0; border-radius: 8px;margin: 5px;">
-      <img src="images/smartfindminilogo.png" type="button" width="50" height="50">
+      <img src="products/smartfindminilogo.png" type="button" width="50" height="50">
 </a>
 
 <div class="container-flex d-flex d-none d-md-block d-lg-none d-xl-flex d-lg-none d-xl-flex d-xl-none d-xxl-none" style="align-content: center;">

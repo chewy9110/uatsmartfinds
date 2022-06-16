@@ -1,7 +1,8 @@
 package com.smartfinds.smartfinds.controller.dto;
 
-public class ProductDto {
+import java.util.Date;
 
+public class ProductDto {
     private String title;
     private String description;
     private String imageUrl1;
@@ -10,9 +11,11 @@ public class ProductDto {
     private Integer defaultPic;
     private double price;
 
+    private String dateUpdated;
 
 
-    public ProductDto( String title, String description, String imageUrl1, String imageUrl2, String imageUrl3, Integer defaultPic, double price )
+
+    public ProductDto(String title, String description, String imageUrl1, String imageUrl2, String imageUrl3, Integer defaultPic, double price )
     {
         this.title = title;
         this.description = description;
@@ -22,6 +25,7 @@ public class ProductDto {
         this.defaultPic = defaultPic;
         this.price = price;
     }
+
 
 
     public String getTitle() {
@@ -80,5 +84,11 @@ public class ProductDto {
         this.price = price;
     }
 
+    public String getDateUpdated() {
+        return dateUpdated;
+    }
 
+    public void setDateUpdated(String dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
 }

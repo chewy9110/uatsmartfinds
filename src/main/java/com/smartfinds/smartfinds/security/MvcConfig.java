@@ -15,15 +15,13 @@ public class MvcConfig implements WebMvcConfigurer{
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/aboutus").setViewName("aboutus");
-        registry.addViewController("/login").setViewName("login");
         registry.addViewController("/member").setViewName("member");
         registry.addViewController("/watchlist").setViewName("watchlist");
         registry.addViewController("/msgDetail").setViewName("msgDetail");
         registry.addViewController("/msgInbox").setViewName("msgInbox");
 
-
-
-
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/logout").setViewName("index");
 
     }
 
@@ -33,6 +31,4 @@ public class MvcConfig implements WebMvcConfigurer{
                 .addResourceLocations("classpath:/static/")
                 .setCachePeriod(0);
     }
-
-
 }

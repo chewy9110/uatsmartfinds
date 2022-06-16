@@ -24,13 +24,19 @@
 
     <!-- start of content -->
     <div class="container-fluid">
-    <form name="loginForm" action="#" onsubmit="event.preventDefault()">
+
+        <div th:if="${param.error}" align="center">
+            <h4>Invalid username and password.</h4>
+        </div>
+
+        <!-- <form name="loginForm" action="#" onsubmit="event.preventDefault()"> -->
+        <form  th:action="@{/login}" method="post">
         <div class="row my-5 justify-content-md-center">
             <div class="col-xs-12 col-sm-10 col-lg-6 col-xl-6 col-xxl-4">
                 <table width="100%">
                     <tr>
                         <td width="20%"><label for="inputEmail3" class="col-form-label">Email :</label></td>
-                        <td width="80%"><input type="email" class="form-control" id="inputEmail3" name="loginID" required></td>
+                        <td width="80%"><input type="email" class="form-control" id="username" name="username" required></td>
                     </tr>
                 </table>
             </div>
@@ -40,7 +46,7 @@
                 <table width="100%">
                     <tr>
                         <td width="20%"><label for="inputPassword3" class="col-form-label">Password :</label></td>
-                        <td width="80%"><input type="password" class="form-control" id="inputPassword3" name="loginPW" required></td>
+                        <td width="80%"><input type="password" class="form-control" id="password" name="password" required></td>
                     </tr>
                 </table>
             </div>
@@ -60,7 +66,8 @@
             <div class="col-xs-12 col-sm-12 col-lg-2 col-xl-2 col-xxl-2">
 <!--                <label for="xxx" class="col-sm-1 col-form-label"></label>
             <div class="col-sm-2">-->
-                <button type="submit" class="btn btn-secondary" onclick="ValidateEmail(document.loginForm.loginID.value, document.loginForm.loginPW.value)">Sign-in</button> <!-- onclick="location.href = 'http://127.0.0.1:5500/member.html';"  -->
+                <!-- <button type="submit" class="btn btn-secondary" onclick="ValidateEmail(document.loginForm.loginID.value, document.loginForm.loginPW.value)">Sign-in</button> <!-- onclick="location.href = 'http://127.0.0.1:5500/member.html';"  -->
+                <button type="submit" class="btn btn-secondary">Sign-in</button> <!-- onclick="location.href = 'http://127.0.0.1:5500/member.html';"  -->
             </div>
         </div>
       </form>

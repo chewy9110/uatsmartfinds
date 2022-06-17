@@ -1,6 +1,14 @@
 class WatchListClass {
 
-    constructor () {
+    constructor ()
+    {
+        //Configuration of dev and prod URL - usually fetch a JSON file at API in the dev or prod environment
+        this.domainURL_Dev = "http://localhost:8090/";
+        this.domainURL_Prod = "https://deswebproject.herokuapp.com/";
+
+        this.addItemAPI = this.domainURL_Prod + "watchlist/add";
+        this.allItemAPI = this.domainURL_Prod + "watchlist/all";
+
         this.allWatchList = [];
         this.watchListProduct = [];
     }

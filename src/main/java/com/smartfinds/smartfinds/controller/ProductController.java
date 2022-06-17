@@ -65,8 +65,8 @@ public class ProductController {
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
 
-        String fullPath = imageUrl1 + imageUrl2 + imageUrl3 + defaultPic;
-        ProductDto productDto = new ProductDto(title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price);
+        String fullPath = imageFolder + "/" + imageUrl1 + imageUrl2 + imageUrl3 + defaultPic;
+        ProductDto productDto = new ProductDto(title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, false, false);
         productService.save(new Product(productDto));
     }
 

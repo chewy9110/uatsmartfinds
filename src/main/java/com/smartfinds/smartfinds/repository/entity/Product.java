@@ -22,7 +22,6 @@ public class Product {
     private String imageUrl2;
     private String imageUrl3;
     private Integer defaultPic; //do we need this in Dto?
-
     private double price;
     private Date dateUpdated; //do we need this?
     private boolean soldStatus; //do we need this?
@@ -32,6 +31,8 @@ public class Product {
     public Product() {}
 
     public Product(ProductDto productDto) {
+        this.productid = productDto.getProductid();
+        this.ownerid = productDto.getOwnerid();
         this.title = productDto.getTitle();
         this.description = productDto.getDescription();
         this.imageUrl1 = productDto.getImageUrl1();
@@ -39,6 +40,9 @@ public class Product {
         this.imageUrl3 = productDto.getImageUrl3();
         this.defaultPic = productDto.getDefaultPic();
         this.price = productDto.getPrice();
+        this.dateUpdated = productDto.getDateUpdated();
+        this.soldStatus = productDto.isSoldStatus();
+        this.deleteStatus = productDto.isDeleteStatus();
     }
 
     public Integer getProductid() {
@@ -113,13 +117,6 @@ public class Product {
         this.price = price;
     }
 
-    public Date isDateUpdated() {
-        return dateUpdated;
-    }
-
-    public void setDateUpdated(Date dateUpdated) {
-        this.dateUpdated = dateUpdated;
-    }
 
     public boolean isSoldStatus() {
         return soldStatus;
@@ -137,6 +134,13 @@ public class Product {
         this.deleteStatus = deleteStatus;
     }
 
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
+    }
 
     @Override
     public String toString()

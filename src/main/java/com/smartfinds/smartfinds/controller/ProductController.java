@@ -53,20 +53,27 @@ public class ProductController {
 
     @CrossOrigin
     @PostMapping("/add")
-    public void save(  @RequestParam(name="title", required = true) String title,
+    public void save(
+                       @RequestParam(name="ownerid", required = true) Integer ownerid,
+                       @RequestParam(name="title", required = true) String title,
                        @RequestParam(name="description", required = true) String description,
                        @RequestParam(name="imageUrl1", required = false) String imageUrl1,
                        @RequestParam(name="imageUrl2", required = false) String imageUrl2,
                        @RequestParam(name="imageUrl3", required = false) String imageUrl3,
                        @RequestParam(name="defaultPic", required = false) Integer defaultPic,
                        @RequestParam(name="price", required = true) double price,
+                       @RequestParam(name="dateUpdated", required = true) Date dateUpdated,
+                       @RequestParam(name="soldStatus", required = false) boolean soldStatus,
+                       @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
                        @RequestParam("imagefile") MultipartFile multipartFile) throws IOException {
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
 
-        String fullPath = imageFolder + "/" + imageUrl1 + imageUrl2 + imageUrl3 + defaultPic;
-        ProductDto productDto = new ProductDto(title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, false, false);
+        String fullPath1 = imageFolder + "/" + imageUrl1;
+        String fullPath2 = imageFolder + "/" + imageUrl2;
+        String fullPath3 = imageFolder + "/" + imageUrl3;
+        ProductDto productDto = new ProductDto(ownerid ,title, description, fullPath1, fullPath2, fullPath3, defaultPic, price, dateUpdated, soldStatus, deleteStatus);
         productService.save(new Product(productDto));
     }
 

@@ -50,7 +50,7 @@
                         </li>
 
                         <!-- <li class="nav-item dropdown dropstart"> -->
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropstart">
                             <a class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
                             </a>
 
@@ -69,7 +69,7 @@
 
                                 <div sec:authorize="isAuthenticated()">
                                     <form id="logOut" th:action="@{/logout}" method="post">
-                                    <a class="nav-link" onclick="document.getElementById('logOut').submit();"> LOG OUT </a>
+                                    <a class="dropdown-item" onclick="document.getElementById('logOut').submit();">Logout</a>
                                     </form>
                                 </div>
 

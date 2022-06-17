@@ -89,9 +89,9 @@ class Products {
                 <p class="card-text">${products[i].description}</p>
                 <div class="d-flex flex-row justify-content-between">
                 <button type="button" id="btn-edit${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editItem('${i}')">
-                <img src="./images/edit_black_24dp.svg" />
+                <img src="./products/edit_black_24dp.svg" />
                 </button>
-                <button type="button" id="btn-sold${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="markItemSold('${products[i]}')">Mark As Sold!</button><img src="./images/sold.svg" id="soldIcon${i}" />
+                <button type="button" id="btn-sold${i}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="markItemSold('${products[i]}')">Mark As Sold!</button><img src="./products/sold.svg" id="soldIcon${i}" />
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="deleteItem('${i}')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -205,7 +205,7 @@ class Products {
           See full item details
           </button>
 
-          <button type="button" id="btn-sold${index}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Mark As Sold!</button><img src="./images/sold.svg" id="soldIcon${index}" />
+          <button type="button" id="btn-sold${index}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Mark As Sold!</button><img src="./products/sold.svg" id="soldIcon${index}" />
           <button type="button" id="btn-del${index}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Product {
@@ -21,8 +22,9 @@ public class Product {
     private String imageUrl2;
     private String imageUrl3;
     private Integer defaultPic; //do we need this in Dto?
+
     private double price;
-    private boolean dateUpdated; //do we need this?
+    private Date dateUpdated; //do we need this?
     private boolean soldStatus; //do we need this?
     private boolean deleteStatus; //do we need this?
 
@@ -111,11 +113,11 @@ public class Product {
         this.price = price;
     }
 
-    public boolean isDateUpdated() {
+    public Date isDateUpdated() {
         return dateUpdated;
     }
 
-    public void setDateUpdated(boolean dateUpdated) {
+    public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 

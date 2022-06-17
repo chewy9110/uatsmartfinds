@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="./css/member.css">
 
 </head>
-<body onload="onloadInitMember()">
+<!-- convert to Spring Security <body onload="onloadInitMember()"> -->
+<body>
     <!-- bootstrap nav bar -->
          <!-- header  -->
     <div th:insert="fragments/navbar.html :: navbar"></div>
@@ -31,13 +32,13 @@
                 <table class="uploadPICtbl" width="100%">
                 <tr>
                     <td>
-                      <img id="frame0" src="./images/placeholder.gif" class="img-fluid" onclick="setDefaultImage('0')"/>
+                      <img id="frame0" src="./products/placeholder.gif" class="img-fluid" onclick="setDefaultImage('0')"/>
                     </td>
                     <td>
-                      <img id="frame1" src="./images/placeholder.gif" class="img-fluid" onclick="setDefaultImage('1')"/>
+                      <img id="frame1" src="./products/placeholder.gif" class="img-fluid" onclick="setDefaultImage('1')"/>
                     </td>
                     <td>
-                      <img id="frame2" src="./images/placeholder.gif" class="img-fluid" onclick="setDefaultImage('2')"/>
+                      <img id="frame2" src="./products/placeholder.gif" class="img-fluid" onclick="setDefaultImage('2')"/>
                     </td>
                 </tr>
                 <tr>

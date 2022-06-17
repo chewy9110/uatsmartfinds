@@ -49,11 +49,11 @@ class ProductController {
         let showProductItem = "";
         let moreBtnId = "";
         let binoBtnId = "";
-       
 
-        this.products.forEach ((item, index) => { 
-          
-          
+
+        this.products.forEach ((item, index) => {
+
+
             
             moreBtnId = "item" + index;
             binoBtnId = "btn-bino" +index;
@@ -187,7 +187,7 @@ class ProductController {
            })
        });
 
-    } 
+    }
 } 
 
 

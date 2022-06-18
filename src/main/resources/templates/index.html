@@ -133,58 +133,9 @@
 
 
 <!-- Modal-->
-<div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Item Details</h5>
-      </div>
+      <div th:insert="fragments/navbar.html :: modal"></div>
 
-      <div id="carouselModal" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselModal" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselModal" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselModal"  data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
 
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-
-             <img src="" class="card-img-top itemImage" alt="item1">
-
-          </div>
-
-          <div class="carousel-item">
-            <img src="" class="card-img-top itemImage2" alt="item1">
-          </div>
-
-          <div class="carousel-item">
-            <img src="" class="card-img-top itemImage3" alt="item1">
-          </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselModal" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselModal" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-
-      </div>
-
-      <div class="modal-body">
-        <h5 class="card-title itemTitle">Cameras</h5>
-        <small class="text-muted itemPrice">$1000</small>
-        <p class="card-text itemDescription"> WTS : different model camera, price varies, PM me @ +65 12345678 for more info.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
   <!-- to be included in index.html -->
   <!-- modal for msgSendBox -->
@@ -210,18 +161,21 @@
 
 <!-- index script-->
 
- <script src="js/indexController.js"></script>
- <script src="js/indexProducts.js"></script>
+ <!--<script src="js/indexController.js"></script>
+ <script src="js/indexProducts.js"></script>-->
  <script src="js/member.js"></script>
 
  <!-- login script -->
 <script src="js/login.js"></script>
-<script src="js/test.js"></script>
 
 
-<!--<script src="js/watchlistClass.js"></script>-->
-<script src="js/watchlistOps.js"></script>
 
+<!--<script src="js/watchlistClass.js"></script>
+<script src="js/watchlistOps.js"></script>-->
+
+
+ <script src="js/productController.js"></script>
+ <script src="js/productListing.js"></script>
 
 </body>
 </html>

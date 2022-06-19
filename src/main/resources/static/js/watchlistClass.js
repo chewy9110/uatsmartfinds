@@ -3,38 +3,41 @@ class WatchListClass {
     constructor ()
     {
         //Configuration of dev and prod URL - usually fetch a JSON file at API in the dev or prod environment
-        this.domainURL_Dev = "http://localhost:8090/";
+        this.domainURL_Dev = "http://localhost:8080/";
         this.domainURL_Prod = "https://deswebproject.herokuapp.com/";
 
-        this.addItemAPI = this.domainURL_Prod + "watchlist/add";
-        this.allItemAPI = this.domainURL_Prod + "watchlist/all";
+        this.addWatchListAPI = this.domainURL_Prod + "watchlist/add";
+        this.allWatchListAPI = this.domainURL_Prod + "watchlist/all";
 
         this.allWatchList = [];
         this.watchListProduct = [];
     }
-  
-    addWatchList(watchListID, userID, productID, dateUpdated) {
-        const watchItem = {
-            watchListID : watchListID,
-            userID : userID,
-            productID : productID,
-            dateUpdated : dateUpdated
+    //method to add the watchlist into the database
+    addWatchList(watchlistid, userid, productid, dateUpdated, deleteStatus)
+    {
+        const watchItem =
+        {
+            watchlistid : watchlistid,
+            userid : userid,
+            productid : productid,
+            dateUpdated : dateUpdated,
+            deleteStatus: deleteStatus
         }
-  
         this.allWatchList.push(watchItem);
     }
-  
-    getProductList(userID) {
+
+    getProductList(userid)
+    {
       // get the list of watchlist items based on loginid
       let watchListTemp = this.allWatchList.filter(currlist => (
-        currlist.userID == userID
+        currlist.userid == userid
       ));
 
       // from this watch list, get the list of product items based on product id
       //let productsByID = [];
       for (let i=0; i< watchListTemp.length; i++) {
         const pos = productList.allProducts.findIndex(curr => 
-          curr.productID === watchListTemp[i].productID
+          curr.productid === watchListTemp[i].productid
         );
         console.log("getProductList pos" + pos);
         if (pos != null) {
@@ -44,9 +47,10 @@ class WatchListClass {
         }
       }
       //return productsByID;
-    }
+    } //end of getProductList
   
-    displayMyProduct() {
+    displayMyProduct()
+    {
       // shows all the products that i am trying to transact
       // console.log(this.allProducts);
       let showProductItem = "";
@@ -55,18 +59,21 @@ class WatchListClass {
       let count = 1;
 
       let products = this.watchListProduct;
-  
+      let watchlistClass = this;
+      watchlistClass.watchListProduct = [];
+
       if (products.length == 0)
       {
       showProductItem += `
       <div class="container fluid" align="center">
       <h4>Save your favorite listings</h4>
-    </div>
+      </div>
       `
       }
-      else {
-        for (let i=0; i<products.length; i++) {
-  
+      else
+      {
+        for (let i=0; i<products.length; i++)
+        {
           moreBtnId = "item" + i;
           unwatchBtnId = "UnWatchItem" + i;
   
@@ -102,11 +109,36 @@ class WatchListClass {
           if (count > 6)
             break; // manage page counting limit items to 6
         } // end of for loop
-      } // if else
-  
+      } // end of if else
+
+              fetch(this.allWatchListAPI)
+                          .then((resp) => resp.json())    //default is get HTTP method
+                          .then(function(data) {
+                              console.log("2. receive data")
+                              console.log(data);
+                              data.forEach(function (watchlist, index)
+                              {
+                                  const watchlistObj = {
+                                      watchlistid: watchlist.watchlistid,
+                                      userid: watchlist.userid,
+                                      productid: watchlist.productid,
+                                      dateUpdated: watchlist.dateUpdated,
+                                      deleteStatus: watchlist.deleteStatus,
+                                 };
+                                  watchlistClass.watchListProduct.push(watchlistObj);
+                            });
+                            watchlistClass.renderProductPage();
+                          })
+                          .catch(function(error) {
+                              console.log(error);
+                          });
+
       document.querySelector("#rowproductList").innerHTML = showProductItem;
       console.log(showProductItem);
-  
+    } // end of displayMyProduct
+
+    renderProductPage()
+    {
       for (let i=0; i<products.length; i++) {
         moreBtnId = "item" + i;
         unwatchBtnId = "UnWatchItem" + i;
@@ -114,13 +146,13 @@ class WatchListClass {
         let item = products[i];
         document.getElementById(moreBtnId).addEventListener("click", function(){ displayItemDetail(item)  });
         document.getElementById(unwatchBtnId).addEventListener("click", function(){ removeProduct(item)  });
-      }
-    } // end of displayWatchList
+      } // end of for loop
+    }// end of renderProductPage
 
-    removeWatchList(itemId) {
+    removeWatchList(itemid) {
       //remove from watch list and display watchlist again
       let removeItem = this.allWatchList.findIndex(item => {
-        return item.productID == itemId;
+        return item.productid == itemid;
       });
 
       this.allWatchList.splice(removeItem, 1);
@@ -131,7 +163,7 @@ class WatchListClass {
   } // end of WatchListClass
 
 function displayItemDetail(item) {
-  //handle each 'More' button to show the prodcut details
+  //handle each 'More' button to show the product details
   document.querySelector("#itemTitle").innerHTML = item.title;
   document.querySelector("#itemImage").src = item.imageURL1;
   document.querySelector("#itemDescription").innerHTML = item.description;
@@ -139,7 +171,7 @@ function displayItemDetail(item) {
   }
 
 function removeProduct(item) {
-  localStorage.setItem("unwatchedItemId", item.productID);
+  localStorage.setItem("unwatchedItemId", item.productid);
   document.querySelector("#itemTitle1").innerHTML = "Do you want to remove " + item.title + "?";
   document.querySelector("#itemTitle1").style.color="red";
 }

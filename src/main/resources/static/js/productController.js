@@ -1,15 +1,15 @@
-const createHTMLList = (productid, ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName, i) =>
+const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName) =>
 
 `
 <div class="item">
   <div class="card d-flex shadow p-3 mb-5 bg-body rounded" style="height: 800px;">
 
  
-  <div id="carouselCard" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselCard" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselCard" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselCard"  data-bs-slide-to="2" aria-label="Slide 3"></button>
+  <div id="carouselCard${index}" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
+  <div class="carousel-indicators${index}">
+    <button type="button" data-bs-target="#carouselCard${index}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselCard${index}" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselCard${index}"  data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
 
   <div class="carousel-inner">
@@ -26,11 +26,11 @@ const createHTMLList = (productid, ownerid, title, description, imageUrl1, image
     </div>
   </div>
   
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard${index}" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselCard" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselCard${index}" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -75,7 +75,7 @@ const createHTMLList = (productid, ownerid, title, description, imageUrl1, image
       <!-- send msg box  -->
         <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
         data-bs-item = '{
-          "from":"this.currLoginID.displayName", "to":${ownerDisplayName}, "url":${imageUrl1},"productId":${productid},"productTitle":${title}, "price":${price}, "inboxUid":"this.currLoginID.userID",
+          "from":"this.currLoginID.displayName", "to":${ownerDisplayName}, "url":${imageUrl1},"productId":"","productTitle":${title}, "price":${price}, "inboxUid":"this.currLoginID.userID",
         "fromUid":"this.currLoginID.userID",
         "toUid":${ownerid}
         }'

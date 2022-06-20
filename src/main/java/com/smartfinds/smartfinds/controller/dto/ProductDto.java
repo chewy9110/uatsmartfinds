@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ProductDto {
 
-    private Integer productid;
+    //private Integer productid;
     private Integer ownerid;
     private String title;
     private String description;
@@ -20,6 +20,7 @@ public class ProductDto {
 
     public ProductDto(Integer ownerid, String title, String description, String imageUrl1, String imageUrl2, String imageUrl3, Integer defaultPic, double price, Date dateUpdated, boolean soldStatus, boolean deleteStatus)
     {
+        //this.productid = productid;
         this.ownerid = ownerid;
         this.title = title;
         this.description = description;
@@ -99,13 +100,13 @@ public class ProductDto {
         this.dateUpdated = dateUpdated;
     }
 
-    public Integer getProductid() {
+    /*public Integer getProductid() {
         return productid;
     }
 
     public void setProductid(Integer productid) {
         this.productid = productid;
-    }
+    } */
 
     public Integer getOwnerid() {
         return ownerid;
@@ -130,5 +131,7 @@ public class ProductDto {
     public void setDeleteStatus(boolean deleteStatus) {
         this.deleteStatus = deleteStatus;
     }
+
+
 
 }

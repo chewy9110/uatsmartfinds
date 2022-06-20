@@ -31,7 +31,7 @@ public class Product {
     public Product() {}
 
     public Product(ProductDto productDto) {
-        this.productid = productDto.getProductid();
+        //this.productid = productDto.getProductid();
         this.ownerid = productDto.getOwnerid();
         this.title = productDto.getTitle();
         this.description = productDto.getDescription();

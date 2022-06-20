@@ -5,7 +5,6 @@ import com.smartfinds.smartfinds.component.FileUploadUtil;
 import com.smartfinds.smartfinds.controller.dto.ProductDto;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import com.smartfinds.smartfinds.service.ProductService;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
@@ -54,6 +53,7 @@ public class ProductController {
     @CrossOrigin
     @PostMapping("/add")
     public void save(
+                       //@RequestParam(name="productid", required = true) Integer productid,
                        @RequestParam(name="ownerid", required = true) Integer ownerid,
                        @RequestParam(name="title", required = true) String title,
                        @RequestParam(name="description", required = true) String description,

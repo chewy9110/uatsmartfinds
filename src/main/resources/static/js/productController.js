@@ -1,4 +1,4 @@
-const createHTMLList = (productId, ownerId, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName, i) =>
+const createHTMLList = (productid, ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName, i) =>
 
 `
 <div class="item">
@@ -75,9 +75,9 @@ const createHTMLList = (productId, ownerId, title, description, imageUrl1, image
       <!-- send msg box  -->
         <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
         data-bs-item = '{
-          "from":"this.currLoginID.displayName", "to":${ownerDisplayName}, "url":${imageUrl1},"productId":${productId},"productTitle":${title}, "price":${price}, "inboxUid":"this.currLoginID.userID",
+          "from":"this.currLoginID.displayName", "to":${ownerDisplayName}, "url":${imageUrl1},"productId":${productid},"productTitle":${title}, "price":${price}, "inboxUid":"this.currLoginID.userID",
         "fromUid":"this.currLoginID.userID",
-        "toUid":${ownerId}
+        "toUid":${ownerid}
         }'
         data-bs-dismiss="modal">
         <img src="products/message_white.svg" >&nbspChat now</a>
@@ -113,21 +113,47 @@ const createHTMLList = (productId, ownerId, title, description, imageUrl1, image
 
 
 
- class IndexController 
+ class ProductsController
 {
     constructor()
     {
         this._products = [];       //create an array to store the details of product items
 
-        this.currLoginID =  msgUtilLoginId();
+        //this.currLoginID =  msgUtilLoginId();
     }
 
     //method to add the items into the array
-    addItem(productId, ownerId, title, description, imageUrl1, imageUrl2, imageUrl3, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName)
+    addItem(imageUrl1, imageUrl2, imageUrl3, title, description , price, imageObject)
     {
-        const itemObj = {
-            productId: productId,
-            ownerId: ownerId,
+            let productController = this;
+                    const formData = new FormData();
+                    formData.append('imageUrl1', imageUrl1);
+                    formData.append('imageUrl2', imageUrl2);
+                    formData.append('imageUrl3', imageUrl3);
+                    formData.append('title', title);
+                    formData.append('description', description);
+                    formData.append('price', price);
+                    formData.append('imagefile',imageObject);
+
+                   fetch('http://localhost:8080/product/add', {
+                         method: 'POST',
+                         body: formData
+                         })
+                         .then(function(response) {
+                             console.log(response.status); // Will show you the status
+                             if (response.ok) {
+                                 alert("Successfully Added Product!")
+                             }
+                         })
+                         .catch((error) => {
+                             console.error('Error:', error);
+                             alert("Error adding item to Product")
+                         });
+
+
+      /*  const itemObj = {
+            productid: productid,
+            ownerid: ownerid,
             title: title,
             description: description,
             imageUrl1: imageUrl1,
@@ -141,14 +167,14 @@ const createHTMLList = (productId, ownerId, title, description, imageUrl1, image
 
         };
 
-        this._products.push(itemObj);
+        this._products.push(itemObj); */
     }
 
 
     displayProduct()
     {
-        let indexController = this;
-        indexController._products = [];
+        let productController = this;
+        productController._products = [];
 
         //fetch data from database using the REST API endpoint from Spring Boot
         fetch('http://127.0.0.1:8080/product/all')
@@ -160,8 +186,8 @@ const createHTMLList = (productId, ownerId, title, description, imageUrl1, image
 
                 if(index <= 5) {
                     const itemObj = {
-                        productId: item.productId,
-                        ownerId: item.ownerId,
+                        productid: item.productid,
+                        ownerid: item.ownerid,
                         title: item.title,
                         description: item.description,
                         imageUrl1: item.imageUrl1,
@@ -175,19 +201,17 @@ const createHTMLList = (productId, ownerId, title, description, imageUrl1, image
                         deleteStatus: item.deleteStatus
                    }
 
-                    indexController._products.push(itemObj);
+                    productController._products.push(itemObj);
                    };
               });
 
-              indexController.renderProductPage();
+              productController.renderProductPage();
 
             })
             .catch(function(error) {
                 console.log(error);
             });
     }
-
-
 
 
 
@@ -200,7 +224,7 @@ const createHTMLList = (productId, ownerId, title, description, imageUrl1, image
         {
             const item = this._products[i];            //assign the individual item to the variable
 
-            const productHTML = createHTMLList(item.productId, item.ownerId, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, item.ownerDisplayName);
+            const productHTML = createHTMLList(item.productid, item.ownerid, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, item.ownerDisplayName);
 
             productHTMLList.push(productHTML);
         }
@@ -209,7 +233,15 @@ const createHTMLList = (productId, ownerId, title, description, imageUrl1, image
         const pHTML = productHTMLList.join('\n');
         document.querySelector('.row').innerHTML = pHTML;
 
+         for (let j=0; j<this._products.length; j++)
+                {
+                    const item = this._products[j];
+                    document.getElementById(j).addEventListener("click", function() { displayProductDetail(item);} );
+                }
+
     }
+
+
 
 
 }   //End of ProductsController class

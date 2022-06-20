@@ -3,7 +3,7 @@ let memberProducts = []; // array to hold subset of productList, to be used by m
 
 function preview() {
  
-    const filename = document.getElementById('formFile').value;
+    const filename = document.getElementById('newItemImageUrl').value;
     switch (uploadImages.length)
     {
     case 0:
@@ -21,13 +21,13 @@ function preview() {
     }
     uploadImages.push(filename);
     console.log("filename " + filename);
-    console.log("filename2 " + document.getElementById('formFile').files[0].name);
-    document.getElementById('formFile').files[0].path // this will return filename
-    document.getElementById('formFile').value = null;
+    //console.log("filename2 " + document.getElementById('formFile').files[0].name);
+    document.getElementById('newItemImageUrl').files[0].path // this will return filename
+    document.getElementById('newItemImageUrl').value = null;
 }
 
 function clearImage(position) {
-    document.getElementById('formFile').value = null;
+    document.getElementById('newItemImageUrl').value = null;
 
     if (position == 0) {
         frame0.src = frame1.src;
@@ -107,9 +107,9 @@ function addProductItem() {
         alert("Please add some photos of the item to be sold.");
         return;
     }
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
-    const price = document.getElementById("price").value;
+    const title = document.getElementById("newItemTitleInput").value;
+    const description = document.getElementById("newItemDescription").value;
+    const price = document.getElementById("newItemPrice").value;
     const imageUrl1 = uploadImages[0];
     const imageUrl2 = uploadImages[1];
     const imageUrl3 = uploadImages[2];

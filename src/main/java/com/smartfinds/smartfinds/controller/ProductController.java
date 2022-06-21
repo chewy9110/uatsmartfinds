@@ -69,16 +69,16 @@ public class ProductController {
 // generate dateUpdated value from system date/time
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
+        FileUploadUtil.saveFile(imageFolder, fileName.replaceAll("\\s", ""), multipartFile);
         String url1 = "", url2 = "", url3 = "";
         if (! imageUrl1.equals("")) { // this is not to save url as products/ if filename is "" results in 404 error when retrieved
-            url1 = imageFolder + "/" + imageUrl1;
+            url1 = imageFolder + "/" + imageUrl1.replaceAll("\\s", ""); // remove white space within a filename e.g. "file abc"
         }
         if (! imageUrl2.equals("")) {
-            url2 = imageFolder + "/" + imageUrl2;
+            url2 = imageFolder + "/" + imageUrl2.replaceAll("\\s", "");
         }
         if (! imageUrl3.equals("")) {
-            url3 = imageFolder + "/" + imageUrl3;
+            url3 = imageFolder + "/" + imageUrl3.replaceAll("\\s", "");
         }
         ProductDto productDto = new ProductDto(ownerid ,title, description, url1, url2, url3, defaultPic, price, dateUpdated, false, false);
         productService.save(new Product(productDto));

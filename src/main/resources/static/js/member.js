@@ -2,6 +2,7 @@ const productList = new ProductsController();
 const uploadImages = []; // array to hold all the pictures to be uploaded
 let memberProducts = []; // array to hold subset of productList, to be used by member.html only
 let storeImage = "";
+let currLoginIDx;
 //let storeImage = []; // for multiple image upload
 
 //When user clicks on 'Save Item', calls API to add items to the database
@@ -56,16 +57,17 @@ newProductForm.addEventListener('submit', (event) => {
 
 
     const dateUpdated = getTimeStamp(); //"2022/06/21 10:53:54"; // hardcode for testing
-    console.log(dateUpdated);
+//    console.log(dateUpdated);
 
+    console.log("*!*!*!*!*!*!" + currLoginID.userId);
     // Add the task to the task manager
 //    productList.addItem(ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, storeImage);
     // need to hardcode ownerid until we can retrieve this from the login id
     // defaultPic hardcode to 1, until we can manage the selection of picture as a defaultPic better
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
-    productList.addItem(3, title, description, imageUrl, "", "", 1, price, dateUpdated, storeImage);
-
-    document.location.reload(true);
+    if (productList.addItem(currLoginID.userId, title, description, imageUrl, "", "", 1, price, dateUpdated, storeImage) == true) {
+        document.location.reload(true);
+    }
 });
 
 function getTimeStamp() {
@@ -288,6 +290,9 @@ function onloadInitMember() {
 //    memberProducts = productList.filterByOwnerID(currLoginID.userID);
     // const products = productList.filterExcludeOwnerID(currLoginID.userID);
     //productList.displayMyProduct(products); // display filtered list, Old method
+    currLoginIDx  =  loginUserInfo();
+    getLoginSessionInfo(); // get login info from session storage
+    console.log("inside onload " + currLoginID.userId);
     productList.getAllProduct();
 //    if (  == true) {
     //    productList.displayYTProduct(); // display filtered list, using YT's design
@@ -301,4 +306,4 @@ function onloadInitMember() {
     // productList.displayMyProduct(watchlist);
 }
 
-  currLoginIDx  =  loginUserInfo()
+

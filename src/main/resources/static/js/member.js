@@ -300,3 +300,5 @@ function onloadInitMember() {
     // }
     // productList.displayMyProduct(watchlist);
 }
+
+  currLoginIDx  =  loginUserInfo()

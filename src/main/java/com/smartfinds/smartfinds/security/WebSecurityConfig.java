@@ -32,7 +32,7 @@ public class WebSecurityConfig {
             auth.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
                     .dataSource(dataSource)
                     .usersByUsernameQuery("select username, password, enabled from user where username=?")
-                    .authoritiesByUsernameQuery("select username, role from user where username=?")
+                    .authoritiesByUsernameQuery("select username, role  from user where username=?")
             ;
 
 //            System.out.println("Completed");
@@ -82,4 +82,6 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
+
 }

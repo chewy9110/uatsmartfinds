@@ -45,14 +45,25 @@
                             <a class="nav-link" th:href="@{aboutus}">About Us</a>
                         </li>
 
-                        <li class="login nav-item " id="loginLink">
-                            <a class="nav-link" th:href="@{login}">Login</a>
-                        </li>
+                        <div sec:authorize="!isAuthenticated()">
+                           <li class="login nav-item " id="loginLink">
+                             <a class="nav-link" th:href="@{login}">Login</a>
+                          </li>
+                        </div>
 
                         <!-- <li class="nav-item dropdown dropstart"> -->
+                        <div sec:authorize="isAuthenticated()">
+
                         <li class="nav-item dropstart">
-                            <a class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+
+                            <a   class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+                             <span sec:authentication="principal.username"/>
                             </a>
+
+<!--                          <a   class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">-->
+<!--                             <span th:text= ${currentuser.displayName}/>-->
+<!--                           </a>-->
+
 
                             <div class="dropdown-menu  dropdown navbarDropdown  " aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" th:href="@{member}">Member's page</a>
@@ -67,22 +78,22 @@
                                 <!-- logout function replaced by thymeleaf with Spring Security, logout redirects to index page -->
                                 <!-- <a class="dropdown-item" onclick="logout()">Logout</a> -->
 
-                                <div sec:authorize="isAuthenticated()">
-                                    <form id="logOut" th:action="@{/logout}" method="post">
-                                    <a class="dropdown-item" onclick="document.getElementById('logOut').submit();">Logout</a>
-                                    </form>
-                                </div>
+                                <!--   <div sec:authorize="isAuthenticated()">-->
+                                      <form id="logOut" th:action="@{/logout}" method="post">
+                                      <a class="dropdown-item" onclick="document.getElementById('logOut').submit();">Logout</a>
+                                      </form>
+                                <!--  </div>-->
 
-                            </div>
-                        </li>
+                             </div>
+                         </li>
 
-                    </ul>
+                     </ul>
+                     </div>
+                 </div>
+         </div>
+     </nav>
 
-                </div>
-        </div>
-    </nav>
-
-    <!-- </nav> -->
+     <!-- </nav> -->
 
 <!-- Modal-->
 <!--<div th:fragment="modal" class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -138,3 +149,4 @@
 
 </body>
 </html>
+

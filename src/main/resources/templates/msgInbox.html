@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,9 +27,7 @@
        <!-- header  -->
   <div th:insert="fragments/navbar.html :: navbar"></div>
        <!--<header class="headerContent"></header>-->
-  
- 
- 
+
   <div class="spacer"></div>  
  <!-- using grid col-->
  <!-- start of container -->
@@ -50,16 +49,27 @@
 </main> 
  <!-- end of container -->
 
-   <div class="spacer"></div>  
-  
-    <!-- footer-->
+   <div class="spacer"></div>
+<div>
+
+    <ul th:each="todo: ${currentuser}">
+        <li th:text="${currentuser.username + ': ' + todo.userid + ': ' + todo.displayneme  + ': ' + todo.userImgUrl}"></li>
+    </ul>
+
+</div>
+
+
+
+  <!-- footer-->
   <div th:insert="fragments/footer.html :: footer"></div>
     <!--<footer class="footerContent"></footer>-->
 
  
  <!-- login script -->
- <script src="./js/test.js"></script>
- <script src="./js/login.js"></script>
+
+
+<!-- <script src="./js/test.js"></script>-->
+<!-- <script src="./js/login.js"></script>-->
  
  <!-- product script -->
  <script src="./js/smartFindsClass.js"></script>
@@ -68,8 +78,8 @@
   <!-- custom msgInbox script -->
   <script src="js/msgLocalStorageClass.js"></script>
   <script src="js/msgUtil.js"></script>
-  <script src="js/msgInboxLsClass.js"></script>
-  <script src="js/msgInboxClass.js"></script>
+<!--  <script src="js/msgInboxLsClass.js"></script>-->
+<!--  <script src="js/msgInboxClass.js"></script>-->
   <script src="js/msgInbox.js"></script> 
 
  <!--script needs to be at the end of the page-->

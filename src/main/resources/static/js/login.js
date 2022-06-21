@@ -172,3 +172,46 @@ fetch('./login.data')
 })
 console.log("outside [" + datastr + "]");
 */
+
+ async function  loginUserInfo() {
+
+    const _remoteHost  =  RemoteHostURL();  // inside msgUtil
+    const _remoteURL   = _remoteHost + "/user/currentuser"
+    const _remoteAPI = `${_remoteURL}`
+
+    let currLoginID = [];
+  await    fetch(_remoteAPI)
+    .then((resp) => resp.json())
+    .then(function(data) {
+//         console.log("2222. receive data")
+//         console.log(data);
+         currLoginID = {
+            userId  : data.userid,
+            userName :  data.username,
+            displayName :  data.displayName,
+            userImgUrl :  data.userImgUrl
+         }
+         console.log("userid="+currLoginID.userId)
+         console.log("username="+currLoginID.userName)
+         console.log("displayName="+currLoginID.displayName)
+         console.log("userImgUrl="+currLoginID.userImgUrl)
+
+         window.sessionStorage.removeItem("loginDetails")
+         window.sessionStorage.setItem("loginDetails", JSON.stringify(currLoginID) );
+
+   })
+     .catch(function(error) {
+       console.log(error);
+     });
+
+    //  console.log ("inside loginUser"+currLoginID);
+
+     return(currLoginID);
+
+}
+
+function  RemoteHostURL() {
+    return("http://localhost:8080")
+}
+
+

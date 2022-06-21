@@ -15,7 +15,7 @@ function currentDate(){
 ///////////////////////////////////////////
 function msgUtilLoginId() {
 
-    let  currLoginID =  { userID:"", displayName : "", email : "", pw : ""};
+   // let  currLoginID =  { userID:"", displayName : "", email : "", pw : ""};
 
     let  sesslogin = window.sessionStorage.getItem("loginDetails");
      
@@ -25,7 +25,8 @@ function msgUtilLoginId() {
          currLoginID = JSON.parse(sesslogin);
     }
  
-        
+        console.log ("user")
+       // console.log(currLoginID)
     return currLoginID
 }
 
@@ -76,5 +77,47 @@ function msgUtilProduct(productID){
  
    let item = productList.allProducts.find((id)=>(id.productID== productID ) )
 return(item)
+}
+
+
+ async function msgUtilloginUserInfo() {
+
+    const _remoteHost  = msgUtilRemoteHostURL();  // inside msgUtil
+    const _remoteURL   = _remoteHost + "/user/currentuser"
+    const _remoteAPI = `${_remoteURL}`
+
+    let currLoginID = [];
+  await    fetch(_remoteAPI)
+    .then((resp) => resp.json())
+    .then(function(data) {
+         console.log("2222. receive data")
+         console.log(data);
+         currLoginID = {
+            userId  : data.userid,
+            userName :  data.username,
+            displayName :  data.displayName,
+            userImgUrl :  data.userImgUrl
+         }
+         console.log("userid="+currLoginID.userId)
+         console.log("username="+currLoginID.userName)
+         console.log("displayName="+currLoginID.displayName)
+         console.log("userImgUrl="+currLoginID.userImgUrl)
+
+         window.sessionStorage.removeItem("loginDetails")
+         window.sessionStorage.setItem("loginDetails", JSON.stringify(currLoginID) );
+
+   })
+     .catch(function(error) {
+       console.log(error);
+     });
+
+      console.log ("inside loginUser"+currLoginID);
+
+     return(currLoginID);
+
+}
+
+function msgUtilRemoteHostURL() {
+    return("http://localhost:8080")
 }
 

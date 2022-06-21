@@ -17,7 +17,7 @@
 
 </head>
 <!-- convert to Spring Security <body onload="onloadInitMember()"> -->
-<body>
+<body onload="onloadInitMember()">
     <!-- bootstrap nav bar -->
          <!-- header  -->
     <div th:insert="fragments/navbar.html :: navbar"></div>
@@ -32,13 +32,13 @@
                 <table class="uploadPICtbl" width="100%">
                 <tr>
                     <td>
-                      <img id="frame0" src="./products/placeholder.gif" class="img-fluid" onclick="setDefaultImage('0')"/>
+                      <img id="frame0" src="./products/placeholder.gif" class="img-fluid" /> <!-- onclick="setDefaultImage('0')" -->
                     </td>
                     <td>
-                      <img id="frame1" src="./products/placeholder.gif" class="img-fluid" onclick="setDefaultImage('1')"/>
+                        <img id="frame1" src="./products/placeholder.gif" class="img-fluid" /> <!-- onclick="setDefaultImage('0')" -->
                     </td>
                     <td>
-                      <img id="frame2" src="./products/placeholder.gif" class="img-fluid" onclick="setDefaultImage('2')"/>
+                        <img id="frame2" src="./products/placeholder.gif" class="img-fluid" /> <!-- onclick="setDefaultImage('0')" -->
                     </td>
                 </tr>
                 <tr>
@@ -67,8 +67,12 @@
                     </button>
                   </td>
                 </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="file" id="file0" onchange="preview(0)" accept="image/png, image/jpg, image/jpeg" > <!-- multiple to allow multiple file upload -->
+                        </td>
+                    </tr>
                 </table>
-                <input class="form-control" type="file" id="newItemImageUrl" onchange="preview()">
             </div>
 
             <div class="row my-3 justify-content-md-left">
@@ -91,7 +95,8 @@
             </div>
             <div class="row my-3 justify-content-md-center">
                 <div class="col-xs-2 col-sm-4 col-lg-2 col-xl-2 col-xxl-2 justify-content-center">
-                    <button type="submit" class="btn btn-secondary">Sell/Update Item</button> <!--onclick="addProductItem()"-->
+                    <button type="submit" class="btn btn-secondary" id="btnSellUpdate">Sell</button> <!--onclick="addProductItem()"-->
+                    <button type="button" class="btn btn-secondary" onclick="clearItem()">Clear</button>
                 </div>
             </div>
         </form>
@@ -129,12 +134,12 @@
 
  
     <script src="./js/login.js"></script>
-    <script src="./js/member.js"></script>
     <!--<script src="./js/test.js"></script>-->
     <!--<script src="./js/smartFindsClass.js"></script>
     <script src="./js/smartFindsOps.js"></script>-->
     <script src="js/productController.js"></script>
-    <script src="js/productForm.js"></script>
+    <!-- <script src="js/productForm.js"></script> functions are put into member.js -->
+    <script src="./js/member.js"></script>
 
 </body>
 </html>

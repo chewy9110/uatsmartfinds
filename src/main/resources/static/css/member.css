@@ -20,10 +20,11 @@
     padding: 10px;
 }
 
+/*
 #soldIcon0, #soldIcon1, #soldIcon2, #soldIcon3, #soldIcon4, #soldIcon5 {
     height: 38px;
     display: none;
-}
+}*/
 
 /* pagination also repeated in index.css */
 .pagination { 

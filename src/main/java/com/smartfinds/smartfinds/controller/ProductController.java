@@ -66,14 +66,21 @@ public class ProductController {
                        @RequestParam(name="soldStatus", required = false) boolean soldStatus,
                        @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
                        @RequestParam("imagefile") MultipartFile multipartFile) throws IOException {
+// generate dateUpdated value from system date/time
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
-
-        String fullPath1 = imageFolder + "/" + imageUrl1;
-        String fullPath2 = imageFolder + "/" + imageUrl2;
-        String fullPath3 = imageFolder + "/" + imageUrl3;
-        ProductDto productDto = new ProductDto(ownerid ,title, description, fullPath1, fullPath2, fullPath3, defaultPic, price, dateUpdated, soldStatus, deleteStatus);
+        String url1 = "", url2 = "", url3 = "";
+        if (! imageUrl1.equals("")) { // this is not to save url as products/ if filename is "" results in 404 error when retrieved
+            url1 = imageFolder + "/" + imageUrl1;
+        }
+        if (! imageUrl2.equals("")) {
+            url2 = imageFolder + "/" + imageUrl2;
+        }
+        if (! imageUrl3.equals("")) {
+            url3 = imageFolder + "/" + imageUrl3;
+        }
+        ProductDto productDto = new ProductDto(ownerid ,title, description, url1, url2, url3, defaultPic, price, dateUpdated, false, false);
         productService.save(new Product(productDto));
     }
 

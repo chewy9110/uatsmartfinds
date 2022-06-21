@@ -38,7 +38,6 @@ newProductForm.addEventListener('submit', (event) => {
 
 // select file input
 const input = document.querySelector('#newItemImageUrl');
-
 // add event listener
 input.addEventListener('change', () => {
     storeImage = input.files[0];

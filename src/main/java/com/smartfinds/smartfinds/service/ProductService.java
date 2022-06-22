@@ -14,4 +14,6 @@ public interface ProductService {
     void delete (int productid);
 
     Product findById(int productid);
+
+    List<Product> findByOwnerId(int ownerid);
 }

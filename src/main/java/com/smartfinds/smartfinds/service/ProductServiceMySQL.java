@@ -3,6 +3,7 @@ package com.smartfinds.smartfinds.service;
 
 import com.smartfinds.smartfinds.repository.ProductRepository;
 import com.smartfinds.smartfinds.repository.entity.Product;
+import com.smartfinds.smartfinds.repository.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +48,11 @@ public class ProductServiceMySQL implements ProductService{
         return productResponse;
     }
 
+    @Override
+    public List<Product> findByOwnerId(int ownerid) {
+        List<Product> result = new ArrayList<>();
+        productRepository.findByOwnerId(ownerid).forEach(result :: add);
+
+        return result;
+    }
 }

@@ -4,15 +4,19 @@ package com.smartfinds.smartfinds.controller;
 import com.smartfinds.smartfinds.component.FileUploadUtil;
 import com.smartfinds.smartfinds.controller.dto.ProductDto;
 import com.smartfinds.smartfinds.repository.entity.Product;
+import com.smartfinds.smartfinds.repository.entity.User;
 import com.smartfinds.smartfinds.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -84,9 +88,11 @@ public class ProductController {
         productService.save(new Product(productDto));
     }
 
-
-
-
-
-
+    @CrossOrigin
+    @GetMapping("/owner/{id}")
+    public List<Product> findByOwnerId(@PathVariable Integer id) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+        return productService.findByOwnerId(id);
+    }
 }

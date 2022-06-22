@@ -1,6 +1,7 @@
-const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName) =>
+const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName, currLoginID_displayName, currLoginID_userId) =>
 
 `
+
 <div class="item">
   <div class="card d-flex shadow p-3 mb-5 bg-body rounded" style="height: 800px;">
 
@@ -45,42 +46,56 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
       <h5 class="card-title">${title}</h5>
     
 
-
+        <div class="container-star d-flex flex-row-reverse ms-auto">
+          <i class="bi1 bi-star-fill"></i>
+          <i class="bi2 bi-star-fill"></i>
+          <i class="bi3 bi-star-fill"></i>
+          <i class="bi4 bi-star-fill"></i>
+          <i class="bi5 bi-star-fill"></i>
+        
+        </div>
 </div>
+
+        <div  class="container d-flex flex-row my-2">
       
-        <div  class="container d-flex flex-row"> 
-      
-        <small class="text-muted price" style="margin-left:-20px;">${price}</small>
+        <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
             <i id="binoBtnId" type="button" class="bi bi-binoculars-fill ms-auto" onclick="memberPageCheck()"></i>
-        </div> 
 
-      
+        </div>
 
-      <p class="card-text overflow-scroll" style="max-height: 5rem; margin-top: 30px;">${description}</p>
 
+     <!--    <p class="mt-1 card-text overflow-scroll " style="max-height: 15rem; margin-top: 30px;">${description}</p>
+-->
+          <p class="mt-3 p-3 border border-2 card-text overflow-scroll">${description}</p>
+
+
+     <!--  <button type="button" id="moreBtnId" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        See full item details
+      </button>-->
+
+       <button type="button" id="item${index}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+         See full item details
+       </button>
 
       <i class="btn">  <!--  <img src="products/message.svg" >-->
        
       <!-- send msg box  -->
-        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
-        data-bs-item = '{
-          "from":"this.currLoginID.displayName", "to":, "url":${imageUrl1},"productId":"","productTitle":${title}, "price":${price}, "inboxUid":"this.currLoginID.userID",
-        "fromUid":"this.currLoginID.userID",
-        "toUid":${ownerid}
-        }'
+       <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
+        data-bs-item = '{"from":"${currLoginID_displayName}", "to":"${ownerDisplayName}", "url":"${imageUrl1}","productId":"${productid}","productTitle":"${title}", "price":"${price}", "inboxUid":"${currLoginID_userId}","fromUid":"${currLoginID_userId}","toUid":"${ownerid}"}'
         data-bs-dismiss="modal">
         <img src="products/message_white.svg" >&nbspChat now</a>
+
       </i>
       </div>
       <div>
-          
+
        <div  class="card-footer d-flex flex-row  justify-content-between">
         <div>
-          <small class="text-muted">${dateUpdated}</small>
+          <small class="text-muted">${whenUpdated(dateUpdated)}</small>
         </div>
-        <div>
-            <span><small class="text-muted"></small></span><img src="" width="30" height="30" class="rounded-circle" alt="img profile">
+        <div  id="pOwner${index}" >
+          <span><small class="text-muted">${ownerDisplayName}</small></span><img src="" width="30" height="30" class="rounded-circle" alt="img profile">
         </div>
       </div>
     </div> 
@@ -91,13 +106,15 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
 
 
   function displayProductDetail(item) {
-    
+
     document.querySelector("#title").innerHTML = item.title;
+    document.querySelector("#description").innerHTML = item.description;
+    document.querySelector("#price").innerHTML = formatPrice(item.price);
+
     document.querySelector("#imageUrl1").src = item.imageUrl1;
     document.querySelector("#imageUrl2").src = item.imageUrl2;
-    document.querySelector("#ImageUrl3").src = item.imageUrl3;
-    document.querySelector("#description").innerHTML = item.description;
-    document.querySelector("#price").innerHTML = item.price;
+   // document.querySelector("#ImageUrl3").src = item.imageUrl3;
+     document.querySelector("#imageUrl3").src = item.imageUrl2;
  }
 
 
@@ -155,7 +172,8 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
     {
         let productController = this;
         productController._products = [];
-
+         
+          msgUtilloginUserInfo()
         //fetch data from database using the REST API endpoint from Spring Boot
         fetch('http://127.0.0.1:8080/product/pagination?page=0&size=6')
             .then((resp) => resp.json())
@@ -237,14 +255,19 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
 
     renderProductPage()
     {
+        this.currLoginID =  msgUtilLoginId();
         let productHTMLList = [];
 
         for (let i=0; i<this._products.length; i++)
         {
             const item = this._products[i];            //assign the individual item to the variable
+    
 
-            const productHTML = createHTMLList(item.productid, item.ownerid, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, item.ownerDisplayName);
+            let ownerDisplayName = ""
+            const productHTML = createHTMLList(i, item.productid, item.ownerid, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, ownerDisplayName,
+                                    this.currLoginID.displayName, this.currLoginID.userId           );
 
+ 
             productHTMLList.push(productHTML);
         }
 
@@ -252,8 +275,23 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
         const pHTML = productHTMLList.join('\n');
         document.querySelector('.row').innerHTML = pHTML;
 
+       for (let j=0; j<this._products.length; j++)
+                {
+                    const item = this._products[j];
+
+                    document.getElementById(`item${j}`).addEventListener("click", function() { displayProductDetail(item);} );
+
+                (async () => {
+
+                    let  ownerD = await msgUtilUserDisplay(item.ownerid);
+                    let pOwner =  document.getElementById(`pOwner${j}`)
+                     pOwner.innerHTML = `
+                        <span><small class="text-muted">${ownerD.displayName}</small></span><img src="${ownerD.userImgUrl}" width="30" height="30" class="rounded-circle" alt="i">
+                         `
+                 })();
 
 
+                }
     }
 
     whenUpdated(updateDate) {

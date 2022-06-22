@@ -1,22 +1,45 @@
 
-const msgData = new MsgLocalStorageClass();
-const msgDetailLs = new MsgDetailLsClass();
-const msgDetail = new MsgDetailClass();
-const msgDetailSend = new MsgDetailSendClass();
+///////////////////////////////////////////////////////
+// remote
+///////////////////////////////////////////////////////
+   const DeployServer = "Remote"
+   const msgData = new MsgRemoteStorageClass();
+   const msgDetailC = new MsgDetailRsClass();
+    const msgDetail = new MsgDetailClass(DeployServer);
 
+
+     (async () => {
+
+            await msgUtilloginUserInfo()
+
+         })();
+
+     (async () => {
+
+             await   msgDetail.loadMsgR();
+
+         })();
+
+
+    msgUtilShowServerStatus(DeployServer);
+    msgUtilShowServerStatus("");
+  
+///////////////////////////////////////////////////////
+// end of remote 
+///////////////////////////////////////////////////////
  
 ///////////////////////////////////////////////////////
-//msgDetail.displayMsg();
-
+ 
+const msgDetailSend = new MsgDetailSendClass();
 msgDetailSend.addEventListenerBtnSendClick();
+
 msgDetailSend.scrollToBottom('containerBottom');
  
 
 // memberPageCheck(); // handle login and navbar display
 
   
-//msgUtilUser();
-//msgUtilProduct();
+ 
 
     
     

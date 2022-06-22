@@ -1,50 +1,10 @@
-/* move to common.css */
-
-/* this code is for navbar button. Home, about us
-and login */
-/* li a {
-  display: flex;
-  color: whitesmoke;
-  text-align: center;
-  text-align: space-between;
-  padding: 14px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.3s;
-  opacity: 0.6;
-} */
-
-
-/* this code is for fade in animation navbar button. Home, about us
-and login */
-/* li a:hover {
-  background-color: #1d4917;
-  opacity: 1;
-} */
-
-
-/* this code is for navbar background color */
-/* .navbar-index {
-  background-color: #868620;
-  border-bottom: solid 3px gray;
-  box-shadow: 2px 2px 35px 2px #8a8a1d;
-} */
-
-
-/* this code is for navbar options font */
-/* .collapse a {
-  font-family: 'Signika Negative', sans-serif;
-  display: flex;
-  justify-content: center;
-} */
-
-
-  this code is for navbar background color
-.navbar-index {
-  background-color: #5d5d0d;   
+ 
+/* this code is for background color of image carousel */
+.bg-color {
+  background-color: #5d5d0d;
+  padding-top: 50px;
+  padding-bottom: 30px;
 }
-
 
 /* this code is for adjusting margin for cards */
 .row {
@@ -138,6 +98,7 @@ margin: 20px;
  background-size: cover;
     
 }
+
 
 
 .container h1{
@@ -251,3 +212,43 @@ background-color: whitesmoke;
   top: 0;
   transform: translateX(-50%);
 } 
+
+/* -----------------------------------------------*/
+/* start of nav bar customisation
+/* -----------------------------------------------*/
+/* the entire bar frame */
+.navbar-custom {  
+  background-color:  #5d5d0d;  
+ }   
+ 
+ /* change the color of active or hovered links of dropdown menu*/
+.navbar-custom .nav-item   .dropdown-item.active  ,
+.navbar-custom .nav-item  .dropdown-item:hover 
+ {
+    background-color:  #5d5d0d;  
+}
+/* -----------------------------------------------*/
+/* end of nav bar customisation
+/* -----------------------------------------------*/   
+
+/* // */
+/* .cid-r7XrvnwwpK .full-screen .slider-fullscreen-image {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.cid-r7XrvnwwpK .full-screen .slider-fullscreen-image.active {
+  display: -o-flex;
+}
+.cid-r7XrvnwwpK .full-screen .container {
+  width: auto;
+  padding-right: 0;
+  padding-left: 0;
+}
+.cid-r7XrvnwwpK .full-screen .carousel-item .container.container-slide {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+} */
+

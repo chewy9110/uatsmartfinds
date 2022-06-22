@@ -204,11 +204,13 @@ fetch('./login.data')
 console.log("outside [" + datastr + "]");
 */
 
-async function  loginUserInfo() {
+ async function  loginUserInfo() {
 
-    const _remoteHost  =  RemoteHostURL();  // inside msgUtil
-    const _remoteURL   = _remoteHost + "/user/currentuser"
-    const _remoteAPI = `${_remoteURL}`
+    const _remoteHost  =  RemoteHostURL();
+//    const _remoteURL   = _remoteHost + "/user/currentuser"
+//    const _remoteAPI = `${_remoteURL}`
+
+      const _remoteAPI = _remoteHost + "/user/currentuser"
 
     let currLoginID = [];
   await    fetch(_remoteAPI)
@@ -236,7 +238,8 @@ async function  loginUserInfo() {
        console.log(error);
      });
 
-      console.log ("inside loginUser"+currLoginID.userId);
+    //  console.log ("inside loginUser"+currLoginID);
+
      return(currLoginID);
 
 }

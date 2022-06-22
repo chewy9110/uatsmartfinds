@@ -139,7 +139,7 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
                                  return true;
                              }
                              else {
-                                console.log("Fail to upload file!")
+                                console.log("Fail to upload file!");
                                 return false;
                              }
                          })

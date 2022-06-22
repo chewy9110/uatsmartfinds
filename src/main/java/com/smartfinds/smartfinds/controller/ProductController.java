@@ -3,16 +3,23 @@ package com.smartfinds.smartfinds.controller;
 
 import com.smartfinds.smartfinds.component.FileUploadUtil;
 import com.smartfinds.smartfinds.controller.dto.ProductDto;
+import com.smartfinds.smartfinds.repository.ProductRepository;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import com.smartfinds.smartfinds.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -28,7 +35,14 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @CrossOrigin
+
+   /* @CrossOrigin
+    @GetMapping("/")
+    public String viewHomePage(Model model) {
+        return getProductPagination(1, model);
+    }*/
+
+   @CrossOrigin
     @GetMapping("/all")
     public Iterable<Product> getProduct()
     {
@@ -49,6 +63,33 @@ public class ProductController {
         productService.delete( productid );
     }
 
+
+    @Autowired
+    private ProductRepository productRepository;
+    @CrossOrigin
+    @GetMapping("/pagination")
+    public ResponseEntity<List<Product>> getProductPagination(@RequestParam int page, @RequestParam  int size){
+        Pageable pageable = PageRequest.of(page, size);
+        List<Product> list = (List<Product>) productRepository.findAll(pageable).getContent();
+        return ResponseEntity.ok(list);
+        //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
+    }
+
+  /*  @CrossOrigin
+    @GetMapping("/product/{pageNo}")
+    public String getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
+        int pageSize = 6;
+
+        Page<Product> page = productService.getProductPagination(pageNo, pageSize);
+        List<Product> listProduct = page.getContent();
+
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalProduct", page.getTotalElements());
+        model.addAttribute("listProduct", listProduct);
+        return "index";
+    }*/
 
     @CrossOrigin
     @PostMapping("/add")

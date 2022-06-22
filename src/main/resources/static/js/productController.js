@@ -155,7 +155,7 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
                          })
                          .catch((error) => {
                              console.log('Error:', error);
-                             alert("Error adding item to Product");
+//                             alert("Error adding item to Product");
                              return false;
                          });
     }

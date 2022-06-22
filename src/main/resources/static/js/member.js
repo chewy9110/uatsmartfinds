@@ -16,6 +16,9 @@ newProductForm.addEventListener('submit', (event) => {
     const newItemDescription = document.querySelector('#newItemDescription');
     const newItemPrice = document.querySelector('#newItemPrice');
 
+    let resultMessage = document.getElementById("addResult");
+    resultMessage.style.display = "none";
+
 /* for multiple file upload
     const imageUrl = [];
     for (let i=0; i<file.files.length; i++) {
@@ -26,28 +29,47 @@ newProductForm.addEventListener('submit', (event) => {
 
     // Get the values of the inputs - variable names to be same as MySQL columns
     const imageUrl = file.value.replace("C:\\fakepath\\", "");
+    if (file.value == "") {
+        resultMessage.innerHTML = "Choose an image for upload.";
+        resultMessage.style.display = "block";
+        return;
+    }
 
 //    const imageUrl2 = frame1.src.replace("C:\\fakepath\\", "");
 //    const imageUrl3 = frame2.src.replace("C:\\fakepath\\", "");
     /*
         Do the Validation code here
     */
+
     const title = newItemTitleInput.value;
     const description = newItemDescription.value;
     const price = newItemPrice.value;
     if (title == "") {
-        alert("Enter title information.");
+//        alert("Enter title information.");
+        resultMessage.innerHTML = "Enter title information.";
+        resultMessage.style.display = "block";
         return;
     }
 
     if (description == "") {
-        alert("Enter a description.");
+//        alert("Enter a description.");
+        resultMessage.innerHTML = "Enter a description.";
+        resultMessage.style.display = "block";
         return;
     }
 
     if (price == "") {
-        alert("Enter a price value.");
+//        alert("Enter a price value.");
+        resultMessage.innerHTML = "Enter a price value.";
+        resultMessage.style.display = "block";
         return;
+    }
+    else {
+        if (isNaN(Number(price))) {
+            resultMessage.innerHTML = "Invalid price value.";
+            resultMessage.style.display = "block";
+            return;
+        }
     }
     // Clear the form
     file.value = '';
@@ -297,8 +319,8 @@ function onloadInitMember() {
     // const products = productList.filterExcludeOwnerID(currLoginID.userID);
     //productList.displayMyProduct(products); // display filtered list, Old method
     currLoginIDx  =  loginUserInfo();
-    getLoginSessionInfo(); // get login info from session storage
-    console.log("inside onload " + currLoginID.userId);
+//    getLoginSessionInfo(); // get login info from session storage
+//    console.log("inside onload " + currLoginID.userId);
     productList.getAllProduct();
     document.getElementById("addResult").style.display = "none";
 
@@ -315,8 +337,19 @@ function onloadInitMember() {
 }
 
 function checkPrice() {
-//    console.log("Inside checkprice");
-//    pattern="^\d*(\.\d{0,2})?$";
+    let price = Number(document.getElementById('newItemPrice').value);
+    let msg = document.getElementById('priceMessage');
+    msg.style.display = "none";
+
+    console.log(price);
+    if( !isNaN(price) ) {
+        msg.innerHTML = "";
+        msg.style.display = "none";
+    }
+    else {
+        msg.innerHTML = "not number";
+        msg.style.display = "block";
+    }
 }
 
 

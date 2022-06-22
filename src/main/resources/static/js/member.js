@@ -67,6 +67,12 @@ newProductForm.addEventListener('submit', (event) => {
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
     if (productList.addItem(currLoginID.userId, title, description, imageUrl, "", "", 1, price, dateUpdated, storeImage) == true) {
         document.location.reload(true);
+        document.getElementById("addResult").innerHTML = "File upload success.";
+        document.getElementById("addResult").style.display = "block";
+    }
+    else {
+        document.getElementById("addResult").innerHTML = "Fail to upload file!";
+        document.getElementById("addResult").style.display = "block";
     }
 });
 
@@ -294,6 +300,8 @@ function onloadInitMember() {
     getLoginSessionInfo(); // get login info from session storage
     console.log("inside onload " + currLoginID.userId);
     productList.getAllProduct();
+    document.getElementById("addResult").style.display = "none";
+
 //    if (  == true) {
     //    productList.displayYTProduct(); // display filtered list, using YT's design
 //    }
@@ -304,6 +312,11 @@ function onloadInitMember() {
     //     console.log("testing" + watchlist[i].productID);
     // }
     // productList.displayMyProduct(watchlist);
+}
+
+function checkPrice() {
+//    console.log("Inside checkprice");
+//    pattern="^\d*(\.\d{0,2})?$";
 }
 
 

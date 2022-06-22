@@ -94,8 +94,11 @@
             <div class="row my-3 justify-content-md-left">
                 <label for="inputPrice" class="col-sm-1 col-form-label">Price</label>
                 <div class="col-sm-2">
-                  <input type="number" class="form-control" id="newItemPrice"> <!--  pattern="^\d*(\.\d{0,2})?$" -->
+                  <input type="Text" class="form-control" id="newItemPrice" min="0" onchange="checkPrice()"> <!--  pattern="^\d*(\.\d{0,2})?$" -->
                 </div>
+            </div>
+            <div class="row justify-content-center">
+                <label class="col-sm-1 col-form-label" id="addResult">Result</label>
             </div>
             <div class="row my-3 justify-content-md-center">
                 <div class="col-xs-2 col-sm-4 col-lg-2 col-xl-2 col-xxl-2 justify-content-center">

@@ -27,7 +27,6 @@
 
     <h5 th:text=" ${currentuser.username + ': ' + currentuser.userid + ': ' + currentuser.displayName  + ': ' + currentuser.userImgUrl}"></h5>
 
-
     <!-- start of content -->
     <div class="container-fluid">
         <form id="newProductForm" enctype="multipart/form-data"> <!--onsubmit="event.preventDefault();"-->
@@ -94,7 +93,7 @@
             <div class="row my-3 justify-content-md-left">
                 <label for="inputPrice" class="col-sm-1 col-form-label">Price</label>
                 <div class="col-sm-2">
-                  <input type="Text" class="form-control" id="newItemPrice" min="0" onchange="checkPrice()"> <!--  pattern="^\d*(\.\d{0,2})?$" -->
+                  <input type="Text" class="form-control" id="newItemPrice" min="0" onchange="checkPrice()"><span id="priceMessage"></span> <!--  pattern="^\d*(\.\d{0,2})?$" -->
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -148,6 +147,17 @@
     <!--<script src="./js/test.js"></script>-->
     <!--<script src="./js/smartFindsClass.js"></script>
     <script src="./js/smartFindsOps.js"></script>-->
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    currLoginID.userId = [[${currentuser.userid}]];
+    console.log("member.html***** ID " + currLoginID.userId);
+    currLoginID.displayName = [[${currentuser.displayName}]];
+    console.log("member.html***** displayname " + currLoginID.displayName);
+    currLoginID.email = [[${currentuser.username}]];
+    console.log("member.html***** email " + currLoginID.email);
+    /*]]>*/
+    </script>
+
     <script src="js/productController.js"></script>
     <!-- <script src="js/productForm.js"></script> functions are put into member.js -->
     <script src="./js/member.js"></script>

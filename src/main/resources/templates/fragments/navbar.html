@@ -9,16 +9,23 @@
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top p-0">-->
 
     <nav th:fragment="navbar" class="container-fluid fixed-top g-0">
-        <div class="navbar navbar-expand-lg navbar-custom pe-3 shadow mb-5 border-bottom border-2">
+        <nav class="navbar navbar-expand-lg  navbar-custom    pe-3">
 
-                <!-- icon -->
+        <!-- icon -->
                 <a class="navbar-brand ms-3 " th:href="@{index}" style="border-radius: 8px;margin: 5px;">
                     <img src="products/smartfindminilogo.png" type="button" width="50" height="50">
                 </a>
 
                 <!-- dummy search button -->
-            <div class="input-group w-50 mx-auto d-flex d-none d-md-flex d-lg-none d-xl-flex d-lg-none d-xl-flex d-xl-none d-xxl-none" style="align-content: center;">
-                <input type="text" class="form-control mx-auto" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
+<!--            <div class="input-group w-50 mx-auto d-flex d-none d-md-flex d-lg-none d-xl-flex d-lg-none d-xl-flex d-xl-none d-xxl-none" style="align-content: center;">-->
+<!--                <input type="text" class="form-control mx-auto" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">-->
+<!--                <button class="btn btn-dark" type="button" id="button-addon1" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>-->
+<!--            </div>-->
+
+
+            <!-- dummy search button -->
+            <div class="input-group w-50  offset-md-1     "  >
+              <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
                 <button class="btn btn-dark" type="button" id="button-addon1" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
             </div>
 
@@ -31,13 +38,13 @@
 
                 <div class="collapse navbar-collapse  " id="navbarSupportedContent">
 
-                    <div class="input-group w-50 mx-auto d-sm-flex d-lg-flex d-md-none">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
-                        <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
-                    </div>
+<!--                    <div class="input-group w-50 mx-auto d-sm-flex d-lg-flex d-md-none d-lg-none">-->
+<!--                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">-->
+<!--                        <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>-->
+<!--                    </div>-->
 
-                    <ul class="navbar-nav mx-auto me-2">
-                        <li class="home nav-item text-align-center">
+                    <ul class="navbar-nav ms-auto me-2 ">
+                        <li class="home nav-item">
                             <a class="nav-link" th:href="@{index}"  aria-current="page">Home</a>
                         </li>
 
@@ -45,14 +52,25 @@
                             <a class="nav-link" th:href="@{aboutus}">About Us</a>
                         </li>
 
-                        <li class="login nav-item " id="loginLink">
-                            <a class="nav-link" th:href="@{login}">Login</a>
-                        </li>
+                        <div sec:authorize="!isAuthenticated()">
+                           <li class="login nav-item " id="loginLink">
+                             <a class="nav-link" th:href="@{login}">Login</a>
+                          </li>
+                        </div>
 
                         <!-- <li class="nav-item dropdown dropstart"> -->
-                        <li class="nav-item dropstart">
-                            <a class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+                        <div sec:authorize="isAuthenticated()">
+
+                        <li class="nav-item dropdown">
+
+                            <a   class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+                             <span sec:authentication="principal.username"/>
                             </a>
+
+<!--                          <a   class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">-->
+<!--                             <span th:text= ${currentuser.displayName}/>-->
+<!--                           </a>-->
+
 
                             <div class="dropdown-menu  dropdown navbarDropdown  " aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" th:href="@{member}">Member's page</a>
@@ -60,32 +78,32 @@
                                 <a class="dropdown-item" th:href="@{msgInbox}">My Messages</a>
                                 <div class="dropdown-divider"></div>
                                 <h6 class="dropdown-header text-center"  >Future enhancement</h6>
-                                <a class="dropdown-item" title=""  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Future enhancement feature">Profile</a>
-                                <a class="dropdown-item" title=""  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Future enhancement feature">Setting...</a>
+                                <a class="dropdown-item" title="Future enhancement feature"  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Future enhancement feature">Profile</a>
+                                <a class="dropdown-item" title="Future enhancement feature"  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Future enhancement feature">Setting...</a>
                                 <hr class="dropdown-divider">
 
                                 <!-- logout function replaced by thymeleaf with Spring Security, logout redirects to index page -->
                                 <!-- <a class="dropdown-item" onclick="logout()">Logout</a> -->
 
-                                <div sec:authorize="isAuthenticated()">
-                                    <form id="logOut" th:action="@{/logout}" method="post">
-                                    <a class="dropdown-item" onclick="document.getElementById('logOut').submit();">Logout</a>
-                                    </form>
-                                </div>
-
+                                <!--   <div sec:authorize="isAuthenticated()">-->
+                                      <form id="logOut" th:action="@{/logout}" method="post">
+                                      <a class="dropdown-item" onclick="document.getElementById('logOut').submit();">Logout</a>
+                                      </form>
+                                <!--  </div>-->
                             </div>
-                        </li>
+
+                         </li>
 
                     </ul>
-
                 </div>
-        </div>
-    </nav>
 
-    <!-- </nav> -->
+<!--            </div>-->
+          </nav>
+<!--        </div>-->
+     <!-- </nav> -->
 
 <!-- Modal-->
-<div th:fragment="modal" class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--<div th:fragment="modal" class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -134,7 +152,8 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 </body>
 </html>
+

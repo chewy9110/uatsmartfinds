@@ -3,11 +3,11 @@
 
 }
 
-.uploadPICtbl td {
+/* .uploadPICtbl td { */
     /*align-content: center;
     align-items: center;
     text-align: center;*/
-}
+/* } */
 
 .uploadPICtbl button {
     display: none;
@@ -20,10 +20,11 @@
     padding: 10px;
 }
 
+/*
 #soldIcon0, #soldIcon1, #soldIcon2, #soldIcon3, #soldIcon4, #soldIcon5 {
     height: 38px;
     display: none;
-}
+}*/
 
 /* pagination also repeated in index.css */
 .pagination { 
@@ -44,10 +45,10 @@
     margin-top: 50px;
 }
 
-.carousel-inner img {
+/* .carousel-inner img {
     height : 350px;
     width : auto;
-}
+}  */
 
 /*
 .carousel-car h5 {

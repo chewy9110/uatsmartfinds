@@ -53,9 +53,9 @@ containersendboxmsgmodal.innerHTML = `
       <button id="btn-sendmsgbox" type="button" class="btn btn-primary  m-1 flex-fill"  
          >Send</button>
  
-       <a id="btn-sendmsgMymsg" href='msgInbox.html' class='btn btn-primary m-1 flex-fill'>My Messages</a> 
+       <a id="btn-sendmsgMymsg" href='msgInbox' class='btn btn-primary m-1 flex-fill'>My Messages</a>
 
-       <a id="btn-sendmsglogin" href='login.html' class='btn btn-primary m-1 flex-fill'>Login</a> 
+       <a id="btn-sendmsglogin" href='login' class='btn btn-primary m-1 flex-fill'>Login</a>
 
        <button id="btn-sendmsgclose" type="button" class="btn btn-primary  m-1 flex-fill" data-bs-dismiss="modal">Close</button>  
 

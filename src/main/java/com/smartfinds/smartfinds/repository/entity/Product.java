@@ -3,13 +3,11 @@ package com.smartfinds.smartfinds.repository.entity;
 
 import com.smartfinds.smartfinds.controller.dto.ProductDto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -31,7 +29,7 @@ public class Product {
     public Product() {}
 
     public Product(ProductDto productDto) {
-        this.productid = productDto.getProductid();
+        //this.productid = productDto.getProductid();
         this.ownerid = productDto.getOwnerid();
         this.title = productDto.getTitle();
         this.description = productDto.getDescription();

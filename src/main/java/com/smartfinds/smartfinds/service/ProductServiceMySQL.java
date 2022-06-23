@@ -4,6 +4,9 @@ package com.smartfinds.smartfinds.service;
 import com.smartfinds.smartfinds.repository.ProductRepository;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,5 +49,20 @@ public class ProductServiceMySQL implements ProductService{
 
         return productResponse;
     }
+
+    @Override
+    public List<Product> findByOwnerId(int ownerid) {
+        List<Product> result = new ArrayList<>();
+        productRepository.findByOwnerId(ownerid).forEach(result :: add);
+
+        return result;
+    }
+
+    @Override
+    public Page<Product> getProductPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo -1, pageSize);
+        return this.productRepository.findAll(pageable);
+    }
+
 
 }

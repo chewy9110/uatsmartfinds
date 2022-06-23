@@ -1,3 +1,2 @@
-const indexControl = new IndexController();
-
-indexControl.displayProduct();
+const productsControl = new ProductsController();
+productsControl.displayProduct();

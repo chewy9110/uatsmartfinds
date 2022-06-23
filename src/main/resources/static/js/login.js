@@ -92,6 +92,37 @@ function checkLogin(email, pw) {
   }
 }
 
+function getLoginSessionInfo() {
+  let tmpLoginDetails = [];
+
+  if (checkBrowserSupport()) {
+    tmpLoginDetails = window.sessionStorage.getItem("loginDetails"); // check if user is already login
+    if (tmpLoginDetails == null) {
+      // user access this webpage without going through a login, by default redirect user to index.html
+      location.href = "./login.html";
+    }
+    else {
+      console.log("tmpLoginDetails", tmpLoginDetails);
+
+      currLoginID = JSON.parse(tmpLoginDetails); // now can access custDetailObject as an array of object
+      if (currLoginID == null) {
+        console.log("loginDetails is null");
+        location.href = "./login.html";
+        return;
+      }
+
+      // console.log("memberPageCheck() -", currLoginID.displayName, currLoginID.userID, currLoginID.email);
+// need this to update navbar
+//      document.querySelector("#loginLink > a").style.display = "none";
+//      document.querySelector("#navbarDropdown").style.display = "block";
+//      document.querySelector("#navbarDropdown").innerHTML = currLoginID.displayName;
+    }
+  }
+  else {
+    alert("Browser does not support session storage. Cannot proceed.");
+  }
+}
+
 function memberPageCheck() {
 // this function is used to check if a user have accessed this page via proper login
 // as this is a member only page, the user should be redirected to index.html if they didn't do a login
@@ -172,3 +203,49 @@ fetch('./login.data')
 })
 console.log("outside [" + datastr + "]");
 */
+
+ async function  loginUserInfo() {
+
+    const _remoteHost  =  RemoteHostURL();
+//    const _remoteURL   = _remoteHost + "/user/currentuser"
+//    const _remoteAPI = `${_remoteURL}`
+
+      const _remoteAPI = _remoteHost + "/user/currentuser"
+
+    let currLoginID = [];
+  await    fetch(_remoteAPI)
+    .then((resp) => resp.json())
+    .then(function(data) {
+//         console.log("2222. receive data")
+//         console.log(data);
+         currLoginID = {
+            userId  : data.userid,
+            userName :  data.username,
+            displayName :  data.displayName,
+            userImgUrl :  data.userImgUrl
+         }
+         console.log("userid="+currLoginID.userId)
+         console.log("username="+currLoginID.userName)
+         console.log("displayName="+currLoginID.displayName)
+         console.log("userImgUrl="+currLoginID.userImgUrl)
+
+//         window.sessionStorage.removeItem("loginDetails")
+         window.sessionStorage.clear();
+         window.sessionStorage.setItem("loginDetails", JSON.stringify(currLoginID) );
+
+   })
+     .catch(function(error) {
+       console.log(error);
+     });
+
+    //  console.log ("inside loginUser"+currLoginID);
+
+     return(currLoginID);
+
+}
+
+function  RemoteHostURL() {
+    return("http://localhost:8080")
+}
+
+

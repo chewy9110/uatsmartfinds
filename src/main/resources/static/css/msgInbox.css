@@ -3,30 +3,25 @@
 }  
 
 
-/* customise navbar bg color*/
-/* .navbar-brand {
-  background-color: #eff0f2;
-}     */
- /* this code is for navbar background color */
-/* .navbar-index {
-  background-color:  #076696;      
-}     */
-
-
-.navbar-brand {
-  background-color: #eff0f2;
-}    
- /* this code is for navbar background color */
-.navbar-index {
-  background-color:  #706f70;      
-}    
-
-
-.img_member {
-    border-radius: 50%;
-    background-color: #66BB6A;
+ /* -----------------------------------------------*/
+/* start of nav bar customisation
+/* -----------------------------------------------*/
+/* the entire bar frame */
+.navbar-custom {  
+  background-color:   #e8d14e;  
+ }   
  
+ /* change the color of active or hovered links of dropdown menu*/
+.navbar-custom .nav-item   .dropdown-item.active  ,
+.navbar-custom .nav-item  .dropdown-item:hover 
+ {
+    background-color:   #e8d14e;        
 }
+/* -----------------------------------------------*/
+/* end of nav bar customisation
+/* -----------------------------------------------*/   
+
+ 
 
 /* .scroll {
     overflow-y: scroll;
@@ -68,29 +63,48 @@ width: 20%;
     transform: translateX(-50%);
   }  
     
-  /* message pill */
-  .bg-ltr {
-    /* background-color: aliceblue; */
-    background-color:lightskyblue;
-  }
-  
-  .bg-ltr > p {
-    font-size:larger;
-  }
-  
-  .bg-rtl {
-    background-color:rgb(69, 253, 139);
-  }
-  
-  .bg-rtl > p {
-    font-size:larger;
-  }
-/*  ---  */
-
-.card-header {
-  background-color: white;
+ /* background container */
+ .card-header {
+  background-color: #eff0f2;
   border:none;
 }
+ 
+
+ #cardContainer {
+ background-color: #eff0f2;
+ }
+
+#imgContainer
+{
+  background-color: #eff0f2;
+}
+
+.card  {
+    background-color: #eff0f2;
+}
+   
+
+ /* message pill */
+.bg-ltr {
+  /* background-color: aliceblue; */
+  background-color:white;
+}
+
+.bg-ltr > p {
+  font-size:larger;
+  color:black;
+}
+
+.bg-rtl {
+  background-color:rgb(69, 253, 139);
+}
+
+.bg-rtl > p {
+  font-size:larger;
+  color:black;
+}
+/*  ---  */
+
 
 .bolder {
   font-weight: bolder;
@@ -103,30 +117,17 @@ width: 20%;
 }
 
 @media only screen and (max-width: 578px) {
-    .xs-center {
+    .xs-center-inbox {
       text-align:center;
     }
 
     
-    .xs-img-small {
+    .xs-img-small-inbox {
       text-align:left;
       width: calc(110% - 5px);  
       height:100%;
      
     }
-    
-    /* .xs-img-small {
-        text-align:center;
-        width: calc(50% - 1px);
-       
-      } */
  
-   /* .row {
-        border-bottom:1px;
-        border-style: solid;
-        
-       
-    }  */
-    
 
   }

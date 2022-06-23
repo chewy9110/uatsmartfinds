@@ -1,8 +1,12 @@
 
 class MsgSendBoxClass {
  
+  constructor(DeployServer ) {
+    this._DeployServer = DeployServer;
+  }
+
 // BtnSendMsg modal
-addEventListenerSendMsgModal() {
+  addEventListenerSendMsgModal() {
  
    let sendBoxMsgModal = document.querySelector("#sendboxmsgmodal");
    sendBoxMsgModal.addEventListener('show.bs.modal', function (event) {
@@ -18,23 +22,37 @@ addEventListenerSendMsgModal() {
  
     // Extract info from data-bs-* attributes
     if (( typeof(button ) == "undefined") ||
-    ( button  == null) )
-    return; 
+    ( button  == null) || (button=="") )  return;
 
     let msgItemStr =  button.getAttribute('data-bs-item');
-    let msgItem = JSON.parse(msgItemStr); 
+    if (( typeof(msgItemStr ) == "undefined") ||
+            ( msgItemStr  == null)  || (msgItemStr == "") )
+            return;
+
+ 
+
+     msgItemStr =   msgItemStr.replace(/undefined/g, '');
+     let msgItem =  JSON.parse(msgItemStr);
+ 
     let hidSendboxMsgItem = document.querySelector("#hid-sendbox-msgItem");
     hidSendboxMsgItem.value = msgItemStr;  
  
     let txtFrom = msgItem.from;
+
     let lblSendBoxMsgFrom = document.querySelector("#lbl-sendbox-from");
     lblSendBoxMsgFrom.value = txtFrom;  
     lblSendBoxMsgFrom.disabled = true;
  
-    let txtTo= msgItem.to;
-     let lblSendBoxMsgTo = document.querySelector("#lbl-sendbox-to");
-     lblSendBoxMsgTo.value = txtTo;
-     lblSendBoxMsgTo.disabled = true;
+    // let txtTo= msgItem.to;
+
+      //    alert(msgItem.toUid);
+          let toUid = msgItem.toUid;
+
+           let txtTo =   MsgSendBox.getDisplayName(toUid)
+
+      let lblSendBoxMsgTo = document.querySelector("#lbl-sendbox-to");
+    //  lblSendBoxMsgTo.value = txtTo;
+    //  lblSendBoxMsgTo.disabled = true;
 
      let urlImg =  msgItem.url;
      let ImgSendBoxMsg = document.querySelector("#img-sendboxmsg");
@@ -47,6 +65,8 @@ addEventListenerSendMsgModal() {
      //////
      document.querySelector("#txt-sendbox-msg").value="";
 
+
+       if (txtFrom=="undefined") {txtFrom = ""}
        // need to login
        if (txtFrom.length===0){
         //alert("Please Login before you may send message");
@@ -59,7 +79,9 @@ addEventListenerSendMsgModal() {
  
           MsgSendBox.MessageBox("<h5 class='alert-heading'><i  class='bi-exclamation-octagon-fill'></i>&nbsp Please login before you may send message</h5> " 
           )
- 
+
+
+
           // document.querySelector("#btn-sendmsgbox").style.display="none";
           // document.querySelector("#btn-sendmsgclose").style.display="none";
           // document.querySelector("#btn-sendmsglogin").style.display="block";
@@ -92,7 +114,6 @@ addEventListenerSendMsgModal() {
   })
  }
 
-
  
 
 addEventListenerBtnSendBoxMsgClick() {
@@ -102,7 +123,7 @@ addEventListenerBtnSendBoxMsgClick() {
      if (txtMsg.length===0) {
        return // nothing to do
      }
-     
+
       txtMsg =   txtMsg.replace(/\n/g, '<br>\n');
 
       let msgItem={};
@@ -111,6 +132,8 @@ addEventListenerBtnSendBoxMsgClick() {
           (typeof(msgItemStr) != "undefined") )
           msgItem = JSON.parse(msgItemStr); 
 
+  //alert(msgItemStr)
+
     let msgInboxId = 0;
     let msgInboxName = "";
    
@@ -118,37 +141,48 @@ addEventListenerBtnSendBoxMsgClick() {
     let msgFromUid = msgItem.fromUid;
     let msgToUid = msgItem.toUid;
 
-    let msgImgURL = msgItem.url;
+    let msgProductImgURL = msgItem.url;
     let msgFromName = msgItem.from; 
     //"images/smartfindweblogo.jpg";
-    let msgFromImg = msgUtilUserImgUrl(msgFromUid);  //member's profile image
+    let msgFromImg = ""; //msgUtilUserImgUrl(msgFromUid);  //member's profile image
     let msgToName = msgItem.to; 
     //"images/placeholder.gif";
-    let msgToImg = msgUtilUserImgUrl(msgToUid);   //member's profile image
+    let msgToImg = ""; //msgUtilUserImgUrl(msgToUid);   //member's profile image
     let msgLine = txtMsg;
     let msgTimestamp = currentDate(); // today's date
     let msgProductId =  msgItem.productId;
     //let msgOwnerId = msgItem.ownerId;
     let msgProductTitle = msgItem.productTitle;
     let msgPrice = msgItem.price;
- 
+
+    let msgInboxUFid = msgItem.toUid; 
 
     // addMsg ..MsgFormat
     let sendBoxItem =  msgData.MsgFormat(msgInboxId, msgInboxName,
-                        msgImgURL, msgFromName,  msgFromImg,
+                        msgProductImgURL, msgFromName,  msgFromImg,
                         msgToName,  msgToImg,  msgLine, 
                         msgTimestamp, msgProductId, msgProductTitle, msgPrice, 
-                        msgInboxUid, msgFromUid, msgToUid);
+                        msgInboxUid, msgFromUid, msgToUid,  msgInboxUFid );
   
-   
-    //SaveMsg for Buyer inbox
-    sendBoxItem.msgInboxName=msgFromName;
-    msgData.saveInbox( sendBoxItem );
-  
-     //SaveMsg for Seller inbox
-     sendBoxItem.msgInboxName=msgToName;
-     msgData.saveInbox( sendBoxItem );
-    
+                              
+       if  (MsgSendBox._DeployServer == "Remote")    {
+        //remote  
+        console.log(MsgSendBox._DeployServer)
+        msgData.saveInbox( sendBoxItem );
+      }
+      else {
+     // local
+         console.log(MsgSendBox._DeployServer)
+         //SaveMsg for Buyer inbox
+          sendBoxItem.msgInboxName=msgFromName;
+         msgData.saveInbox( sendBoxItem );
+
+         //SaveMsg for Seller inbox
+          sendBoxItem.msgInboxName=msgToName;
+          msgData.saveInbox( sendBoxItem );
+       }
+
+
      // alert("Message Sent.");
  
      {/* MsgSendBox.MessageBox("<h5><i class='bi bi-check-circle'></i></h5><h5>Your message have been sent.<br> Check  \"My Messages\" for detail.</h5>")
@@ -218,14 +252,6 @@ addEventListenerSendMsgModalCollapse () {
  
 }
 
-
- 
- 
- 
-
-
- 
-
 MessageBox(msg){
 
 
@@ -268,9 +294,21 @@ showForm(){
    bsCollapseForm.show() // form
 
 }
- 
- 
- 
+
+
+ async getDisplayName(toUid)
+ {
+
+       let  txtTo=await msgUtilUserDisplay(toUid);
+      //  alert("GETDisplayName")
+      // alert ( txtTo);
+       let lblSendBoxMsgTo = document.querySelector("#lbl-sendbox-to");
+         lblSendBoxMsgTo.value = txtTo.displayName;
+         lblSendBoxMsgTo.disabled = true;
+
+      return(txtTo.displayName)
+ }
+
 
 }  // class msgSendBoxUtilClass
 

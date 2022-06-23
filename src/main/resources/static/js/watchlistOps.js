@@ -2,7 +2,8 @@
 let watchList = new WatchListClass();
 
 // start of watchlist
-/*watchList.addWatchList(1, 2, 4, "2022-05-01 08:00:00");
+/*
+watchList.addWatchList(1, 2, 4, "2022-05-01 08:00:00");
 watchList.addWatchList(2, 2, 5, "2022-05-01 08:05:00");
 watchList.addWatchList(3, 2, 6, "2022-05-01 08:11:00");
 watchList.addWatchList(4, 2, 7, "2022-05-01 08:14:00");

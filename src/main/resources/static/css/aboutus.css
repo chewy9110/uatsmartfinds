@@ -184,9 +184,9 @@ box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 /* -----------------------------------------------*/
 
 /* the entire bar frame */
-  .navbar-custom {  
+ /* .navbar-custom {
  background-color: #b7dc49;   
-  }  
+  }  */
 
  /* change the color of active or hovered links of dropdown menu*/
 .navbar-custom .nav-item   .dropdown-item.active  ,

@@ -216,10 +216,10 @@ background-color: whitesmoke;
 /* -----------------------------------------------*/
 /* start of nav bar customisation
 /* -----------------------------------------------*/
-/* the entire bar frame */
+/* the entire bar frame
 .navbar-custom {  
   background-color:  #5d5d0d;  
- }   
+ }   */
  
  /* change the color of active or hovered links of dropdown menu*/
 .navbar-custom .nav-item   .dropdown-item.active  ,

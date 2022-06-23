@@ -6,7 +6,7 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
 
  
   <div id="carouselCard${index}" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
-  <div class="carousel-indicators${index}">
+  <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselCard${index}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselCard${index}" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselCard${index}"  data-bs-slide-to="2" aria-label="Slide 3"></button>
@@ -45,14 +45,7 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
       <h5 class="card-title">${title}</h5>
     
 
-        <div class="container-star d-flex flex-row-reverse ms-auto">
-          <i class="bi1 bi-star-fill"></i>
-          <i class="bi2 bi-star-fill"></i>
-          <i class="bi3 bi-star-fill"></i>
-          <i class="bi4 bi-star-fill"></i>
-          <i class="bi5 bi-star-fill"></i>
-        
-        </div>
+
 </div>
       
         <div  class="container d-flex flex-row"> 
@@ -66,16 +59,13 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
 
       <p class="card-text overflow-scroll" style="max-height: 5rem; margin-top: 30px;">${description}</p>
 
-      <button type="button" id="moreBtnId" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        See full item details
-      </button>
 
       <i class="btn">  <!--  <img src="products/message.svg" >-->
        
       <!-- send msg box  -->
         <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
         data-bs-item = '{
-          "from":"this.currLoginID.displayName", "to":${ownerDisplayName}, "url":${imageUrl1},"productId":"","productTitle":${title}, "price":${price}, "inboxUid":"this.currLoginID.userID",
+          "from":"this.currLoginID.displayName", "to":, "url":${imageUrl1},"productId":"","productTitle":${title}, "price":${price}, "inboxUid":"this.currLoginID.userID",
         "fromUid":"this.currLoginID.userID",
         "toUid":${ownerid}
         }'
@@ -90,7 +80,7 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
           <small class="text-muted">${dateUpdated}</small>
         </div>
         <div>
-            <span><small class="text-muted">${ownerDisplayName}</small></span><img src="" width="30" height="30" class="rounded-circle" alt="img profile">
+            <span><small class="text-muted"></small></span><img src="" width="30" height="30" class="rounded-circle" alt="img profile">
         </div>
       </div>
     </div> 
@@ -167,14 +157,14 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
         productController._products = [];
 
         //fetch data from database using the REST API endpoint from Spring Boot
-        fetch('http://127.0.0.1:8080/product/all')
+        fetch('http://127.0.0.1:8080/product/pagination?page=0&size=6')
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
                 console.log(data);
                 data.forEach(function (item, index) {
 
-                if(index <= 5) {
+
                     const itemObj = {
                         productid: item.productid,
                         ownerid: item.ownerid,
@@ -191,7 +181,7 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
                    }
 
                     productController._products.push(itemObj);
-                   };
+
               });
 
               productController.renderProductPage();
@@ -263,11 +253,7 @@ const createHTMLList = (index, ownerid, title, description, imageUrl1, imageUrl2
         const pHTML = productHTMLList.join('\n');
         document.querySelector('.row').innerHTML = pHTML;
 
-         for (let j=0; j<this._products.length; j++)
-                {
-                    const item = this._products[j];
-                    document.getElementById(j).addEventListener("click", function() { displayProductDetail(item);} );
-                }
+
 
     }
 

@@ -20,14 +20,14 @@ class ProductController {
           return productsExcludeID;
         }
 
-    addProduct(ownerId, productId, name, description, imageURL1, imageURL2, imageURL3, price, ownerDisplayName, soldStatus, watchListCount,itemNum) {
+    addProduct(ownerId, productId, title, description, imageURL1, imageURL2, imageURL3, price, ownerDisplayName, soldStatus, watchListCount,itemNum) {
 
       let imageURL = {imageURL1, imageURL2, imageURL3};
 
       const productItem = {
           ownerId: ownerId,
           productId: productId,
-          name: name,
+          title: title,
           description: description,
           imageURL : imageURL,
           price: price,
@@ -103,7 +103,7 @@ class ProductController {
 
           <div class="container-flex d-flex flex-row">    
 
-                <h5 class="card-title">${item.name}</h5>
+                <h5 class="card-title">${item.title}</h5>
               
 
                   <div class="container-star d-flex flex-row-reverse ms-auto">
@@ -212,7 +212,6 @@ function carouselIndicator() {
 
 
 function filter() {
-  publicPageCheck();
   //memberPageCheck();
 
  const prod = products.filterExcludeOwnerID(currlist => (

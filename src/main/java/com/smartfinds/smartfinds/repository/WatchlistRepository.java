@@ -9,8 +9,8 @@ import java.util.Date;
 
 public interface WatchlistRepository extends CrudRepository<Watchlist, Integer> {
     // #{#entityName} resolves to "Watchlist"
-    @Entity()
+   /* @Entity()
     public class Watchlist {}
    // @Query("SELECT(*) FROM WATCHLIST", nativeQuery=true)
-    //List<Watchlist> findAll(int watchlistid, int userid, int productid, Date dateUpdated, boolean deleteStatus);
+    //List<Watchlist> findAll(int watchlistid, int userid, int productid, Date dateUpdated, boolean deleteStatus);*/
 }

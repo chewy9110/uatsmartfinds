@@ -121,10 +121,11 @@ public class ProductController {
         ProductDto productDto = new ProductDto(ownerid ,title, description, url1, url2, url3, defaultPic, price, dateUpdated, false, false);
         productService.save(new Product(productDto));
     }
-
-
-
-
-
-
+    @CrossOrigin
+    @GetMapping("/owner/{id}")
+    public List<Product> findByOwnerId(@PathVariable Integer id) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+        return productService.findByOwnerId(id);
+    }
 }

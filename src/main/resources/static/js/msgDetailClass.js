@@ -3,19 +3,34 @@ class MsgDetailClass {
     _msgDetailList = [];
     _msgInboxTo = [];   // used in save_inbox;
 
-    constructor() {
+   constructor(DeployServer) {
         this._msgDetailList = [];
         this._msgInboxTo = [];
+        this._DeployServer = DeployServer;
 
-       if ( this.getQueryId()) { 
-        this.loadMsg();
-        this.displayMsg();
-       }
-       else 
-       {
-         this.displayNoMsg();
-       }
     }
+    
+
+    // constructor(msgDetailList,msgInboxTo,DeployServer) {
+    //     this._msgDetailList = [];
+    //     this._msgInboxTo = [];
+    //     this._DeployServer = DeployServer;
+
+    //  if  (this._DeployServer == "Remote")    {
+    //     //remote server
+    //         this._msgDetailList = msgDetailList;
+    //         this._msgInboxTo = msgInboxTo;
+    //   }
+    //   else if ( this.getQueryId()) { 
+    //     // local server
+    //     this.loadMsg();
+    //     this.displayMsg();
+    //    }
+    //    else 
+    //    {
+    //      this.displayNoMsg();
+    //    }
+    // }
     
     //methods
      
@@ -28,12 +43,13 @@ class MsgDetailClass {
               let msgDetail = [];
               msgDetail = msgData.MsgFormat(msgInboxTo.msgInboxId, 
                 msgInboxTo.msgInboxName,
-                msgInboxTo.msgImgURL,
+                msgInboxTo.msgProductImgURL,
                 msgInboxTo.msgFromName, msgInboxTo.msgFromImg,
                 msgInboxTo.msgToName, msgInboxTo.msgToImg,
                 msgLine, msgTimestamp, msgInboxTo.msgProductId,   
                 msgInboxTo.msgProductTitle , msgInboxTo.msgPrice,
-                msgInboxTo.msgInboxUid, msgInboxTo.msgFromUid, msgInboxTo.msgToUid
+                msgInboxTo.msgInboxUid, msgInboxTo.msgFromUid, msgInboxTo.msgToUid,
+                msgInboxTo.msgInboxUFid
                 )
 
                 msgDetailList.push(msgDetail);
@@ -49,17 +65,24 @@ class MsgDetailClass {
        msgInboxTo.msgLine  = msgLine;
        msgInboxTo.msgTimestamp = msgTimestamp;
 
-       msgData.saveInbox( msgInboxTo );
- 
-        //////////////////////////
+      console.log(this._DeployServer)
+      
+       if  (this._DeployServer == "Remote")    {
+        //remote  
+        msgData.saveInbox( msgInboxTo );
+      }
+      else {
+        // local
+         msgData.saveInbox( msgInboxTo );
+        
         //SaveMsg for Seller inbox
-
-       msgInboxTo.msgInboxName =  msgInboxTo.msgToName ;
-       msgData.saveInbox( msgInboxTo );
- 
+        // for local only
+        msgInboxTo.msgInboxName =  msgInboxTo.msgToName ;
+        msgData.saveInbox( msgInboxTo );
        ////////////////////////
- 
-        }
+      }
+
+    } //sendMsg
 
         displayNoMsg() {
            
@@ -99,9 +122,9 @@ class MsgDetailClass {
              
             //
              showMsgItem =  `  <div class="card border-0 ms-3 mt-3">   
-                                 <div class="card-header d-flex align-items-start mb-1 p-wrap  card-header  p-0"> 
-                                  <div class="d-flex flex-row">       
-                                     <img src="${msgInboxTo.msgToImg}"  width="70" height="70" >  
+                                 <div class=" d-flex align-items-start mb-1 p-wrap p-0 "> 
+                                  <div class="d-flex flex-row card-header ">       
+                                     <img src="${msgInboxTo.msgToImg}"  width="70" height="70" class="border rounded-circle">  
                                   <div>
                                    <p class="my-0  me-1 ms-3 text-truncate bolder ">${msgInboxTo.msgToName}</p>
                                    <p class="my-0  me-1 ms-3 text-truncate">Very Responsive</p>
@@ -127,9 +150,9 @@ class MsgDetailClass {
               document.querySelector("#cardContainer").innerHTML = showMsgItem;
               document.querySelector("#imgReduceSize").innerHTML  = showMsgImageItem;
 
-              const btnBackhref= "msgInBox.html?name="+msgInboxName;
-
-              document.querySelector("#btnBack").href  = btnBackhref;
+             // const btnBackhref= "msgInBox?name="+msgInboxName;
+//               const btnBackhref= "msgInBox" ;
+//              document.querySelector("#btnBack").href  = btnBackhref;
         } 
 
         /////////
@@ -137,12 +160,12 @@ class MsgDetailClass {
          return ( `   
  
              <div class="w-100">
-             <img src="${item.msgImgURL}"  class="img-fluid rounded-start" 
+             <img src="${item.msgProductImgURL}"  class="img-fluid rounded-start" 
              alt="item-interested">   
              </div>  
-             <div>
-             <h6 class="p-0 m-0  ">${item.msgProductTitle}</h6>
-             <h6 class="p-0 m-0 ">${item.msgPrice}</h6>
+             <div class="w-100">
+             <h6 class="p-1 m-0  ">${item.msgProductTitle}</h6>
+             <h6 class="p-1 m-0 ">${formatPrice(item.msgPrice)}</h6>
              </div>
            `)
         }
@@ -154,19 +177,20 @@ class MsgDetailClass {
              <div class="d-flex flex-row m-2">
              <div class="card-deck width-80 mb-2">
                <div class="card align-items-start border-0">
-                 <div class="card-header d-flex align-items-start mb-1 p-wrap  card-header  p-0"  data-toggle="tooltip" data-placement="top" 
+                 <div class="card-header d-flex align-items-start mb-1 p-wrap   p-2"  data-toggle="tooltip" data-placement="top" 
                  title=" ${item.msgFromName}" > 
-                
+             
                    <div class="d-flex flex-row">    
-                   <img src="${item.msgFromImg}" width="30" height="30" class="rounded-circle" alt="img profile">
+                   <img src="${item.msgFromImg}" width="40" height="40" class="border rounded-circle  " alt="img profile">
                    <p class="my-0  me-1 ms-1 text-truncate  " >
                    ${item.msgFromName}</p>
                    </div>
                  </div>
 
-                 <div class="card-body p-2 align-items-start bg-ltr rounded-pill border border-3 ">
-                  <p class="card-text"> 
-                    <span class="timestamp-size me-2">${item.msgTimestamp}</span>${item.msgLine}
+              <!--   <div class="card-body p-2 align-items-start bg-ltr rounded-pill border border-3 "> -->
+              <div class="card-body p-2 align-items-start bg-ltr   border border-1">
+                  <p class="card-text">
+                    <span class="timestamp-size me-2">${formatDate(item.msgTimestamp)}</span><br>${item.msgLine}
                    </p>
                  </div>
                </div>
@@ -187,11 +211,11 @@ class MsgDetailClass {
         <div class="d-flex  flex-row-reverse m-2">
           <div class="card-deck width-80">
             <div class="card align-items-end  border-0 ">
-               <div class="card-header d-flex flex-row-reverse  align-items-start   p-wrap align-items-end  mb-1  card-header  p-0"  data-toggle="tooltip" data-placement="top" 
+               <div class="card-header d-flex flex-row-reverse  align-items-start   p-wrap align-items-end  mb-1  p-2"  data-toggle="tooltip" data-placement="top"
               title=" ${item.msgFromName}">
        
                <div class="d-flex flex-row">
-                <img src="${item.msgFromImg}" width="30" height="30" class="rounded-circle" alt="alt-profile">
+                <img src="${item.msgFromImg}" width="40" height="40" class="border rounded-circle   " alt="alt-profile">
                 <p class="my-0 me-1 ms-1 text-truncate   " 
                    >
                 Me</p>
@@ -200,10 +224,10 @@ class MsgDetailClass {
                </div>
           
         
-              <div class="card-body  p-2 align-items-end bg-rtl rounded-pill border   border-3  ">
-            
+         <!--    <div class="card-body  p-2 align-items-end bg-rtl rounded-pill border   border-3   "> -->
+             <div class="card-body  p-2 align-items-end bg-rtl   border   border-1   ">
                 <p class="card-text">
-                <span class="timestamp-size me-2">${item.msgTimestamp}</span> ${item.msgLine}
+                <span class="timestamp-size me-2">${formatDate(item.msgTimestamp)}</span><br> ${item.msgLine}
                 </p>
               </div>
             </div>
@@ -216,18 +240,23 @@ class MsgDetailClass {
         }
        ///////
         loadMsg() {
- 
-          const msgInboxTo = this._msgInboxTo; 
-          const msgInboxId = msgInboxTo.msgInboxId;
-          const msgInboxName = msgInboxTo.msgInboxName;
+          if ( this.getQueryId())  {
+             const msgInboxTo = this._msgInboxTo; 
+             const msgInboxId = msgInboxTo.msgInboxId;
+             const msgInboxName = msgInboxTo.msgInboxName;
 
-          this._msgDetailList = msgDetailLs.loadMsg(msgInboxId,msgInboxName);
+             this._msgDetailList = msgDetailC.loadMsg(msgInboxId,msgInboxName);
+             this.displayMsg();
+           }
+           else  { 
+            this.displayNoMsg();
+            }
         }
 
         /////////
         getQueryId() {
  
-              this._msgInboxTo = msgDetailLs.getQueryId();
+              this._msgInboxTo = msgDetailC.getQueryId();
               let retStat = true;
  
               if ((this._msgInboxTo == null)||
@@ -240,6 +269,25 @@ class MsgDetailClass {
               return(retStat)
         }
  
+      async  loadMsgR() {
+ 
+          let  msgDetail = this;
+ 
+          msgDetail._msgDetailList=[]
+          msgDetail._msgInboxTo = [];
+          
+          msgDetail._msgInboxTo  = await msgDetailC.getRemoteQueryId()
+
+          msgDetail._msgDetailList = await msgDetailC.loadMsg();
+
+          console.log("inside msgdetailist loadmsgR")
+          console.log(  this._msgDetailList );
+        
+          msgDetail.displayMsg();
+ 
+        } // loadmsgR 
+
+
 
 } // class MsgDetailClass
 

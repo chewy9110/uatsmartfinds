@@ -38,21 +38,21 @@ public class UserController {
     }
 
 
+     @CrossOrigin
+     @GetMapping("/{userid}")
+     public User findById(@PathVariable Long userid) {
+        return userService.findById( userid );
+     }
+
 //    @CrossOrigin
-//    @GetMapping("/{userid}")
-//    public User findById(@PathVariable Long userid) {
-//        return userService.findById( userid );
+//    @GetMapping("/{username}")
+//
+//    public User findByIdName(@PathVariable String username) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+//
+//        return userService.findByIdName(currentPrincipalName);
 //    }
-
-    @CrossOrigin
-    @GetMapping("/{username}")
-
-    public User findByIdName(@PathVariable String username) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-
-        return userService.findByIdName(currentPrincipalName);
-    }
 
     @CrossOrigin
     @GetMapping("/currentuser")

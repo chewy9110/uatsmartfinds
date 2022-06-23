@@ -3,11 +3,11 @@
 
 }
 
-.uploadPICtbl td {
+/* .uploadPICtbl td { */
     /*align-content: center;
     align-items: center;
     text-align: center;*/
-}
+/* } */
 
 .uploadPICtbl button {
     display: none;
@@ -45,10 +45,10 @@
     margin-top: 50px;
 }
 
-.carousel-inner img {
+/* .carousel-inner img {
     height : 350px;
     width : auto;
-}
+}  */
 
 /*
 .carousel-car h5 {

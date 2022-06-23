@@ -14,6 +14,9 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Query("SELECT p FROM Product p WHERE p.ownerid = :ownerid")
+    @Query("SELECT p FROM Product p WHERE p.ownerid = :ownerid and deleteStatus=false order by dateUpdated desc")
     List<Product> findByOwnerId(@Param("ownerid") Integer ownerid);
+
+    @Query("SELECT p FROM Product p WHERE p.ownerid != :ownerid and deleteStatus=false and soldStatus=false order by dateUpdated desc")
+    List<Product> findNotByOwnerId(@Param("ownerid") Integer ownerid);
 }

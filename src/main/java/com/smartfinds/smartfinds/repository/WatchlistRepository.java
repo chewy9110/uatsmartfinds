@@ -11,6 +11,6 @@ public interface WatchlistRepository extends CrudRepository<Watchlist, Integer> 
     // #{#entityName} resolves to "Watchlist"
     @Entity()
     public class Watchlist {}
-    @Query("SELECT(*) FROM WATCHLIST", nativeQuery=true)
-    List<Watchlist> findAll(int watchlistid, int userid, int productid, Date dateUpdated, boolean deleteStatus);
+   // @Query("SELECT(*) FROM WATCHLIST", nativeQuery=true)
+    //List<Watchlist> findAll(int watchlistid, int userid, int productid, Date dateUpdated, boolean deleteStatus);
 }

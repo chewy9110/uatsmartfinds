@@ -124,8 +124,12 @@ public class ProductController {
     @CrossOrigin
     @GetMapping("/owner/{id}")
     public List<Product> findByOwnerId(@PathVariable Integer id) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentPrincipalName = authentication.getName();
         return productService.findByOwnerId(id);
+    }
+
+    @CrossOrigin
+    @GetMapping("/notowner/{id}")
+    public List<Product> findNotByOwnerId(@PathVariable Integer id) {
+        return productService.findNotByOwnerId(id);
     }
 }

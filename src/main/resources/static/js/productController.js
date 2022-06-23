@@ -210,13 +210,14 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
             });
     }
 
-    getAllProduct()
+    getAllProduct(currid)
     {
         let productController = this;
         productController._products = [];
 
         //fetch data from database using the REST API endpoint from Spring Boot
-        fetch('http://127.0.0.1:8080/product/all')
+//        fetch('http://127.0.0.1:8080/product/all')
+        fetch('http://127.0.0.1:8080/product/owner/' + currid)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")

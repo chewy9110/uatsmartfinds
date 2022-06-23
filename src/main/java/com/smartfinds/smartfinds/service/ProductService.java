@@ -16,6 +16,7 @@ public interface ProductService {
 
     Product findById(int productid);
 
+    List<Product> findByOwnerId(int ownerid);
 
     Page<Product> getProductPagination(int pageNo, int pageSize);
 }

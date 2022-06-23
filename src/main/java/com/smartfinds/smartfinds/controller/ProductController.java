@@ -42,7 +42,7 @@ public class ProductController {
         return getProductPagination(1, model);
     }*/
 
-   @CrossOrigin
+    @CrossOrigin
     @GetMapping("/all")
     public Iterable<Product> getProduct()
     {
@@ -79,11 +79,8 @@ public class ProductController {
     @GetMapping("/product/{pageNo}")
     public String getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
         int pageSize = 6;
-
         Page<Product> page = productService.getProductPagination(pageNo, pageSize);
         List<Product> listProduct = page.getContent();
-
-
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalProduct", page.getTotalElements());
@@ -94,19 +91,19 @@ public class ProductController {
     @CrossOrigin
     @PostMapping("/add")
     public void save(
-                       //@RequestParam(name="productid", required = true) Integer productid,
-                       @RequestParam(name="ownerid", required = true) Integer ownerid,
-                       @RequestParam(name="title", required = true) String title,
-                       @RequestParam(name="description", required = true) String description,
-                       @RequestParam(name="imageUrl1", required = false) String imageUrl1,
-                       @RequestParam(name="imageUrl2", required = false) String imageUrl2,
-                       @RequestParam(name="imageUrl3", required = false) String imageUrl3,
-                       @RequestParam(name="defaultPic", required = false) Integer defaultPic,
-                       @RequestParam(name="price", required = true) double price,
-                       @RequestParam(name="dateUpdated", required = true) Date dateUpdated,
-                       @RequestParam(name="soldStatus", required = false) boolean soldStatus,
-                       @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
-                       @RequestParam("imagefile") MultipartFile multipartFile) throws IOException {
+            //@RequestParam(name="productid", required = true) Integer productid,
+            @RequestParam(name="ownerid", required = true) Integer ownerid,
+            @RequestParam(name="title", required = true) String title,
+            @RequestParam(name="description", required = true) String description,
+            @RequestParam(name="imageUrl1", required = false) String imageUrl1,
+            @RequestParam(name="imageUrl2", required = false) String imageUrl2,
+            @RequestParam(name="imageUrl3", required = false) String imageUrl3,
+            @RequestParam(name="defaultPic", required = false) Integer defaultPic,
+            @RequestParam(name="price", required = true) double price,
+            @RequestParam(name="dateUpdated", required = true) Date dateUpdated,
+            @RequestParam(name="soldStatus", required = false) boolean soldStatus,
+            @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
+            @RequestParam("imagefile") MultipartFile multipartFile) throws IOException {
 // generate dateUpdated value from system date/time
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -124,10 +121,11 @@ public class ProductController {
         ProductDto productDto = new ProductDto(ownerid ,title, description, url1, url2, url3, defaultPic, price, dateUpdated, false, false);
         productService.save(new Product(productDto));
     }
-
-
-
-
-
-
+    @CrossOrigin
+    @GetMapping("/owner/{id}")
+    public List<Product> findByOwnerId(@PathVariable Integer id) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentPrincipalName = authentication.getName();
+        return productService.findByOwnerId(id);
+    }
 }

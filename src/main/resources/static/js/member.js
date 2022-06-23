@@ -321,7 +321,7 @@ function onloadInitMember() {
     currLoginIDx  =  loginUserInfo();
 //    getLoginSessionInfo(); // get login info from session storage
 //    console.log("inside onload " + currLoginID.userId);
-    productList.getAllProduct();
+    productList.getAllProduct(currLoginID.userId);
     document.getElementById("addResult").style.display = "none";
 
 //    if (  == true) {

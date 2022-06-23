@@ -51,6 +51,14 @@ public class ProductServiceMySQL implements ProductService{
     }
 
     @Override
+    public List<Product> findByOwnerId(int ownerid) {
+        List<Product> result = new ArrayList<>();
+        productRepository.findByOwnerId(ownerid).forEach(result :: add);
+
+        return result;
+    }
+
+    @Override
     public Page<Product> getProductPagination(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo -1, pageSize);
         return this.productRepository.findAll(pageable);

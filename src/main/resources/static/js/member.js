@@ -28,14 +28,13 @@ newProductForm.addEventListener('submit', (event) => {
         return;
     }
     let imageUrl = [];
-    console.log("getting url names");
+//    console.log("getting url names");
     for (let i=0; i<file.files.length; i++) {
-        console.log("filename " + file.files[i].name);
-        imageUrl[i] = file.files[i].name.replace("C:\\fakepath\\", "");
-        console.log(imageUrl[i]);
+//        console.log("filename " + file.files[i].name);
+//        imageUrl[i] = file.files[i].name.replace("C:\\fakepath\\", "");
+//        console.log(imageUrl[i]);
+        imageUrl[i] = file.files[i].name;
     }
-    console.log(file);
-    return;
     /*
         Do the Validation code here
     */
@@ -88,16 +87,7 @@ newProductForm.addEventListener('submit', (event) => {
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
     const result = productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage)
     console.log("upload result-" + result);
-
-    if (result == true) {
-        document.location.reload(true);
-        document.getElementById("addResult").innerHTML = "File upload success.";
-        document.getElementById("addResult").style.display = "block";
-    }
-    else {
-        document.getElementById("addResult").innerHTML = "Fail to upload file!";
-        document.getElementById("addResult").style.display = "block";
-    }
+    document.location.reload(true);
 });
 
 function getTimeStamp() {
@@ -120,7 +110,7 @@ input.addEventListener('change', () => {
 //    storeImage = input.files[0]; // for single file
     for (let i=0; i<input.files.length; i++)
         storeImage[i] = input.files[i];
-    console.log(storeImage);
+//    console.log(storeImage);
 });
 
 function preview(pos) {

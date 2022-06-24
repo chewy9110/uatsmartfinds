@@ -125,14 +125,14 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
     constructor()
     {
 
-    this.domainURL_Dev = "http://localhost:8080/";
-    this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
+   // this.domainURL_Dev = "http://localhost:8080/";
+   // this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
 
-    this.addItemAPI = this.domainURL_Prod + "product/add";
-    this.allItemAPI = this.domainURL_Prod + "product/pagination?page=0&size=6";
+   // this.addItemAPI = this.domainURL_Prod + "product/add";
+   // this.allItemAPI = this.domainURL_Prod + "product/pagination?page=0&size=6";
 
-
-
+    this.nowActiveURL = activeURL + "product/add"
+    this.nowActiveURL2 = activeURL + "product/pagination?page=0&size=6"
         this._products = [];       //create an array to store the details of product items
 
         //this.currLoginID =  msgUtilLoginId();
@@ -141,8 +141,8 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
     //method to add the items into the array
     addItem(ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, imageObject)
     {
-    	   const _remoteHost  =  RemoteHostURL();
-           const _remoteAPI = _remoteHost + "/product/add"
+    	   //const _remoteHost  =  RemoteHostURL();
+           //const _remoteAPI = _remoteHost + "/product/add"
 
     	
             let productController = this;
@@ -164,7 +164,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
                  //  fetch('http://localhost:8080/product/add', {
                 //      fetch(this.addItemAPI, {
-                fetch(_remoteAPI, {
+                fetch(this.nowActiveURL, {
                          method: 'POST',
                          body: formData
                          })
@@ -192,14 +192,16 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
          
           msgUtilloginUserInfo()
 
-          const _remoteHost  =  RemoteHostURL();
-          const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
+          this.nowActiveURL = activeURL + "product/all"
+
+          //const _remoteHost  =  RemoteHostURL();
+          //const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
 
         //fetch data from database using the REST API endpoint from Spring Boot
 // aboutus-feature
 
     //  fetch(this.allItemAPI)
-        fetch(_remoteAPI)
+        fetch(this.nowActiveURL2)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
@@ -242,12 +244,12 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         //fetch data from database using the REST API endpoint from Spring Boot
 //        fetch('http://127.0.0.1:8080/product/all')
 
-          const _remoteHost  =  RemoteHostURL();
-          const _remoteAPI = _remoteHost + "/product/owner/" + currid
+          //const _remoteHost  =  RemoteHostURL();
+          this.nowActiveURL = activeURL + "product/owner/" + currid
 
 
       //  fetch('http://127.0.0.1:8080/product/owner/' + currid)
-       fetch(_remoteAPI)
+       fetch(this.nowActiveURL)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")

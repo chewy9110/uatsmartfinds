@@ -75,7 +75,7 @@ public class ProductController {
         //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
     }
 
-    @CrossOrigin
+   /* @CrossOrigin
     @GetMapping("/product/{pageNo}")
     public String getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
         int pageSize = 6;
@@ -86,7 +86,7 @@ public class ProductController {
         model.addAttribute("totalProduct", page.getTotalElements());
         model.addAttribute("listProduct", listProduct);
         return "index";
-    }
+    } */
 
     @CrossOrigin
     @PostMapping("/add")

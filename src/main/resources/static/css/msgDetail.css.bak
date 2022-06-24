@@ -1,0 +1,112 @@
+ 
+.scroll {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height:100vh;
+}
+
+.btn-back-inbox {
+  background-color: #5bd40a;
+}
+ 
+.btnSendSize
+{
+width: 20%;
+}
+
+.width-80
+{ max-width: calc(80% - 1px);
+/* width:  calc(80% - 1px); */
+}
+
+.spacer {
+  height:10vh;    /* hardcoded */
+  width:100%;
+}
+
+ 
+
+
+/* back button */
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top : 13vh;
+  height:100%;
+
+  margin:0vh;
+ 
+  /* border: 2px solid #4CAF50;   */
+  background-color:  white;  
+  z-index:999;   
+}
+
+/* product img */
+.sticky2 {
+  position: -webkit-sticky;
+  position: sticky;
+  top:29vh;
+ 
+  /* background-color: #cae8ca;
+  border: 2px solid #4CAF50; */
+  z-index:999;   
+}
+
+/* send button */
+.sticky5  {
+  position: -webkit-sticky;
+  position: fixed;
+  bottom: 6.6vh;
+  
+  /* padding: 1vh; */
+  
+  background-color: white;
+  /* border: 0.2vh solid #4CAF50 ; */
+  z-index:999; 
+}
+
+/* .sticky5a  {
+  position: -webkit-sticky;
+  position: fixed;
+  bottom: 6.9vh;
+ 
+  background-color: white;
+  border: 0.2vh solid #4CAF50 ;
+  z-index:999; 
+} */
+
+.banner {
+  height: 9vh;
+  background-color: whitesmoke;
+}
+
+/* reduce banner img size */
+.img-reducesize {
+/* 
+   width:18vw;
+  height:18vh;   */
+ 
+ /* visibility: hidden; */
+display:none
+}
+ 
+
+/* -----------------------------------------------*/
+/* start of nav bar customisation
+/* -----------------------------------------------*/
+/* the entire bar frame */
+/*.navbar-custom {
+  background-color:    #e8d14e;   
+ }   */
+ 
+ /* change the color of active or hovered links of dropdown menu*/
+.navbar-custom .nav-item   .dropdown-item.active  ,
+.navbar-custom .nav-item  .dropdown-item:hover 
+ {
+    background-color: #e8d14e;  
+/* -----------------------------------------------*/
+/* end of nav bar customisation
+/* -----------------------------------------------*/   
+
+
+ 

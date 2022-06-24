@@ -27,7 +27,7 @@ newProductForm.addEventListener('submit', (event) => {
         resultMessage.style.display = "block";
         return;
     }
-    let imageUrl = [];
+    let imageUrl = [ "", "", ""];
 //    console.log("getting url names");
     for (let i=0; i<file.files.length; i++) {
 //        console.log("filename " + file.files[i].name);

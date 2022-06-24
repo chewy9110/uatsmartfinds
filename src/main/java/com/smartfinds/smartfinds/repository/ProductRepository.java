@@ -3,6 +3,7 @@ package com.smartfinds.smartfinds.repository;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface ProductRepository extends CrudRepository<Product, Integer> { //JpaRepository
+public interface ProductRepository extends JpaRepository<Product, Integer> { //JpaRepository
 
     @Query("SELECT p FROM Product p WHERE p.ownerid = :ownerid and deleteStatus=false order by dateUpdated desc")
     List<Product> findByOwnerId(@Param("ownerid") Integer ownerid);
@@ -31,4 +32,5 @@ public interface ProductRepository extends CrudRepository<Product, Integer> { //
     @Modifying
     @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
     void setDelete(@Param("productid") Integer productid);
+
 }

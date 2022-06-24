@@ -25,8 +25,8 @@ public class WatchlistServiceMySQL implements WatchlistService {
     }
 
     @Override
-    public void delete(int watchlistWatchlistid) {
-        watchlistRepository.deleteById(watchlistWatchlistid);
+    public void delete(int watchlistid) {
+        watchlistRepository.deleteById(watchlistid);
     }
 
     @Override
@@ -37,12 +37,17 @@ public class WatchlistServiceMySQL implements WatchlistService {
     }
 
     @Override
-    public Watchlist findById(int watchlistWatchlistid) {  //update product info and delete a product
-
-        //item is an object
-        Optional<Watchlist> watchlist = watchlistRepository.findById(watchlistWatchlistid); //cannot be a null
+    public Watchlist findById(int watchlistid) {
+        Optional<Watchlist> watchlist = watchlistRepository.findById(watchlistid);
         Watchlist watchlistResponse = watchlist.get();
 
         return watchlistResponse;
+    }
+
+    @Override
+    public List<Watchlist> findbyOwnerId(int watchlistid) {  //update product info and delete a product
+        List<Watchlist> result = new ArrayList<>();
+        watchlistRepository.findbyOwnerId(watchlistid).forEach(result :: add);
+        return result;
     }
 }

@@ -124,14 +124,6 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 {
     constructor()
     {
-
-        this.domainURL_Dev = "http://localhost:8080/";
-        this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
-
-        this.addItemAPI = this.domainURL_Prod + "product/add";
-        this.allItemAPI = this.domainURL_Prod + "product/pagination?page=0&size=6";
-
-
         this._products = [];       //create an array to store the details of product items
 
         //this.currLoginID =  msgUtilLoginId();
@@ -151,9 +143,12 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
                     formData.append('defaultPic', defaultPic);
                     formData.append('price', price);
                     formData.append('dateUpdated', dateUpdated);
-                    formData.append('imagefile',imageObject);
+                    formData.append('imagefile1',imageObject[0]);
+                    formData.append('imagefile2',imageObject[1]);
+                    formData.append('imagefile3',imageObject[2]);
 
-                   fetch(this.addItemAPI, {
+
+                   fetch('http://localhost:8080/product/add', {
                          method: 'POST',
                          body: formData
                          })
@@ -183,7 +178,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
          
           msgUtilloginUserInfo()
         //fetch data from database using the REST API endpoint from Spring Boot
-        fetch(this.allItemAPI)
+        fetch('http://127.0.0.1:8080/product/pagination?page=0&size=6')
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")

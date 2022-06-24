@@ -11,8 +11,10 @@ public interface WatchlistService {
     //this method is used for both add/edit item
     Watchlist save(Watchlist watchlist);
 
-    void delete(int watchlistWatchlistid);
+    void delete(int watchlistid);
 
-    Watchlist findById(int watchlistWatchlistid); 
+    Watchlist findById(int watchlistid);
+
+    List<Watchlist> findbyOwnerId(int watchlistid);
 }
 

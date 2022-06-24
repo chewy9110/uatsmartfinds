@@ -201,7 +201,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 // aboutus-feature
         fetch(_remoteAPI)
 
-        fetch(this.allItemAPI)
+      //  fetch(this.allItemAPI)
 
             .then((resp) => resp.json())
             .then(function(data) {

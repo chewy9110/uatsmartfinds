@@ -98,44 +98,44 @@
 
 
 <!--pagination-->
-      -<nav aria-label="Page navigation example">
+     <nav aria-label="Page navigation example">
           <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              <li class="page-item"><a class="page-link" href="">Previous</a></li>
+              <li class="page-item"><a class="page-link" th:href="@{/product/pagination?page=0&size=6}">1</a></li>
+              <li class="page-item"><a class="page-link" th:href="@{/product/pagination?page=1&size=6}">2</a></li>
+              <li class="page-item"><a class="page-link" th:href="@{/product/pagination?page=2&size=6}">3</a></li>
+              <li class="page-item"><a class="page-link" href="">Next</a></li>
           </ul>
       </nav>
 
 
-      <!--  <div th:if="${totalPages > 1}">
-            <div class="row col-sm-10">
-                <div class="col-sm-2">
-                    Total Rows: [[${totalProduct}]]
-                </div>
-                <div class="col-sm-1">
-                    <li th:each="i: ${#numbers.sequence(1, totalPages)}">
-                        <a th:if="${currentPage != i}" th:href="@{'/product/' + ${i}}">[[${i}]]</a>
-                    <li th:unless="${currentPage != i}">[[${i}]]</li> &nbsp; &nbsp;
-                    </li>
-                </div>
-                <div class="col-sm-1">
-                    <li th:if="${currentPage < totalPages}" th:href="@{'/product/' + ${currentPage + 1}}">Next</li>
-                    <span th:unless="${currentPage < totalPages}">Next</span>
-                </div>
+      <!--<div th:if="${totalPages > 1}">
+          <div class="row col-sm-10">
+              <div class="col-sm-2">
+                  Total Rows: [[${totalProduct}]]
+              </div>
+              <div class="col-sm-1">
+                  <li th:each="i: ${#numbers.sequence(1, totalPages)}">
+                      <a th:if="${currentPage != i}" th:href="@{'/product/' + ${i}}">[[${i}]]</a>
+                  <li th:unless="${currentPage != i}">[[${i}]]</li> &nbsp; &nbsp;
+                  </li>
+              </div>
+              <div class="col-sm-1">
+                  <li th:if="${currentPage < totalPages}" th:href="@{'/product/' + ${currentPage + 1}}">Next</li>
+                  <span th:unless="${currentPage < totalPages}">Next</span>
+              </div>
 
-                <div class="col-sm-1">
-                    <li th:if="${currentPage < totalPages}" th:href="@{'/product/' + ${totalPages}}">Last</li>
-                    <span th:unless="${currentPage < totalPages}">Last</span>
-                </div>
-            </div>
-        </div>-->
+              <div class="col-sm-1">
+                  <li th:if="${currentPage < totalPages}" th:href="@{'/product/' + ${totalPages}}">Last</li>
+                  <span th:unless="${currentPage < totalPages}">Last</span>
+              </div>
+          </div>
+      </div>-->
 
 
 
       <!-- grid card-->
-      <div  class="row d-flex row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-12 btn-color bg-img">
+      <div class="row d-flex row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 pb-12 btn-color bg-img">
           <div  class="container d-xs-none d-lg-block d-flex justify-content-center align-item-center" style="color: rgb(9, 12, 8); background-color: rgba(249, 249, 246, 0.8); height:400px; width: 800px; margin-bottom: 30px; justify-content:center;">
               <h1 style="padding-top: 200px">
                   No items on display
@@ -143,7 +143,6 @@
           </div>
 
       </div>
-
 
 
 
@@ -230,7 +229,7 @@
  <!--<script src="./js/member.js"></script>-->
 
  <!-- login script -->
-<<script src="./js/login.js"></script>
+<script src="./js/login.js"></script>
 
 
 <!--<script src="js/watchlistClass.js"></script>
@@ -247,6 +246,16 @@
 
 <!-- whenupdate feature from andrew -->
  <script src="js/indexUtil.js"></script>
+
+
+
+<!--Dev or Prod domain .js-->
+<script src="./js/domain.js"></script>
+
+
+
+
+
 
 </body>
 </html>

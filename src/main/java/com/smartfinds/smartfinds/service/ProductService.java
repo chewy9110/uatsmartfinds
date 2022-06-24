@@ -24,5 +24,5 @@ public interface ProductService {
 
     void setDelete(int productid);
 
-    Page<Product> getProductPagination(int pageNo, int pageSize);
+    //Page<Product> getProductPagination(int pageNo, int pageSize);
 }

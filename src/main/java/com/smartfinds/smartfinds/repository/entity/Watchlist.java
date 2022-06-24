@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+//@Table(name = "watchlist")
 public class Watchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +14,7 @@ public class Watchlist {
     private Integer userid;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "Product")
+//    @JoinColumn(name = "Product_productid", foreignKey = @ForeignKey(name = "fk_watchlist_product") )
     private Integer productid;
 
     private Date dateUpdated;

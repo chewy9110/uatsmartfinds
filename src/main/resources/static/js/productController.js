@@ -156,11 +156,9 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
                              console.log(response.status); // Will show you the status
                              if (response.ok) {
                                  console.log("Successfully Added Product!");
-                                 return true;
                              }
                              else {
                                 console.log("Fail to upload file!");
-                                return false;
                              }
                          })
                          .catch((error) => {

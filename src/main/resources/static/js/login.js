@@ -245,7 +245,9 @@ console.log("outside [" + datastr + "]");
 }
 
 function  RemoteHostURL() {
-    return("http://localhost:8080")
+    //  remoteHostURL = "http://localhost:8080"
+        remoteHostURL = "https://smartfinds.herokuapp.com"
+       return(remoteHostURL)
 }
 
 

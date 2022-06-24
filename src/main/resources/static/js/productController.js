@@ -163,11 +163,8 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 
                  //  fetch('http://localhost:8080/product/add', {
-                   fetch(_remoteAPI, {
-              	
-
-                   fetch(this.addItemAPI, {
-
+                //      fetch(this.addItemAPI, {
+                fetch(_remoteAPI, {
                          method: 'POST',
                          body: formData
                          })
@@ -194,15 +191,15 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         productController._products = [];
          
           msgUtilloginUserInfo()
+
           const _remoteHost  =  RemoteHostURL();
           const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
 
         //fetch data from database using the REST API endpoint from Spring Boot
 // aboutus-feature
+
+    //  fetch(this.allItemAPI)
         fetch(_remoteAPI)
-
-      //  fetch(this.allItemAPI)
-
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
@@ -244,7 +241,13 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         //fetch data from database using the REST API endpoint from Spring Boot
 //        fetch('http://127.0.0.1:8080/product/all')
-        fetch('http://127.0.0.1:8080/product/owner/' + currid)
+
+          const _remoteHost  =  RemoteHostURL();
+          const _remoteAPI = _remoteHost + "/product/owner/" + currid
+
+
+      //  fetch('http://127.0.0.1:8080/product/owner/' + currid)
+       fetch(_remoteAPI)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")

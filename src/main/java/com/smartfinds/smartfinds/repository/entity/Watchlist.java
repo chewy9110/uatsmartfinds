@@ -2,10 +2,7 @@ package com.smartfinds.smartfinds.repository.entity;
 
 import com.smartfinds.smartfinds.controller.dto.WatchlistDto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -14,9 +11,13 @@ public class Watchlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer watchlistid; // need to pass the id to a class method findItemById()
     private Integer userid;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "Product")
     private Integer productid;
+
     private Date dateUpdated;
-    private boolean deleteStatus;
+    private Boolean deleteStatus;
 
     public Watchlist() {}
 

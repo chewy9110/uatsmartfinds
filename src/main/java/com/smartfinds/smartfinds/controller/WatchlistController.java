@@ -12,13 +12,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @RestController
-@RequestMapping("/watchlist")
+@RequestMapping("/watch")
 public class WatchlistController {
 
-    @Value("${image.folder}")
-    private String imageFolder;
+//    @Value("${image.folder}")
+//    private String imageFolder;
 
     final WatchlistService watchlistService;
 
@@ -49,14 +50,21 @@ public class WatchlistController {
     public void save(@RequestParam(name = "userid", required = true) Integer userid,
                      @RequestParam(name = "productid", required = true) Integer productid,
                      @RequestParam(name="dateUpdated", required = true) Date dateUpdated,
-                     @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
-                     @RequestParam("imagefile") MultipartFile multipartFile) throws IOException {
+                     @RequestParam(name="deleteStatus", required = false) boolean deleteStatus) {
+//                     @RequestParam("imagefile") MultipartFile multipartFile) throws IOException { watchlist don't need to transfer file
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
+//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//        FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
 
-        String fullPath1 = imageFolder + "/";
+//        String fullPath1 = imageFolder + "/";
         WatchlistDto watchlistDto = new WatchlistDto(userid, productid, dateUpdated, deleteStatus);
         watchlistService.save(new Watchlist(watchlistDto));
     }
+
+    @CrossOrigin
+    @GetMapping("/getbyuser/{watchlistid}")
+    public List<Watchlist> findbyOwnerId(@PathVariable Integer watchlistid) {
+        return watchlistService.findbyOwnerId(watchlistid);
+    }
+
 }

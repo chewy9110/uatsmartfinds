@@ -64,16 +64,16 @@ public class ProductController {
     }
 
 
-    @Autowired
-    private ProductRepository productRepository;
-    @CrossOrigin
-    @GetMapping("/pagination")
-    public ResponseEntity<List<Product>> getProductPagination(@RequestParam int page, @RequestParam  int size){
-        Pageable pageable = PageRequest.of(page, size);
-        List<Product> list = (List<Product>) productRepository.findAll(pageable).getContent();
-        return ResponseEntity.ok(list);
-        //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
-    }
+//    @Autowired
+//    private ProductRepository productRepository;
+//    @CrossOrigin
+//    @GetMapping("/pagination")
+//    public ResponseEntity<List<Product>> getProductPagination(@RequestParam int page, @RequestParam  int size){
+//        Pageable pageable = PageRequest.of(page, size);
+//        List<Product> list = (List<Product>) productRepository.findAll(pageable).getContent();
+//        return ResponseEntity.ok(list);
+//        //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
+//    }
 
   /*  @CrossOrigin
     @GetMapping("/product/{pageNo}")
@@ -103,11 +103,22 @@ public class ProductController {
             @RequestParam(name="dateUpdated", required = true) Date dateUpdated,
             @RequestParam(name="soldStatus", required = false) boolean soldStatus,
             @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
-            @RequestParam("imagefile") MultipartFile multipartFile) throws IOException {
+            @RequestParam("imagefile1") MultipartFile multipartFile1,
+            @RequestParam("imagefile2") MultipartFile multipartFile2,
+            @RequestParam("imagefile3") MultipartFile multipartFile3) throws IOException
+    {
 // generate dateUpdated value from system date/time
 
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        FileUploadUtil.saveFile(imageFolder, fileName.replaceAll("\\s", ""), multipartFile);
+        String fileName1 = StringUtils.cleanPath(multipartFile1.getOriginalFilename());
+        FileUploadUtil.saveFile(imageFolder, fileName1.replaceAll("\\s", ""), multipartFile1);
+
+        String fileName2 = StringUtils.cleanPath(multipartFile2.getOriginalFilename());
+        FileUploadUtil.saveFile(imageFolder, fileName2.replaceAll("\\s", ""), multipartFile2);
+
+        String fileName3 = StringUtils.cleanPath(multipartFile3.getOriginalFilename());
+        FileUploadUtil.saveFile(imageFolder, fileName3.replaceAll("\\s", ""), multipartFile3);
+
+
         String url1 = "", url2 = "", url3 = "";
         if (! imageUrl1.equals("")) { // this is not to save url as products/ if filename is "" results in 404 error when retrieved
             url1 = imageFolder + "/" + imageUrl1.replaceAll("\\s", ""); // remove white space within a filename e.g. "file abc"
@@ -131,5 +142,17 @@ public class ProductController {
     @GetMapping("/notowner/{id}")
     public List<Product> findNotByOwnerId(@PathVariable Integer id) {
         return productService.findNotByOwnerId(id);
+    }
+
+    @CrossOrigin
+    @GetMapping("/sold/{id}")
+    public void setSold(@PathVariable Integer id) {
+        productService.setSold(id);
+    }
+
+    @CrossOrigin
+    @GetMapping("/delete/{id}")
+    public void setDelete(@PathVariable Integer id) {
+        productService.setDelete(id);
     }
 }

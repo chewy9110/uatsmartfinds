@@ -103,21 +103,25 @@ public class ProductController {
             @RequestParam(name="dateUpdated", required = true) Date dateUpdated,
             @RequestParam(name="soldStatus", required = false) boolean soldStatus,
             @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
-            @RequestParam("imagefile1") MultipartFile multipartFile1,
-            @RequestParam("imagefile2") MultipartFile multipartFile2,
-            @RequestParam("imagefile3") MultipartFile multipartFile3) throws IOException
+            @RequestParam(name="imagefile1", required = true) MultipartFile multipartFile1,
+            @RequestParam(name="imagefile2", required = false) MultipartFile multipartFile2,
+            @RequestParam(name="imagefile3", required = false) MultipartFile multipartFile3) throws IOException
     {
 // generate dateUpdated value from system date/time
+        if (multipartFile1 != null) {
+            String fileName1 = StringUtils.cleanPath(multipartFile1.getOriginalFilename());
+            FileUploadUtil.saveFile(imageFolder, fileName1.replaceAll("\\s", ""), multipartFile1);
+        }
 
-        String fileName1 = StringUtils.cleanPath(multipartFile1.getOriginalFilename());
-        FileUploadUtil.saveFile(imageFolder, fileName1.replaceAll("\\s", ""), multipartFile1);
+        if (multipartFile2 != null) {
+            String fileName2 = StringUtils.cleanPath(multipartFile2.getOriginalFilename());
+            FileUploadUtil.saveFile(imageFolder, fileName2.replaceAll("\\s", ""), multipartFile2);
+        }
 
-        String fileName2 = StringUtils.cleanPath(multipartFile2.getOriginalFilename());
-        FileUploadUtil.saveFile(imageFolder, fileName2.replaceAll("\\s", ""), multipartFile2);
-
-        String fileName3 = StringUtils.cleanPath(multipartFile3.getOriginalFilename());
-        FileUploadUtil.saveFile(imageFolder, fileName3.replaceAll("\\s", ""), multipartFile3);
-
+        if (multipartFile3 != null) {
+            String fileName3 = StringUtils.cleanPath(multipartFile3.getOriginalFilename());
+            FileUploadUtil.saveFile(imageFolder, fileName3.replaceAll("\\s", ""), multipartFile3);
+        }
 
         String url1 = "", url2 = "", url3 = "";
         if (! imageUrl1.equals("")) { // this is not to save url as products/ if filename is "" results in 404 error when retrieved

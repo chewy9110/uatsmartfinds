@@ -141,6 +141,10 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
     //method to add the items into the array
     addItem(ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, imageObject)
     {
+    	   const _remoteHost  =  RemoteHostURL();
+           const _remoteAPI = _remoteHost + "/product/add"
+
+    	
             let productController = this;
                     const formData = new FormData();
                     formData.append('ownerid', ownerid);
@@ -157,7 +161,13 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
                     formData.append('imagefile3',imageObject[2]);
 
 
+
+                 //  fetch('http://localhost:8080/product/add', {
+                   fetch(_remoteAPI, {
+              	
+
                    fetch(this.addItemAPI, {
+
                          method: 'POST',
                          body: formData
                          })
@@ -184,8 +194,15 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         productController._products = [];
          
           msgUtilloginUserInfo()
+          const _remoteHost  =  RemoteHostURL();
+          const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
+
         //fetch data from database using the REST API endpoint from Spring Boot
+// aboutus-feature
+        fetch(_remoteAPI)
+
         fetch(this.allItemAPI)
+
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")

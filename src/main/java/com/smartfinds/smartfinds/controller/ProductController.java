@@ -64,18 +64,18 @@ public class ProductController {
     }
 
 
-//    @Autowired
-//    private ProductRepository productRepository;
-//    @CrossOrigin
-//    @GetMapping("/pagination")
-//    public ResponseEntity<List<Product>> getProductPagination(@RequestParam int page, @RequestParam  int size){
-//        Pageable pageable = PageRequest.of(page, size);
-//        List<Product> list = (List<Product>) productRepository.findAll(pageable).getContent();
-//        return ResponseEntity.ok(list);
-//        //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
-//    }
+    @Autowired
+    private ProductRepository productRepository;
+    @CrossOrigin
+    @GetMapping("/pagination")
+    public ResponseEntity<List<Product>> getProductPagination(@RequestParam int page, @RequestParam  int size){
+        Pageable pageable = PageRequest.of(page, size);
+        List<Product> list = (List<Product>) productRepository.findAll(pageable).getContent();
+        return ResponseEntity.ok(list);
+        //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
+    }
 
-  /*  @CrossOrigin
+    @CrossOrigin
     @GetMapping("/product/{pageNo}")
     public String getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
         int pageSize = 6;
@@ -86,7 +86,7 @@ public class ProductController {
         model.addAttribute("totalProduct", page.getTotalElements());
         model.addAttribute("listProduct", listProduct);
         return "index";
-    }*/
+    }
 
     @CrossOrigin
     @PostMapping("/add")

@@ -66,11 +66,11 @@ public class ProductServiceMySQL implements ProductService{
         return result;
     }
 
-//    @Override
-//    public Page<Product> getProductPagination(int pageNo, int pageSize) {
-//        Pageable pageable = PageRequest.of(pageNo -1, pageSize);
-//        return this.productRepository.findAll(pageable);
-//    }
+    @Override
+    public Page<Product> getProductPagination(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo -1, pageSize);
+        return this.productRepository.findAll(pageable);
+    }
 
     @Override
     public void setSold(int productid) {

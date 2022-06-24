@@ -25,12 +25,12 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
     @Query("SELECT p FROM Product p WHERE p.ownerid != :ownerid and deleteStatus=false and soldStatus=false order by dateUpdated desc")
     List<Product> findNotByOwnerId(@Param("ownerid") Integer ownerid);
 
-    @Modifying
-    @Query("update Product p set p.soldStatus = true where p.productid = :productid")
-    void setSold(@Param("productid") Integer productid);
-
-    @Modifying
-    @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
-    void setDelete(@Param("productid") Integer productid);
+//    @Modifying
+//    @Query("update Product p set p.soldStatus = true where p.productid = :productid")
+//    Product setSold(@Param("productid") Integer productid);
+//
+//    @Modifying
+//    @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
+//    void setDelete(@Param("productid") Integer productid);
 
 }

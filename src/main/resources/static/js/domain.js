@@ -1,4 +1,4 @@
-
-
- this.activeURL_Prod = "https://smartfinds.herokuapp.com/";
+const prodUrl = "https://smartfinds.herokuapp.com/";
+const devUrl = "http://localhost:8080/";
+const activeURL = devUrl;
 

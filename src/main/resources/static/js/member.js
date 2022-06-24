@@ -85,8 +85,8 @@ newProductForm.addEventListener('submit', (event) => {
     // need to hardcode ownerid until we can retrieve this from the login id
     // defaultPic hardcode to 1, until we can manage the selection of picture as a defaultPic better
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
-    const result = productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage)
-    console.log("upload result-" + result);
+    // fetch returns a promise, return result is undefined
+    productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage);
     document.location.reload(true);
 });
 

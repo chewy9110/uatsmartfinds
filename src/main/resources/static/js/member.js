@@ -1,7 +1,7 @@
 const productList = new ProductsController();
 const uploadImages = []; // array to hold all the pictures to be uploaded
 let memberProducts = []; // array to hold subset of productList, to be used by member.html only
-let storeImage = "";
+let storeImage = [];
 let currLoginIDx;
 //let storeImage = []; // for multiple image upload
 
@@ -19,24 +19,23 @@ newProductForm.addEventListener('submit', (event) => {
     let resultMessage = document.getElementById("addResult");
     resultMessage.style.display = "none";
 
-/* for multiple file upload
-    const imageUrl = [];
-    for (let i=0; i<file.files.length; i++) {
-        console.log(i + file.files.item(i).name);
-        imageUrl[i] = file.files.item(i).name;
-    }
-*/
-
     // Get the values of the inputs - variable names to be same as MySQL columns
-    const imageUrl = file.value.replace("C:\\fakepath\\", "");
-    if (file.value == "") {
+//    const imageUrl1 = file.value.replace("C:\\fakepath\\", "");
+
+    if (file.files.length == 0) {
         resultMessage.innerHTML = "Choose an image for upload.";
         resultMessage.style.display = "block";
         return;
     }
-
-//    const imageUrl2 = frame1.src.replace("C:\\fakepath\\", "");
-//    const imageUrl3 = frame2.src.replace("C:\\fakepath\\", "");
+    let imageUrl = [];
+    console.log("getting url names");
+    for (let i=0; i<file.files.length; i++) {
+        console.log("filename " + file.files[i].name);
+        imageUrl[i] = file.files[i].name.replace("C:\\fakepath\\", "");
+        console.log(imageUrl[i]);
+    }
+    console.log(file);
+    return;
     /*
         Do the Validation code here
     */
@@ -81,13 +80,16 @@ newProductForm.addEventListener('submit', (event) => {
     const dateUpdated = getTimeStamp(); //"2022/06/21 10:53:54"; // hardcode for testing
 //    console.log(dateUpdated);
 
-    console.log("*!*!*!*!*!*!" + currLoginID.userId);
+//    console.log("*!*!*!*!*!*!" + currLoginID.userId);
     // Add the task to the task manager
 //    productList.addItem(ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, storeImage);
     // need to hardcode ownerid until we can retrieve this from the login id
     // defaultPic hardcode to 1, until we can manage the selection of picture as a defaultPic better
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
-    if (productList.addItem(currLoginID.userId, title, description, imageUrl, "", "", 1, price, dateUpdated, storeImage) == true) {
+    const result = productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage)
+    console.log("upload result-" + result);
+
+    if (result == true) {
         document.location.reload(true);
         document.getElementById("addResult").innerHTML = "File upload success.";
         document.getElementById("addResult").style.display = "block";
@@ -111,17 +113,14 @@ function getTimeStamp() {
 }
 
 // select file input
-const input1 = document.getElementById('file0');
-input1.addEventListener('change', () => {
+const input = document.getElementById('file0');
+input.addEventListener('change', () => {
 //    console.log("imageurl1 on change")
 
-/* for multiple file upload
-    if (input1.files.length > 3) {
-        input1.value = null;
-        return;
-    }
-*/
-    storeImage = input1.files[0];
+//    storeImage = input.files[0]; // for single file
+    for (let i=0; i<input.files.length; i++)
+        storeImage[i] = input.files[i];
+    console.log(storeImage);
 });
 
 function preview(pos) {
@@ -135,7 +134,7 @@ function preview(pos) {
         alert("Maximum 3 files only.")
         return;
     }
-        console.log("length" + event.target.files.length);
+//        console.log("length" + event.target.files.length);
         for (let i=0; i<event.target.files.length; i++) {
             const frame = document.getElementById('frame' + i);
             frame.src = URL.createObjectURL(event.target.files[i]);

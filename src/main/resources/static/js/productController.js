@@ -105,26 +105,21 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 
 
-  function displayProductDetail(item) {
-
+function displayProductDetail(item) {
     document.querySelector("#title").innerHTML = item.title;
     document.querySelector("#description").innerHTML = item.description;
     document.querySelector("#price").innerHTML = formatPrice(item.price);
 
     document.querySelector("#imageUrl1").src = item.imageUrl1;
     document.querySelector("#imageUrl2").src = item.imageUrl2;
-   // document.querySelector("#ImageUrl3").src = item.imageUrl3;
-     document.querySelector("#imageUrl3").src = item.imageUrl2;
- }
+    // document.querySelector("#ImageUrl3").src = item.imageUrl3;
+    document.querySelector("#imageUrl3").src = item.imageUrl2;
+}
 
-
-
-
- class ProductsController
+class ProductsController
 {
     constructor()
     {
-
    // this.domainURL_Dev = "http://localhost:8080/";
    // this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
 
@@ -138,33 +133,70 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         //this.currLoginID =  msgUtilLoginId();
     }
 
+    // method to set item as marked as deleted
+    setItemDeleted(item) {
+        const formData = new FormData();
+        formData.append('deleteStatus', true);
+        fetch(activeURL + "product/delete/" + item.productid, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(function(response) {
+            console.log(response.status); // Will show you the status
+            if (response.ok) {
+                console.log("Successfully Added Product!");
+            }
+            else {
+                console.log("Fail to upload file!");
+            }
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
+
+    // method to set item as marked as sold
+    setItemSold(item) {
+        const formData = new FormData();
+        formData.append('soldStatus', true);
+        fetch(activeURL + "product/sold/" + item.productid, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(function(response) {
+            console.log(response.status); // Will show you the status
+            if (response.ok) {
+                console.log("Successfully Added Product!");
+            }
+            else {
+                console.log("Fail to upload file!");
+            }
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
+
     //method to add the items into the array
     addItem(ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, imageObject)
     {
-    	   //const _remoteHost  =  RemoteHostURL();
-           //const _remoteAPI = _remoteHost + "/product/add"
-
-    	
             let productController = this;
-                    const formData = new FormData();
-                    formData.append('ownerid', ownerid);
-                    formData.append('title', title);
-                    formData.append('description', description);
-                    formData.append('imageUrl1', imageUrl1);
-                    formData.append('imageUrl2', imageUrl2);
-                    formData.append('imageUrl3', imageUrl3);
-                    formData.append('defaultPic', defaultPic);
-                    formData.append('price', price);
-                    formData.append('dateUpdated', dateUpdated);
-                    formData.append('imagefile1',imageObject[0]);
-                    formData.append('imagefile2',imageObject[1]);
-                    formData.append('imagefile3',imageObject[2]);
+            const formData = new FormData();
+            formData.append('ownerid', ownerid);
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('imageUrl1', imageUrl1);
+            formData.append('imageUrl2', imageUrl2);
+            formData.append('imageUrl3', imageUrl3);
+            formData.append('defaultPic', defaultPic);
+            formData.append('price', price);
+            formData.append('dateUpdated', dateUpdated);
+            formData.append('imagefile1',imageObject[0]);
+            formData.append('imagefile2',imageObject[1]);
+            formData.append('imagefile3',imageObject[2]);
 
-
-
-                 //  fetch('http://localhost:8080/product/add', {
-                //      fetch(this.addItemAPI, {
-                fetch(this.nowActiveURL, {
+                // activeURL contains http://url/ defined in domain.js
+                fetch(activeURL + "product/add", {
                          method: 'POST',
                          body: formData
                          })
@@ -179,8 +211,6 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
                          })
                          .catch((error) => {
                              console.log('Error:', error);
-//                             alert("Error adding item to Product");
-                             return false;
                          });
     }
 
@@ -242,14 +272,8 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         productController._products = [];
 
         //fetch data from database using the REST API endpoint from Spring Boot
-//        fetch('http://127.0.0.1:8080/product/all')
-
-          //const _remoteHost  =  RemoteHostURL();
-          this.nowActiveURL = activeURL + "product/owner/" + currid
-
-
-      //  fetch('http://127.0.0.1:8080/product/owner/' + currid)
-       fetch(this.nowActiveURL)
+        // activeURL contains http://url/ defined in domain.js
+       fetch(activeURL + "product/owner/" + currid)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
@@ -273,14 +297,12 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
                    }
 
                     productController._products.push(itemObj);
-//                   };
+//                   }; //if(index <= 5) {
               });
               productController.displayMemberProduct();
-                //return true;
             })
             .catch(function(error) {
                 console.log(error);
-                //return false;
             });
     }
 
@@ -352,25 +374,15 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
     }
 
     displayMemberProduct() {
-      //
-      //let products = productList;
-//      console.log(products);
-      let showProductItem = "";
-      let moreBtnId = "";
-//      let editBtnId = "";
-//      let soldBtnId = "";
-//      let delBtnId = "";
+        let showProductItem = "";
+        let moreBtnId = "";
 
-      productList._products.forEach ((item, index) => {
-
-//          editBtnId = "btn-edit" + index;
-//          soldBtnId = "btn-sold" + index;
-//          delBtnId = "btn-del" + index;
-          const price = item.price;  // purpose of const price use for formatting to 2 decimal point
-          const wUpdated = this.whenUpdated(item.dateUpdated);
-          showProductItem +=
-          `
-  <div class="item">
+        productList._products.forEach ((item, index) => {
+            const price = item.price;  // purpose of const price use for formatting to 2 decimal point
+            const wUpdated = this.whenUpdated(item.dateUpdated);
+            showProductItem +=
+            `
+  <div class="item" id="carditem${index}">
       <div class="card d-flex shadow p-3 mb-5 bg-body rounded" style="height: 800px;">
         <div id="carouselCard${index}" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
           <div class="carousel-indicators">
@@ -446,24 +458,35 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 //        console.log(showProductItem);
         // setup edititem button
-      productList._products.forEach ((item, index) => {
-          moreBtnId = "btn-edit" + index;
-          document.getElementById(moreBtnId).addEventListener("click", function(){ editItem(index, item) });
+        productList._products.forEach ((item, index) => {
+            moreBtnId = "btn-edit" + index;
+            if (item.soldStatus==true) {
+                // if item is sold, don't set click event for edit button & hide button
+                document.getElementById(moreBtnId).style.display = "none";
+            }
+            else {
+                document.getElementById(moreBtnId).addEventListener("click", function(){ editItem(index, item) });
+            }
         });
 
-      // setup markItemSold button
-      productList._products.forEach ((item, index) => {
-          moreBtnId = "btn-sold" + index;
-          document.getElementById(moreBtnId).addEventListener("click", function(){ markItemSold(index, item) });
-          document.getElementById("soldIcon" + index).style.display = "none";
-
-          // document.getElementById(moreBtnId).addEventListener("click", function(){ displayItemDetail(item) });
+        // setup markItemSold button
+        productList._products.forEach ((item, index) => {
+            moreBtnId = "btn-sold" + index;
+            if (item.soldStatus == true) {
+                // if item is sold, don't set click event for sold button & hide button
+                document.getElementById(moreBtnId).style.display = "none";
+                document.getElementById("soldIcon" + index).style.display = "block";
+            }
+            else {
+                document.getElementById(moreBtnId).addEventListener("click", function(){ markItemSold(index, item) });
+                document.getElementById("soldIcon" + index).style.display = "none";
+            }
         });
 
         // setup deleteItem button
         productList._products.forEach ((item, index) => {
           moreBtnId = "btn-del" + index;
-          document.getElementById(moreBtnId).addEventListener("click", function(){ deleteItem(item) });
+          document.getElementById(moreBtnId).addEventListener("click", function(){ deleteItem(index, item) });
           // document.getElementById(moreBtnId).addEventListener("click", function(){ displayItemDetail(item) });
         });
 

@@ -85,8 +85,8 @@ newProductForm.addEventListener('submit', (event) => {
     // need to hardcode ownerid until we can retrieve this from the login id
     // defaultPic hardcode to 1, until we can manage the selection of picture as a defaultPic better
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
-    const result = productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage)
-    console.log("upload result-" + result);
+    // fetch returns a promise, return result is undefined
+    productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage);
     document.location.reload(true);
 });
 
@@ -105,12 +105,8 @@ function getTimeStamp() {
 // select file input
 const input = document.getElementById('file0');
 input.addEventListener('change', () => {
-//    console.log("imageurl1 on change")
-
-//    storeImage = input.files[0]; // for single file
     for (let i=0; i<input.files.length; i++)
         storeImage[i] = input.files[i];
-//    console.log(storeImage);
 });
 
 function preview(pos) {
@@ -208,30 +204,31 @@ function setDefaultImage(position) {
     }
 }
 
-function addProductItem() {
-    if (uploadImages.length == 0)
-    {
-        alert("Please add some photos of the item to be sold.");
-        return;
-    }
-    const title = document.getElementById("newItemTitleInput").value;
-    if (title == "")
-        alert("Enter title information.");
-
-    const description = document.getElementById("newItemDescription").value;
-    if (description == "")
-        alert("Enter a description.");
-
-    const price = document.getElementById("newItemPrice").value;
-    if (price = "")
-        alert("Enter a price value.");
-
-    const imageUrl1 = uploadImages[0];
-    const imageUrl2 = uploadImages[1];
-    const imageUrl3 = uploadImages[2];
-
-    productList.addProduct(title, description, imageUrl1, imageUrl2, imageUrl3, price, new Date().toString());
-}
+/* this function is deprecated, function provided in productController.js - productController.additem() */
+//function addProductItem() {
+//    if (uploadImages.length == 0)
+//    {
+//        alert("Please add some photos of the item to be sold.");
+//        return;
+//    }
+//    const title = document.getElementById("newItemTitleInput").value;
+//    if (title == "")
+//        alert("Enter title information.");
+//
+//    const description = document.getElementById("newItemDescription").value;
+//    if (description == "")
+//        alert("Enter a description.");
+//
+//    const price = document.getElementById("newItemPrice").value;
+//    if (price = "")
+//        alert("Enter a price value.");
+//
+//    const imageUrl1 = uploadImages[0];
+//    const imageUrl2 = uploadImages[1];
+//    const imageUrl3 = uploadImages[2];
+//
+//    productList.addProduct(title, description, imageUrl1, imageUrl2, imageUrl3, price, new Date().toString());
+//}
 
 function editItem(idx, item) {
     // console.log(item.description);
@@ -264,35 +261,20 @@ function clearItem() {
 }
 
 function markItemSold(idx, productItem) {
-    // console.log("position " + idx + " " + productItem.description);
-
-    // document.getElementById("btn-edit" + idx).setAttribute("class", "btn btn-primary disabled");
-    console.log("inside markItemSold()" + idx);
+//    console.log("position " + idx + " " + productItem.productid);
+//    console.log("inside markItemSold()" + idx);
     document.getElementById("btn-edit" + idx).style.display = "none";
     document.getElementById("btn-sold" + idx).style.display = "none";
     document.getElementById("soldIcon" + idx).style.display = "block";
 
-    productItem.markItemSold = true;
-
-    // const answer = prompt('You will not be able to edit the item anymore. Press "Y/y" to proceed');
-    // if (answer != "Y" && answer != "y") {
-    //     return;
-    // }
-    //alert("sold");
+    productList.setItemSold(productItem);
 }
 
-function deleteItem(item) {
-    // alert("deleteItems");
-    console.log(item.description);
-    // todo delete function to mark DB as deleteStatus = true
+function deleteItem(idx, item) {
+//    console.log(item.description);
+    document.getElementById("carditem" + idx).style.display = "none"; // hide card item until page is refresh
 
-//    const pos = memberProducts.findIndex(curr =>
-//        curr == item
-//    );
-//    memberProducts.splice(pos, 1);
-//    console.log(pos);
-//    // memberProducts = tmpArr;
-//    productList.displayYTProduct(memberProducts);
+    productList.setItemDeleted(item);
 }
 
 function test() {
@@ -301,28 +283,9 @@ function test() {
 }
 
 function onloadInitMember() {
-//    memberPageCheck(); // handle login and navbar display
-
-    // productList.sortByOwnerID();
-//    memberProducts = productList.filterByOwnerID(currLoginID.userID);
-    // const products = productList.filterExcludeOwnerID(currLoginID.userID);
-    //productList.displayMyProduct(products); // display filtered list, Old method
     currLoginIDx  =  loginUserInfo();
-//    getLoginSessionInfo(); // get login info from session storage
-//    console.log("inside onload " + currLoginID.userId);
     productList.getAllProduct(currLoginID.userId);
-    document.getElementById("addResult").style.display = "none";
-
-//    if (  == true) {
-    //    productList.displayYTProduct(); // display filtered list, using YT's design
-//    }
-
-    // testing watchlist filter to get productlist items
-    // const watchlist = watchList.getProductList(currLoginID.userID);
-    // for (let i=0; i<watchlist.length; i++) {
-    //     console.log("testing" + watchlist[i].productID);
-    // }
-    // productList.displayMyProduct(watchlist);
+    document.getElementById("addResult").style.display = "none"; // hide result message area
 }
 
 function checkPrice() {

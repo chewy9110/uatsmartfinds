@@ -12,14 +12,17 @@ watchList.addWatchList(6, 2, 9, "2022-05-01 08:25:00");
 */
 function onloadInitWatchList()
 {
-    memberPageCheck(); // handle login and navbar display
+//AS    memberPageCheck(); // handle login and navbar display
 
     // filter watchlist based on login ID and get the user's productlist items to display
-    const products = watchList.getProductList(currLoginID.userID);
+/* AS    const products = watchList.getProductList(currLoginID.userID);
     for (let i=0; i<products.length; i++) {
         console.log("onloadInitWatchList() " + products[i].productID);
     }
-    watchList.displayMyProduct();
+    watchList.displayMyProduct();*/
+    restoreSessionInfo();
+    console.log("onloadInitWatchList");
+    console.log(currLoginID);
 }
 
 function removeWatchItem() {

@@ -283,7 +283,7 @@ function test() {
 }
 
 function onloadInitMember() {
-    currLoginIDx  =  loginUserInfo();
+    //currLoginIDx  =  loginUserInfo();
     productList.getAllProduct(currLoginID.userId);
     document.getElementById("addResult").style.display = "none"; // hide result message area
 }

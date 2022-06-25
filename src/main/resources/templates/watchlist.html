@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,11 +16,14 @@
 </head>
 
 <!-- convert to Spring Security <body onload="onloadInitWatchList()";> -->
-<body>
+<body onload="onloadInitWatchList()">
 <!--nav bar-->
     <!-- header  -->
  <div th:insert="fragments/navbar.html :: navbar"></div>
     <!--<header class="headerContent"></header>-->
+<!-- for debugging
+<h5 th:text=" ${currentuser.username + ': ' + currentuser.userid + ': ' + currentuser.displayName  + ': ' + currentuser.userImgUrl}"></h5>
+ -->
 
 <!--img carousel-->
 <div class="container-fluid bg-color">
@@ -123,8 +127,8 @@
 
   <script src="./js/login.js"></script>
   <!--<script src="./js/test.js"></script>-->
-  <script src="./js/smartFindsClass.js"></script>
-  <script src="./js/smartFindsOps.js"></script>
+  <!-- <script src="./js/smartFindsClass.js"></script>
+  <script src="./js/smartFindsOps.js"></script> -->
   <script src="./js/watchlistClass.js"></script>
   <script src="./js/watchlistOps.js"></script>
 

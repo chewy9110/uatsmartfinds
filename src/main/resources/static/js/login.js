@@ -13,6 +13,87 @@ function checkBrowserSupport() {
   return true;
 }
 
+function saveSessionInfo() {
+    if (checkBrowserSupport()) {
+        window.sessionStorage.setItem("loginDetails", JSON.stringify(currLoginID) );
+        console.log("logindetails", currLoginID);
+    }
+  else {
+    alert("Browser does not support session storage. Cannot proceed.");
+  }
+}
+
+function restoreSessionInfo() {
+  if (checkBrowserSupport()) {
+    tmpLoginDetails = window.sessionStorage.getItem("loginDetails"); // check if user is already login
+    if (tmpLoginDetails == null) {
+      // user access this webpage without going through a login, by default redirect user to index.html
+      alert("Can't get login info.");
+        location.href = "./login";
+    }
+    else {
+      currLoginID = JSON.parse(tmpLoginDetails); // now can access custDetailObject as an array of object
+      if (currLoginID == null) {
+        console.log("loginDetails is null");
+        location.href = "./login";
+      }
+      console.log(currLoginID);
+    }
+  }
+  else {
+    alert("Browser does not support session storage. Cannot proceed.");
+  }
+}
+
+async function  loginUserInfo() {
+
+    const _remoteHost  =  RemoteHostURL();
+//    const _remoteURL   = _remoteHost + "/user/currentuser"
+//    const _remoteAPI = `${_remoteURL}`
+
+      const _remoteAPI = _remoteHost + "/user/currentuser"
+
+    let currLoginID = [];
+  await    fetch(_remoteAPI)
+    .then((resp) => resp.json())
+    .then(function(data) {
+//         console.log("2222. receive data")
+//         console.log(data);
+         currLoginID = {
+            userId  : data.userid,
+            userName :  data.username,
+            displayName :  data.displayName,
+            userImgUrl :  data.userImgUrl
+         }
+         console.log("userid="+currLoginID.userId)
+         console.log("username="+currLoginID.userName)
+         console.log("displayName="+currLoginID.displayName)
+         console.log("userImgUrl="+currLoginID.userImgUrl)
+
+//         window.sessionStorage.removeItem("loginDetails")
+         window.sessionStorage.clear();
+         window.sessionStorage.setItem("loginDetails", JSON.stringify(currLoginID) );
+
+   })
+     .catch(function(error) {
+       console.log(error);
+     });
+
+    //  console.log ("inside loginUser"+currLoginID);
+
+     return(currLoginID);
+
+}
+
+function  RemoteHostURL() {
+    //  remoteHostURL = "http://localhost:8080"
+        remoteHostURL = "https://smartfinds.herokuapp.com"
+       return(remoteHostURL)
+}
+
+/* deprecated codes from this line and below
+ * codes superceded with thymeleaf implementation
+ */
 /*function handleLoginLink() {
   if (checkBrowserSupport()) {
     debugger;
@@ -34,6 +115,7 @@ function checkBrowserSupport() {
 }
 handleLoginLink();*/
 
+/*
 function logout() {
   // perform session cleanup
 
@@ -188,7 +270,7 @@ function publicPageCheck() {
 
 //document.addEventListener("DOMContentLoaded", memberPageCheck);
 //userList.sortUserByEmail();
-/*
+
 const loginID = "";
 const loginName = "";
 let datastr = "";
@@ -204,50 +286,6 @@ fetch('./login.data')
 console.log("outside [" + datastr + "]");
 */
 
- async function  loginUserInfo() {
 
-    const _remoteHost  =  RemoteHostURL();
-//    const _remoteURL   = _remoteHost + "/user/currentuser"
-//    const _remoteAPI = `${_remoteURL}`
-
-      const _remoteAPI = _remoteHost + "/user/currentuser"
-
-    let currLoginID = [];
-  await    fetch(_remoteAPI)
-    .then((resp) => resp.json())
-    .then(function(data) {
-//         console.log("2222. receive data")
-//         console.log(data);
-         currLoginID = {
-            userId  : data.userid,
-            userName :  data.username,
-            displayName :  data.displayName,
-            userImgUrl :  data.userImgUrl
-         }
-         console.log("userid="+currLoginID.userId)
-         console.log("username="+currLoginID.userName)
-         console.log("displayName="+currLoginID.displayName)
-         console.log("userImgUrl="+currLoginID.userImgUrl)
-
-//         window.sessionStorage.removeItem("loginDetails")
-         window.sessionStorage.clear();
-         window.sessionStorage.setItem("loginDetails", JSON.stringify(currLoginID) );
-
-   })
-     .catch(function(error) {
-       console.log(error);
-     });
-
-    //  console.log ("inside loginUser"+currLoginID);
-
-     return(currLoginID);
-
-}
-
-function  RemoteHostURL() {
-    //  remoteHostURL = "http://localhost:8080"
-        remoteHostURL = "https://smartfinds.herokuapp.com"
-       return(remoteHostURL)
-}
 
 

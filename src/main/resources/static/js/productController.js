@@ -2,10 +2,10 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 `
 
-<div class="item">
-  <div class="card d-flex shadow p-3 mb-5 bg-body rounded" style="height: 800px;">
+<div class="item${index}"  id="${ownerid}">
+  <div class="card d-flex shadow p-3 mb-5 bg-body rounded h-100" style="height: 800px;">
 
- 
+
   <div id="carouselCard${index}" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselCard${index}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -26,7 +26,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
       <img src="${imageUrl3}" class="card-img-top" alt="item3">
     </div>
   </div>
-  
+
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard${index}" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -36,15 +36,15 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
     <span class="visually-hidden">Next</span>
   </button>
 
-</div>    
-    
+</div>
+
 
     <div class="card-body">
 
-<div class="container-flex d-flex flex-row">    
+<div class="container-flex d-flex flex-row">
 
       <h5 class="card-title">${title}</h5>
-    
+
 
         <div class="container-star d-flex flex-row-reverse ms-auto">
           <i class="bi1 bi-star-fill"></i>
@@ -52,12 +52,12 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
           <i class="bi3 bi-star-fill"></i>
           <i class="bi4 bi-star-fill"></i>
           <i class="bi5 bi-star-fill"></i>
-        
+
         </div>
 </div>
 
         <div  class="container d-flex flex-row my-2">
-      
+
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
             <i id="binoBtnId" type="button" class="bi bi-binoculars-fill ms-auto" onclick="memberPageCheck()"></i>
@@ -79,7 +79,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
        </button>
 
       <i class="btn">  <!--  <img src="products/message.svg" >-->
-       
+
       <!-- send msg box  -->
        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
         data-bs-item = '{"from":"${currLoginID_displayName}", "to":"${ownerDisplayName}", "url":"${imageUrl1}","productId":"${productid}","productTitle":"${title}", "price":"${price}", "inboxUid":"${currLoginID_userId}","fromUid":"${currLoginID_userId}","toUid":"${ownerid}"}'
@@ -98,8 +98,8 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
           <span><small class="text-muted">${ownerDisplayName}</small></span><img src="" width="30" height="30" class="rounded-circle" alt="img profile">
         </div>
       </div>
-    </div> 
-  </div> 
+    </div>
+  </div>
 </div>
   `;
 
@@ -144,7 +144,7 @@ class ProductsController
         .then(function(response) {
             console.log(response.status); // Will show you the status
             if (response.ok) {
-                console.log("Successfully Added Product!");
+                console.log("Successfully deleted item!");
             }
             else {
                 console.log("Fail to upload file!");
@@ -166,7 +166,7 @@ class ProductsController
         .then(function(response) {
             console.log(response.status); // Will show you the status
             if (response.ok) {
-                console.log("Successfully Added Product!");
+                console.log("Successfully sold product!");
             }
             else {
                 console.log("Fail to upload file!");
@@ -215,23 +215,31 @@ class ProductsController
     }
 
 
-    displayProduct()
+    displayProduct(currid)
     {
+    console.log("*****" + currid);
+
         let productController = this;
         productController._products = [];
-         
-          msgUtilloginUserInfo()
 
-          this.nowActiveURL = activeURL + "product/all"
+          msgUtilloginUserInfo()
 
           //const _remoteHost  =  RemoteHostURL();
           //const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
 
-        //fetch data from database using the REST API endpoint from Spring Boot
-// aboutus-feature
+        const _notOwner = "/notowner/" + currid;
+        const _all = "/all";
 
-    //  fetch(this.allItemAPI)
-        fetch(this.nowActiveURL2)
+         let API = activeURL + "product";
+
+         if(currid == null) {
+                 API = API + _all;
+         } else {
+            API = API + _notOwner;
+         }
+        //fetch data from database using the REST API endpoint from Spring Boot
+          console.log("******" + API);
+         fetch(API)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
@@ -316,13 +324,13 @@ class ProductsController
         for (let i=0; i<this._products.length; i++)
         {
             const item = this._products[i];            //assign the individual item to the variable
-    
+
 
             let ownerDisplayName = ""
             const productHTML = createHTMLList(i, item.productid, item.ownerid, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, ownerDisplayName,
                                     this.currLoginID.displayName, this.currLoginID.userId           );
 
- 
+
             productHTMLList.push(productHTML);
         }
 
@@ -383,7 +391,7 @@ class ProductsController
             showProductItem +=
             `
   <div class="item" id="carditem${index}">
-      <div class="card d-flex shadow p-3 mb-5 bg-body rounded" style="height: 800px;">
+      <div class="card d-flex shadow p-3 mb-5 bg-body rounded h-100" style="height: 800px;">
         <div id="carouselCard${index}" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselCard${index}"" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

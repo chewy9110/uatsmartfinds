@@ -20,6 +20,8 @@ public interface ProductService {
 
     List<Product> findNotByOwnerId(int ownerid);
 
+    List<Product> displayAll();
+
 //    Product setSold(int productid);
 
 //    Product setDelete(int productid);

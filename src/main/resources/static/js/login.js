@@ -28,15 +28,15 @@ function restoreSessionInfo() {
     tmpLoginDetails = window.sessionStorage.getItem("loginDetails"); // check if user is already login
     if (tmpLoginDetails == null) {
       // user access this webpage without going through a login, by default redirect user to index.html
-      alert("Can't get login info.");
-        location.href = "./login";
+      /* alert("Can't get login info.");
+        location.href = "./login";  */
     }
     else {
       currLoginID = JSON.parse(tmpLoginDetails); // now can access custDetailObject as an array of object
-      if (currLoginID == null) {
+     /* if (currLoginID == null) {
         console.log("loginDetails is null");
         location.href = "./login";
-      }
+      }*/
       console.log(currLoginID);
     }
   }
@@ -86,8 +86,8 @@ async function  loginUserInfo() {
 }
 
 function  RemoteHostURL() {
-    //  remoteHostURL = "http://localhost:8080"
-        remoteHostURL = "https://smartfinds.herokuapp.com"
+      remoteHostURL = "http://localhost:8080"
+    //    remoteHostURL = "https://smartfinds.herokuapp.com"
        return(remoteHostURL)
 }
 

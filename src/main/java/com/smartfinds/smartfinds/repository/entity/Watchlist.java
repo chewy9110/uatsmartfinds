@@ -73,11 +73,19 @@ public class Watchlist {
         this.deleteStatus = deleteStatus;
     }
 // new getter setter
-    public Integer getOwnerIdName() { return product.getOwnerid(); }
+    public Integer getOwnerId() { return product.getOwnerid(); }
 
     public String getTitle() { return product.getTitle(); }
 
     public String getDescription() { return product.getDescription(); }
+
+    public String getUrl1() { return product.getImageUrl1(); }
+    public String getUrl2() { return product.getImageUrl2(); }
+    public String getUrl3() { return product.getImageUrl3(); }
+
+    public Double getPrice() { return product.getPrice(); }
+
+    public Date getPdateUpdated() { return product.getDateUpdated(); }
 
 // new getter setter
 

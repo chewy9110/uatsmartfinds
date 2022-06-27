@@ -211,8 +211,8 @@ function msgUtilShowServerStatus(msg){
 
 }
 function  msgUtilRemoteHostURL() {
-   //  remoteHostURL = "http://localhost:8080"
-     remoteHostURL = "https://smartfinds.herokuapp.com"
+     remoteHostURL = "http://localhost:8080"
+   //  remoteHostURL = "https://smartfinds.herokuapp.com"
     return(remoteHostURL)
 }
 

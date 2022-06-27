@@ -42,11 +42,12 @@ public class ProductController {
         return getProductPagination(1, model);
     }*/
 
+
     @CrossOrigin
     @GetMapping("/all")
     public Iterable<Product> getProduct()
     {
-        return productService.all();
+        return productService.displayAll();
     }
 
 
@@ -75,6 +76,7 @@ public class ProductController {
         //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
     }
 
+
    /* @CrossOrigin
     @GetMapping("/product/{pageNo}")
     public String getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
@@ -87,6 +89,8 @@ public class ProductController {
         model.addAttribute("listProduct", listProduct);
         return "index";
     } */
+
+
 
     @CrossOrigin
     @PostMapping("/add")
@@ -167,6 +171,8 @@ public class ProductController {
         product.setDeleteStatus(status);
         return productService.save(product);
     }
+
+
 
 //    @CrossOrigin
 //    @PutMapping( "/updateAll/{id}" )

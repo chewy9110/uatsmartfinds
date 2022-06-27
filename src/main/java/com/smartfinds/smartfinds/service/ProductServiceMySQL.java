@@ -66,6 +66,13 @@ public class ProductServiceMySQL implements ProductService{
         return result;
     }
 
+    @Override
+    public List<Product> displayAll() {
+        List<Product> result = new ArrayList<>();
+        productRepository.displayAll().forEach(result :: add);
+        return result;
+    }
+
 //    @Override
 //    public Product setSold(int productid) {
 //        return productRepository.setSold(productid);

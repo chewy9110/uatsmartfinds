@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html"
+      >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -17,14 +18,14 @@
                 </a>
 
                 <!-- dummy search button -->
-<!--            <div class="input-group w-50 mx-auto d-flex d-none d-md-flex d-lg-none d-xl-flex d-lg-none d-xl-flex d-xl-none d-xxl-none" style="align-content: center;">-->
-<!--                <input type="text" class="form-control mx-auto" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">-->
-<!--                <button class="btn btn-dark" type="button" id="button-addon1" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>-->
-<!--            </div>-->
+         <!--   <div class="input-group w-50 d-flex d-none d-md-flex d-lg-none d-xl-flex d-lg-none d-xl-flex d-xl-none d-xxl-none" style="align-content: center;">
+                <input type="text" class="form-control mx-auto" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
+                <button class="btn btn-dark" type="button" id="button-addon1" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
+            </div>-->
 
 
             <!-- dummy search button -->
-            <div class="input-group w-50  offset-md-1     "  >
+            <div class="input-group w-50  offset-lg-2 d-flex d-none d-sm-none d-lg-flex d-md-flex d-sm-none "  >
               <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
                 <button class="btn btn-dark" type="button" id="button-addon1" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
             </div>
@@ -38,10 +39,6 @@
 
                 <div class="collapse navbar-collapse  " id="navbarSupportedContent">
 
-<!--                    <div class="input-group w-50 mx-auto d-sm-flex d-lg-flex d-md-none d-lg-none">-->
-<!--                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">-->
-<!--                        <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>-->
-<!--                    </div>-->
 
                     <ul class="navbar-nav ms-auto me-2 ">
                         <li class="home nav-item">
@@ -56,6 +53,12 @@
                            <li class="login nav-item " id="loginLink">
                              <a class="nav-link" th:href="@{login}">Login</a>
                           </li>
+                        </div>
+
+
+                        <div class="input-group w-50 mx-auto d-flex d-lg-none d-md-none d-sm-flex">
+                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
+                            <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
                         </div>
 
                         <!-- <li class="nav-item dropdown dropstart"> -->
@@ -91,6 +94,7 @@
                                       </form>
                                 <!--  </div>-->
                             </div>
+
 
                          </li>
 

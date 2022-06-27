@@ -5,6 +5,7 @@ import com.smartfinds.smartfinds.controller.dto.ProductDto;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -25,6 +26,10 @@ public class Product {
     private boolean soldStatus; //do we need this?
     private boolean deleteStatus; //do we need this?
 
+// join query
+@OneToMany(mappedBy = "productid")
+private List<Watchlist> watchlistList;
+// join query
 
     public Product() {}
 

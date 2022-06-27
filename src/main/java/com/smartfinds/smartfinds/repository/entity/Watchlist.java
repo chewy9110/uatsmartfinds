@@ -20,6 +20,10 @@ public class Watchlist {
     private Date dateUpdated;
     private Boolean deleteStatus;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="productid", insertable=false, updatable=false)
+    private Product product;
+
     public Watchlist() {}
 
     public Watchlist(WatchlistDto watchlistDto) {
@@ -68,6 +72,15 @@ public class Watchlist {
     public void setDeleteStatus(boolean deleteStatus) {
         this.deleteStatus = deleteStatus;
     }
+// new getter setter
+    public Integer getOwnerIdName() { return product.getOwnerid(); }
+
+    public String getTitle() { return product.getTitle(); }
+
+    public String getDescription() { return product.getDescription(); }
+
+// new getter setter
+
 
 
     @Override

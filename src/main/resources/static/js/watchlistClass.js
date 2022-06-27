@@ -109,7 +109,7 @@ class WatchListClass {
           let item = products[i];
           showProductItem += `
             <div class="${ "item" + count.toString() }">
-              <div class="card h-90 shadow p-3 mb-5 bg-body rounded">
+              <div class="card h-100 shadow p-3 mb-5 bg-body rounded">
                 <img src="${item.imageURL1}" class="card-img-top" alt="item1" >
                 <div class="card-body">
                   <h5 class="card-title">${item.title}</h5>

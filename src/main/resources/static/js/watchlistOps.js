@@ -18,8 +18,8 @@ function onloadInitWatchList()
 /* AS    const products = watchList.getProductList(currLoginID.userID);
     for (let i=0; i<products.length; i++) {
         console.log("onloadInitWatchList() " + products[i].productID);
-    }
-    watchList.displayMyProduct();*/
+    }*/
+    watchList.displayMyProduct();
     restoreSessionInfo();
     console.log("onloadInitWatchList");
     console.log(currLoginID);

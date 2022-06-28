@@ -32,7 +32,7 @@
     <div class="container-fluid">
         <form id="newProductForm" enctype="multipart/form-data"> <!--onsubmit="event.preventDefault();"-->
             <div class="container col-md-6">
-              <label for="Image" class="form-label"><h3>Maximum 3 images per a product. Click on ONE image to set it as a DEFAULT display.</h3></label>
+              <label for="Image" class="form-label"><h3>Maximum 3 images per a product.</h3></label>
                 <table class="uploadPICtbl" width="100%">
                 <tr>
                     <td>
@@ -131,6 +131,9 @@
 
 
 
+    <!--Dev or Prod domain .js-->
+    <script src="./js/domain.js"></script>
+
 
 
     <!-- footer -->
@@ -145,9 +148,8 @@
 
  
     <script src="./js/login.js"></script>
-    <!--<script src="./js/test.js"></script>-->
-    <!--<script src="./js/smartFindsClass.js"></script>
-    <script src="./js/smartFindsOps.js"></script>-->
+
+    <!-- using thymeleaf to get login information, must be after login.js -->
     <script th:inline="javascript">
     /*<![CDATA[*/
     currLoginID.userId = [[${currentuser.userid}]];
@@ -157,6 +159,7 @@
     currLoginID.email = [[${currentuser.username}]];
     console.log("member.html***** email " + currLoginID.email);
     /*]]>*/
+    saveSessionInfo();
     </script>
 
     <script src="js/productController.js"></script>

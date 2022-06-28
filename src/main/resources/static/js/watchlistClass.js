@@ -3,27 +3,37 @@ class WatchListClass {
     constructor ()
     {
         //Configuration of dev and prod URL - usually fetch a JSON file at API in the dev or prod environment
-        this.domainURL_Dev = "http://localhost:8080/";
-        this.domainURL_Prod = "https://.herokuapp.com/";
-
-        this.addWatchListAPI = this.domainURL_Prod + "watchlist/add";
-        this.allWatchListAPI = this.domainURL_Prod + "watchlist/all";
+        //this.addWatchListAPI = activeUrl + "watchlist/add";
+       // this.allWatchListAPI = activeUrl + "watchlist/all";
 
         this.allWatchList = [];
         this.watchListProduct = [];
     }
     //method to add the watchlist into the database
-    addWatchList(watchlistid, userid, productid, dateUpdated, deleteStatus)
+    addWatchList(userid, productid, dateUpdated)
     {
-        const watchItem =
-        {
-            watchlistid : watchlistid,
-            userid : userid,
-            productid : productid,
-            dateUpdated : dateUpdated,
-            deleteStatus: deleteStatus
-        }
-        this.allWatchList.push(watchItem);
+        let wlist = this;
+        const formData = new FormData();
+        formData.append('userid', userid);
+        formData.append('productid', productid);
+        formData.append('dateUpdated', dateUpdated);
+
+        fetch(activeURL + "watch/add", {
+            method: 'POST',
+            body: formData
+            })
+            .then(function(response) {
+                console.log(response.status); // Will show you the status
+                if (response.ok) {
+                    console.log("Successfully Added Product!");
+                }
+                else {
+                    console.log("Fail to upload file!");
+                }
+            })
+            .catch((error) => {
+            console.log('Error:', error);
+        });
     }
 
     getProductList(userid)
@@ -49,12 +59,12 @@ class WatchListClass {
       //return productsByID;
     } //end of getProductList
   
-    displayMyProduct()
+    displayMyProduct(currid)
     {
       let watchlistClass = this;
       watchlistClass.watchListProduct = [];
 
-                    fetch('http://127.0.0.1:8080/watchlist/all')
+                    fetch(activeURL + 'watch/getbyuser/' + currid)
                                 .then((resp) => resp.json())    //default is get HTTP method
                                 .then(function(data) {
                                     console.log("2. receive data")
@@ -67,6 +77,14 @@ class WatchListClass {
                                             productid: watchlist.productid,
                                             dateUpdated: watchlist.dateUpdated,
                                             deleteStatus: watchlist.deleteStatus,
+                                            title: watchlist.title,
+                                            description: watchlist.description,
+                                            url1: watchlist.url1,
+                                            url2: watchlist.url2,
+                                            url3: watchlist.url3,
+                                            price: watchlist.price,
+                                            pdateUpdated: watchlist.pdateUpdated,
+                                            ownerId: watchlist.ownerId
                                        };
                                         watchlistClass.watchListProduct.push(watchlistObj);
                                   });
@@ -93,11 +111,11 @@ class WatchListClass {
 
       if (products.length == 0)
       {
-      showProductItem += `
-      <div class="container fluid" align="center">
-      <h4>Save your favorite listings</h4>
-      </div>
-      `
+          showProductItem += `
+          <div class="container fluid" align="center">
+          <h4>Save your favorite listings</h4>
+          </div>
+          `
       }
       else
       {
@@ -109,8 +127,8 @@ class WatchListClass {
           let item = products[i];
           showProductItem += `
             <div class="${ "item" + count.toString() }">
-              <div class="card h-90 shadow p-3 mb-5 bg-body rounded">
-                <img src="${item.imageURL1}" class="card-img-top" alt="item1" >
+              <div class="card h-100 shadow p-3 mb-5 bg-body rounded">
+                <img src="${item.url1}" class="card-img-top" alt="item1" >
                 <div class="card-body">
                   <h5 class="card-title">${item.title}</h5>
                   <div class="container-star d-flex flex-row-reverse">
@@ -129,19 +147,19 @@ class WatchListClass {
                   </div>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">${dateUpdated}</small>
+                    <small class="text-muted">${whenUpdated(item.pdateUpdated)}</small>
                 </div>
               </div>
             </div>
             `;
-          count++;
-          if (count > 6)
-            break; // manage page counting limit items to 6
+          count++; // allow more than 6 products to be displayed
+//          if (count > 6)
+//            break; // manage page counting limit items to 6
         } // end of for loop
       } // end of if else
 
       document.querySelector("#rowproductList").innerHTML = showProductItem;
-      console.log(showProductItem);
+//      console.log("***************************" + showProductItem);
 
       for (let i=0; i<products.length; i++) {
         moreBtnId = "item" + i;
@@ -149,7 +167,7 @@ class WatchListClass {
   
         let item = products[i];
         document.getElementById(moreBtnId).addEventListener("click", function(){ displayItemDetail(item)  });
-        document.getElementById(unwatchBtnId).addEventListener("click", function(){ removeProduct(item)  });
+        document.getElementById(unwatchBtnId).addEventListener("click", function(){ removeWatchItem(item)  });
       } // end of for loop
     } //end of renderProductPage
 
@@ -165,18 +183,51 @@ class WatchListClass {
       console.log(this.watchListProduct);
       this.displayMyProduct();
     } // end of removeWatchList
+
+    setDeleteStatus(item) {
+        const formData = new FormData();
+        formData.append('deleteStatus', true);
+        fetch(activeURL + "watch/delete/" + item.watchlistid, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(function(response) {
+            console.log(response.status); // Will show you the status
+            if (response.ok) {
+                console.log("Successfully deleted item!");
+            }
+            else {
+                console.log("Fail to upload file!");
+            }
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
   } // end of WatchListClass
 
 function displayItemDetail(item) {
   //handle each 'More' button to show the product details
   document.querySelector("#itemTitle").innerHTML = item.title;
-  document.querySelector("#itemImage").src = item.imageURL1;
+  document.querySelector("#itemImage").src = item.url1;
   document.querySelector("#itemDescription").innerHTML = item.description;
   document.querySelector("#itemPrice").innerHTML = "$" + item.price;
   }
 
-function removeProduct(item) {
-  localStorage.setItem("unwatchedItemId", item.productid);
-  document.querySelector("#itemTitle1").innerHTML = "Do you want to remove " + item.title + "?";
+function removeWatchItem(item) {
+//  localStorage.setItem("unwatchedItemId", item.productid);
+  document.querySelector("#itemTitle1").innerHTML = "This will remove " + item.title + ".";
   document.querySelector("#itemTitle1").style.color="red";
+  watchList.setDeleteStatus(item);
+  document.location.reload(true);
+}
+
+function watchlistAdd(item) {
+    const dateUpdated = getTimeStamp();
+    const wItem = new WatchListClass();
+
+//    console.log(dateUpdated);
+//    console.log(currLoginID.userId);
+//    console.log(item.productid);
+    wItem.addWatchList(currLoginID.userId, item.productid, dateUpdated);
 }

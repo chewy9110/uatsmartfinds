@@ -3,6 +3,7 @@ const uploadImages = []; // array to hold all the pictures to be uploaded
 let memberProducts = []; // array to hold subset of productList, to be used by member.html only
 let storeImage = [];
 let currLoginIDx;
+let curritem = []; // temp variable to hold edited product item, to pass to backend functions for item.id
 //let storeImage = []; // for multiple image upload
 
 //When user clicks on 'Save Item', calls API to add items to the database
@@ -11,6 +12,15 @@ newProductForm.addEventListener('submit', (event) => {
     // Prevent default action
     event.preventDefault();
     // Select the inputs
+    let btnFunction = document.getElementById('btnSellUpdate').innerHTML;
+//    if (btnFunction=="Update") {
+        // file0 can be 0
+        // url can be not updated
+//    }
+//    else {
+        // file0 must be at least 1
+        // url must be at least 1
+//    }
     const file = document.getElementById('file0');
     const newItemTitleInput = document.querySelector('#newItemTitleInput');
     const newItemDescription = document.querySelector('#newItemDescription');
@@ -22,13 +32,34 @@ newProductForm.addEventListener('submit', (event) => {
     // Get the values of the inputs - variable names to be same as MySQL columns
 //    const imageUrl1 = file.value.replace("C:\\fakepath\\", "");
 
-    if (file.files.length == 0) {
+    if (file.files.length == 0 && btnFunction=="Sell") {
+    // if btnFunction=Sell, must have at least 1 picture
         resultMessage.innerHTML = "Choose an image for upload.";
         resultMessage.style.display = "block";
         return;
     }
-    let imageUrl = [];
-//    console.log("getting url names");
+    let imageUrl = [ "", "", ""];
+    if (btnFunction == "Update") {
+        console.log("frame0 " + frame0.src);
+        console.log("frame1 " + frame1.src);
+        console.log("frame2 " + frame2.src);
+        imageUrl[0]=frame0.src.replace( (activeURL + "products/"), "");
+        imageUrl[1]=frame1.src.replace( (activeURL + "products/"), "");;
+        imageUrl[2]=frame2.src.replace( (activeURL + "products/"), "");;
+        if (imageUrl[0] == "placeholder.gif") // remove placeholder image before writing to DB
+            imageUrl[0] = "";
+        if (imageUrl[1] == "placeholder.gif")
+            imageUrl[1] = "";
+        if (imageUrl[2] == "placeholder.gif")
+            imageUrl[2] = "";
+    }
+
+    console.log("Form Event");
+    console.log("[" + imageUrl[0] + "]");
+    console.log("[" + imageUrl[1] + "]");
+    console.log("[" + imageUrl[2] + "]");
+    console.log("Form Event");
+
     for (let i=0; i<file.files.length; i++) {
 //        console.log("filename " + file.files[i].name);
 //        imageUrl[i] = file.files[i].name.replace("C:\\fakepath\\", "");
@@ -85,32 +116,23 @@ newProductForm.addEventListener('submit', (event) => {
     // need to hardcode ownerid until we can retrieve this from the login id
     // defaultPic hardcode to 1, until we can manage the selection of picture as a defaultPic better
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
-    const result = productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage)
-    console.log("upload result-" + result);
+    // fetch returns a promise, return result is undefined
+    if (btnFunction=="Sell") {
+        productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage);
+    }
+    else {
+        productList.updateItem(curritem, title, description, imageUrl[0], imageUrl[1], imageUrl[2], price, storeImage);
+    }
     document.location.reload(true);
 });
 
-function getTimeStamp() {
-// format time stamp in yyyy/mm/dd hh:mm:ss format for MySQL input
-    const today = new Date();
-    return (today.getFullYear() + "/" +
-    String(today.getMonth() + 1).padStart(2,'0') + "/" +
-    String(today.getDate()).padStart(2,'0') + " " +
-    String(today.getHours()).padStart(2,'0') + ":" +
-    String(today.getMinutes()).padStart(2,'0') + ":" +
-    String(today.getSeconds()).padStart(2,'0')
-    );
-}
+
 
 // select file input
 const input = document.getElementById('file0');
 input.addEventListener('change', () => {
-//    console.log("imageurl1 on change")
-
-//    storeImage = input.files[0]; // for single file
     for (let i=0; i<input.files.length; i++)
         storeImage[i] = input.files[i];
-//    console.log(storeImage);
 });
 
 function preview(pos) {
@@ -208,45 +230,73 @@ function setDefaultImage(position) {
     }
 }
 
-function addProductItem() {
-    if (uploadImages.length == 0)
-    {
-        alert("Please add some photos of the item to be sold.");
-        return;
-    }
-    const title = document.getElementById("newItemTitleInput").value;
-    if (title == "")
-        alert("Enter title information.");
-
-    const description = document.getElementById("newItemDescription").value;
-    if (description == "")
-        alert("Enter a description.");
-
-    const price = document.getElementById("newItemPrice").value;
-    if (price = "")
-        alert("Enter a price value.");
-
-    const imageUrl1 = uploadImages[0];
-    const imageUrl2 = uploadImages[1];
-    const imageUrl3 = uploadImages[2];
-
-    productList.addProduct(title, description, imageUrl1, imageUrl2, imageUrl3, price, new Date().toString());
-}
+/* this function is deprecated, function provided in productController.js - productController.additem() */
+//function addProductItem() {
+//    if (uploadImages.length == 0)
+//    {
+//        alert("Please add some photos of the item to be sold.");
+//        return;
+//    }
+//    const title = document.getElementById("newItemTitleInput").value;
+//    if (title == "")
+//        alert("Enter title information.");
+//
+//    const description = document.getElementById("newItemDescription").value;
+//    if (description == "")
+//        alert("Enter a description.");
+//
+//    const price = document.getElementById("newItemPrice").value;
+//    if (price = "")
+//        alert("Enter a price value.");
+//
+//    const imageUrl1 = uploadImages[0];
+//    const imageUrl2 = uploadImages[1];
+//    const imageUrl3 = uploadImages[2];
+//
+//    productList.addProduct(title, description, imageUrl1, imageUrl2, imageUrl3, price, new Date().toString());
+//}
 
 function editItem(idx, item) {
-    // console.log(item.description);
+//     console.log("editItem..............");
     // todo edit function
-    document.getElementById("frame0").src = item.imageUrl1;
-    document.getElementById("frame1").src = item.imageUrl2;
-    document.getElementById("frame2").src = item.imageUrl3;
+//    console.log("edititem [" + item.imageUrl1 +"]");
+//    console.log("edititem [" + item.imageUrl2 +"]");
+//    console.log("edititem [" + item.imageUrl3 +"]");
 
+    if (item.imageUrl1 == "") {
+//        console.log("img1 blank");
+        document.getElementById("frame0").src = "products/placeholder.gif";
+    }
+    else {
+//        console.log("img1 not blank [" + item.imageUrl1 + "]");
+        document.getElementById("frame0").src = item.imageUrl1;
+    }
+    if (item.imageUrl2 == "") {
+//        console.log("img2 blank");
+        document.getElementById("frame1").src = "products/placeholder.gif"
+    }
+    else {
+//        console.log("img2 not blank [" + item.imageUrl2 + "]");
+        document.getElementById("frame1").src = item.imageUrl2;
+    }
+    if (item.imageUrl3 == "") {
+//        console.log("img3 blank");
+        document.getElementById("frame2").src = "products/placeholder.gif"
+    }
+    else {
+//        console.log("img3 not blank [" + item.imageUrl3 + "]");
+        document.getElementById("frame2").src = item.imageUrl3;
+    }
     document.getElementById("newItemTitleInput").value = item.title;
     document.getElementById("newItemDescription").value = item.description;
     document.getElementById("newItemPrice").value = item.price;
 
     document.getElementById("btnSellUpdate").textContent = "Update";
-    console.log(item.productid);
-    document.getElementById("btnSellUpdate").addEventListener("click", function(){ updateItem(index, item.productid) });
+    curritem = item; // save item to curritem for api call
+    location.href = "#newProductForm";
+
+//    console.log(item.productid);
+//    document.getElementById("btnSellUpdate").addEventListener("click", function(){ updateItem(index, item.productid) });
 }
 
 function clearItem() {
@@ -264,35 +314,20 @@ function clearItem() {
 }
 
 function markItemSold(idx, productItem) {
-    // console.log("position " + idx + " " + productItem.description);
-
-    // document.getElementById("btn-edit" + idx).setAttribute("class", "btn btn-primary disabled");
-    console.log("inside markItemSold()" + idx);
+//    console.log("position " + idx + " " + productItem.productid);
+//    console.log("inside markItemSold()" + idx);
     document.getElementById("btn-edit" + idx).style.display = "none";
     document.getElementById("btn-sold" + idx).style.display = "none";
     document.getElementById("soldIcon" + idx).style.display = "block";
 
-    productItem.markItemSold = true;
-
-    // const answer = prompt('You will not be able to edit the item anymore. Press "Y/y" to proceed');
-    // if (answer != "Y" && answer != "y") {
-    //     return;
-    // }
-    //alert("sold");
+    productList.setItemSold(productItem);
 }
 
-function deleteItem(item) {
-    // alert("deleteItems");
-    console.log(item.description);
-    // todo delete function to mark DB as deleteStatus = true
+function deleteItem(idx, item) {
+//    console.log(item.description);
+    document.getElementById("carditem" + idx).style.display = "none"; // hide card item until page is refresh
 
-//    const pos = memberProducts.findIndex(curr =>
-//        curr == item
-//    );
-//    memberProducts.splice(pos, 1);
-//    console.log(pos);
-//    // memberProducts = tmpArr;
-//    productList.displayYTProduct(memberProducts);
+    productList.setItemDeleted(item);
 }
 
 function test() {
@@ -301,28 +336,9 @@ function test() {
 }
 
 function onloadInitMember() {
-//    memberPageCheck(); // handle login and navbar display
-
-    // productList.sortByOwnerID();
-//    memberProducts = productList.filterByOwnerID(currLoginID.userID);
-    // const products = productList.filterExcludeOwnerID(currLoginID.userID);
-    //productList.displayMyProduct(products); // display filtered list, Old method
-    currLoginIDx  =  loginUserInfo();
-//    getLoginSessionInfo(); // get login info from session storage
-//    console.log("inside onload " + currLoginID.userId);
+    //currLoginIDx  =  loginUserInfo();
     productList.getAllProduct(currLoginID.userId);
-    document.getElementById("addResult").style.display = "none";
-
-//    if (  == true) {
-    //    productList.displayYTProduct(); // display filtered list, using YT's design
-//    }
-
-    // testing watchlist filter to get productlist items
-    // const watchlist = watchList.getProductList(currLoginID.userID);
-    // for (let i=0; i<watchlist.length; i++) {
-    //     console.log("testing" + watchlist[i].productID);
-    // }
-    // productList.displayMyProduct(watchlist);
+    document.getElementById("addResult").style.display = "none"; // hide result message area
 }
 
 function checkPrice() {

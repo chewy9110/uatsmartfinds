@@ -68,3 +68,19 @@ function diff_seconds(dt2, dt1)
     else
         return Math.abs(Math.round(diff));
  }
+
+
+function deleteItem(item, index) {
+//    console.log(item.description);
+       if(deleteItem = true) {
+       document.querySelector("item" + index).innerHTML = "none"
+       }
+}
+
+
+function initIndex() {
+
+restoreSessionInfo();
+
+productsControl.displayProduct(currLoginID.userId);
+}

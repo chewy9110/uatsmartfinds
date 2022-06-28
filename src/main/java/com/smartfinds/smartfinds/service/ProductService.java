@@ -16,13 +16,15 @@ public interface ProductService {
 
     Product findById(int productid);
 
-    List<Product> findByOwnerId(int ownerid);
+    List<Product> findByOwnerId(Long ownerid);
 
-    List<Product> findNotByOwnerId(int ownerid);
+    List<Product> findNotByOwnerId(Long ownerid);
 
-//    Page<Product> getProductPagination(int pageNo, int pageSize);
+    List<Product> displayAll();
 
-    void setSold(int productid);
+//    Product setSold(int productid);
 
-    void setDelete(int productid);
+//    Product setDelete(int productid);
+
+    //Page<Product> getProductPagination(int pageNo, int pageSize);
 }

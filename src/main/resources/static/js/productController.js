@@ -2,10 +2,10 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 `
 
-<div class="item">
-  <div class="card d-flex shadow p-3 mb-5 bg-body rounded" style="height: 800px;">
+<div class="item${index}"  id="${ownerid}">
+  <div class="card d-flex shadow p-3 mb-5 bg-body rounded h-100" style="height: 800px;">
 
- 
+
   <div id="carouselCard${index}" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselCard${index}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -26,7 +26,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
       <img src="${imageUrl3}" class="card-img-top" alt="item3">
     </div>
   </div>
-  
+
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard${index}" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
@@ -36,15 +36,15 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
     <span class="visually-hidden">Next</span>
   </button>
 
-</div>    
-    
+</div>
+
 
     <div class="card-body">
 
-<div class="container-flex d-flex flex-row">    
+<div class="container-flex d-flex flex-row">
 
       <h5 class="card-title">${title}</h5>
-    
+
 
         <div class="container-star d-flex flex-row-reverse ms-auto">
           <i class="bi1 bi-star-fill"></i>
@@ -52,15 +52,15 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
           <i class="bi3 bi-star-fill"></i>
           <i class="bi4 bi-star-fill"></i>
           <i class="bi5 bi-star-fill"></i>
-        
+
         </div>
 </div>
 
         <div  class="container d-flex flex-row my-2">
-      
+
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <i id="binoBtnId" type="button" class="bi bi-binoculars-fill ms-auto" onclick="memberPageCheck()"></i>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto"></div>
 
         </div>
 
@@ -79,7 +79,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
        </button>
 
       <i class="btn">  <!--  <img src="products/message.svg" >-->
-       
+
       <!-- send msg box  -->
        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
         data-bs-item = '{"from":"${currLoginID_displayName}", "to":"${ownerDisplayName}", "url":"${imageUrl1}","productId":"${productid}","productTitle":"${title}", "price":"${price}", "inboxUid":"${currLoginID_userId}","fromUid":"${currLoginID_userId}","toUid":"${ownerid}"}'
@@ -98,63 +98,158 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
           <span><small class="text-muted">${ownerDisplayName}</small></span><img src="" width="30" height="30" class="rounded-circle" alt="img profile">
         </div>
       </div>
-    </div> 
-  </div> 
+    </div>
+  </div>
 </div>
   `;
 
 
 
-  function displayProductDetail(item) {
 
+
+function addNumber(item) {
+    if(currLoginID.userId == null ) {
+        alert("Please log in before adding to watchlist!");
+        location.href = "./login";
+    } else  {
+//        alert("Item added to watchlist!  " + item.title);
+        watchlistAdd(item);
+        document.location.reload(true);
+    }
+}
+
+function displayProductDetail(item) {
     document.querySelector("#title").innerHTML = item.title;
     document.querySelector("#description").innerHTML = item.description;
     document.querySelector("#price").innerHTML = formatPrice(item.price);
 
     document.querySelector("#imageUrl1").src = item.imageUrl1;
     document.querySelector("#imageUrl2").src = item.imageUrl2;
-   // document.querySelector("#ImageUrl3").src = item.imageUrl3;
-     document.querySelector("#imageUrl3").src = item.imageUrl2;
- }
+    // document.querySelector("#ImageUrl3").src = item.imageUrl3;
+    document.querySelector("#imageUrl3").src = item.imageUrl2;
+}
 
-
-
-
- class ProductsController
+class ProductsController
 {
     constructor()
     {
+   // this.domainURL_Dev = "http://localhost:8080/";
+   // this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
+
+   // this.addItemAPI = this.domainURL_Prod + "product/add";
+   // this.allItemAPI = this.domainURL_Prod + "product/pagination?page=0&size=6";
+
+    this.nowActiveURL = activeURL + "product/add"
+    this.nowActiveURL2 = activeURL + "product/pagination?page=0&size=6"
         this._products = [];       //create an array to store the details of product items
 
         //this.currLoginID =  msgUtilLoginId();
     }
 
+    // method to set item as marked as deleted
+    setItemDeleted(item) {
+        const formData = new FormData();
+        formData.append('deleteStatus', true);
+        fetch(activeURL + "product/delete/" + item.productid, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(function(response) {
+            console.log(response.status); // Will show you the status
+            if (response.ok) {
+                console.log("Successfully deleted item!");
+            }
+            else {
+                console.log("Fail to upload file!");
+            }
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
+
+    // method to set item as marked as sold
+    setItemSold(item) {
+        const formData = new FormData();
+        formData.append('soldStatus', true);
+        fetch(activeURL + "product/sold/" + item.productid, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(function(response) {
+            console.log(response.status); // Will show you the status
+            if (response.ok) {
+                console.log("Successfully sold product!");
+            }
+            else {
+                console.log("Fail to upload file!");
+            }
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
+    // method to update product item
+    // no changes to pictures or url is possible
+    updateItem(item, title, description, imageUrl1, imageUrl2, imageUrl3, price, imageObject) {
+        if (imageUrl1 == activeURL + "products/placeholder.gif")
+            imageUrl1 = "";
+        if (imageUrl2 == activeURL + "products/placeholder.gif")
+            imageUrl2 = "";
+        if (imageUrl3 == activeURL + "products/placeholder.gif")
+            imageUrl3 = "";
+        console.log("updateItem[" + imageUrl1 + "][" + imageUrl2 + "][" + imageUrl3 + "]");
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('imageUrl1', imageUrl1);
+        formData.append('imageUrl2', imageUrl2);
+        formData.append('imageUrl3', imageUrl3);
+        formData.append('price', price);
+        formData.append('imagefile1',imageObject[0]);
+        formData.append('imagefile2',imageObject[1]);
+        formData.append('imagefile3',imageObject[2]);
+
+        console.log("updateItem " + item.productid);
+        fetch(activeURL + "product/update/" + item.productid, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(function(response) {
+            console.log(response.status); // Will show you the status
+            if (response.ok) {
+                console.log("Successfully Added Product!");
+            }
+            else {
+                console.log("Fail to upload file!");
+            }
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
+
     //method to add the items into the array
     addItem(ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, imageObject)
     {
-    	   const _remoteHost  =  RemoteHostURL();
-           const _remoteAPI = _remoteHost + "/product/add"
-
-    	
             let productController = this;
-                    const formData = new FormData();
-                    formData.append('ownerid', ownerid);
-                    formData.append('title', title);
-                    formData.append('description', description);
-                    formData.append('imageUrl1', imageUrl1);
-                    formData.append('imageUrl2', imageUrl2);
-                    formData.append('imageUrl3', imageUrl3);
-                    formData.append('defaultPic', defaultPic);
-                    formData.append('price', price);
-                    formData.append('dateUpdated', dateUpdated);
-                    formData.append('imagefile1',imageObject[0]);
-                    formData.append('imagefile2',imageObject[1]);
-                    formData.append('imagefile3',imageObject[2]);
+            const formData = new FormData();
+            formData.append('ownerid', ownerid);
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('imageUrl1', imageUrl1);
+            formData.append('imageUrl2', imageUrl2);
+            formData.append('imageUrl3', imageUrl3);
+            formData.append('defaultPic', defaultPic);
+            formData.append('price', price);
+            formData.append('dateUpdated', dateUpdated);
+            formData.append('imagefile1',imageObject[0]);
+            formData.append('imagefile2',imageObject[1]);
+            formData.append('imagefile3',imageObject[2]);
 
-
-                 //  fetch('http://localhost:8080/product/add', {
-                   fetch(_remoteAPI, {
-              	
+                // activeURL contains http://url/ defined in domain.js
+                fetch(activeURL + "product/add", {
                          method: 'POST',
                          body: formData
                          })
@@ -169,23 +264,35 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
                          })
                          .catch((error) => {
                              console.log('Error:', error);
-//                             alert("Error adding item to Product");
-                             return false;
                          });
     }
 
 
-    displayProduct()
+    displayProduct(currid)
     {
+    console.log("*****" + currid);
+
         let productController = this;
         productController._products = [];
-         
-          msgUtilloginUserInfo()
-          const _remoteHost  =  RemoteHostURL();
-          const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
 
+          msgUtilloginUserInfo()
+
+          //const _remoteHost  =  RemoteHostURL();
+          //const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
+
+        const _notOwner = "/notowner/" + currid;
+        const _all = "/all";
+
+         let API = activeURL + "product";
+
+         if(currid == null) {
+                 API = API + _all;
+         } else {
+            API = API + _notOwner;
+         }
         //fetch data from database using the REST API endpoint from Spring Boot
-        fetch(_remoteAPI)
+          console.log("******" + API);
+         fetch(API)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
@@ -226,8 +333,8 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         productController._products = [];
 
         //fetch data from database using the REST API endpoint from Spring Boot
-//        fetch('http://127.0.0.1:8080/product/all')
-        fetch('http://127.0.0.1:8080/product/owner/' + currid)
+        // activeURL contains http://url/ defined in domain.js
+       fetch(activeURL + "product/owner/" + currid)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
@@ -251,14 +358,12 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
                    }
 
                     productController._products.push(itemObj);
-//                   };
+//                   }; //if(index <= 5) {
               });
               productController.displayMemberProduct();
-                //return true;
             })
             .catch(function(error) {
                 console.log(error);
-                //return false;
             });
     }
 
@@ -272,13 +377,13 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         for (let i=0; i<this._products.length; i++)
         {
             const item = this._products[i];            //assign the individual item to the variable
-    
+
 
             let ownerDisplayName = ""
             const productHTML = createHTMLList(i, item.productid, item.ownerid, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, ownerDisplayName,
                                     this.currLoginID.displayName, this.currLoginID.userId           );
 
- 
+
             productHTMLList.push(productHTML);
         }
 
@@ -303,53 +408,31 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 
                 }
-    }
 
-    whenUpdated(updateDate) {
-      const mth = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      const uDate = new Date(updateDate);
-      const todayDate = new Date();
+                for(let o = 0; o<this._products.length; o++) {
 
-      // console.log(uDate);
-      let dispString = "";
-      if ( (dispString = diff_seconds(todayDate, uDate)) != -1) {
-          return(dispString +" sec ago");
-      }
-      else if ( (dispString = diff_minutes(todayDate, uDate)) != -1) {
-          return(dispString + " min ago");
-      }
-      else if ( (dispString = diff_hours(todayDate, uDate)) != -1) {
-          return(dispString + " hour ago");
-      }
-      else if ( (dispString = diff_days(todayDate, uDate)) != -1) {
-          return(dispString + " day(s) ago");
-      }
-      else {
-          return("since " + uDate.getFullYear() + " " + mth[uDate.getMonth()] + " " + uDate.getDate());
-      }
+                      const item = this._products[o];
+
+                    console.log("*******" + item.title);
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item)});
+
+                }
+
+
+
     }
 
     displayMemberProduct() {
-      //
-      //let products = productList;
-//      console.log(products);
-      let showProductItem = "";
-      let moreBtnId = "";
-//      let editBtnId = "";
-//      let soldBtnId = "";
-//      let delBtnId = "";
+        let showProductItem = "";
+        let moreBtnId = "";
 
-      productList._products.forEach ((item, index) => {
-
-//          editBtnId = "btn-edit" + index;
-//          soldBtnId = "btn-sold" + index;
-//          delBtnId = "btn-del" + index;
-          const price = item.price;  // purpose of const price use for formatting to 2 decimal point
-          const wUpdated = this.whenUpdated(item.dateUpdated);
-          showProductItem +=
-          `
-  <div class="item">
-      <div class="card d-flex shadow p-3 mb-5 bg-body rounded" style="height: 800px;">
+        productList._products.forEach ((item, index) => {
+            const price = item.price;  // purpose of const price use for formatting to 2 decimal point
+            const wUpdated = whenUpdated(item.dateUpdated);
+            showProductItem +=
+            `
+  <div class="item" id="carditem${index}">
+      <div class="card d-flex shadow p-3 mb-5 bg-body rounded h-100" style="height: 800px;">
         <div id="carouselCard${index}" class="carousel slide" data-bs-interval="false" style="margin-top: -50px;">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselCard${index}"" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -424,24 +507,35 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 //        console.log(showProductItem);
         // setup edititem button
-      productList._products.forEach ((item, index) => {
-          moreBtnId = "btn-edit" + index;
-          document.getElementById(moreBtnId).addEventListener("click", function(){ editItem(index, item) });
+        productList._products.forEach ((item, index) => {
+            moreBtnId = "btn-edit" + index;
+            if (item.soldStatus==true) {
+                // if item is sold, don't set click event for edit button & hide button
+                document.getElementById(moreBtnId).style.display = "none";
+            }
+            else {
+                document.getElementById(moreBtnId).addEventListener("click", function(){ editItem(index, item) });
+            }
         });
 
-      // setup markItemSold button
-      productList._products.forEach ((item, index) => {
-          moreBtnId = "btn-sold" + index;
-          document.getElementById(moreBtnId).addEventListener("click", function(){ markItemSold(index, item) });
-          document.getElementById("soldIcon" + index).style.display = "none";
-
-          // document.getElementById(moreBtnId).addEventListener("click", function(){ displayItemDetail(item) });
+        // setup markItemSold button
+        productList._products.forEach ((item, index) => {
+            moreBtnId = "btn-sold" + index;
+            if (item.soldStatus == true) {
+                // if item is sold, don't set click event for sold button & hide button
+                document.getElementById(moreBtnId).style.display = "none";
+                document.getElementById("soldIcon" + index).style.display = "block";
+            }
+            else {
+                document.getElementById(moreBtnId).addEventListener("click", function(){ markItemSold(index, item) });
+                document.getElementById("soldIcon" + index).style.display = "none";
+            }
         });
 
         // setup deleteItem button
         productList._products.forEach ((item, index) => {
           moreBtnId = "btn-del" + index;
-          document.getElementById(moreBtnId).addEventListener("click", function(){ deleteItem(item) });
+          document.getElementById(moreBtnId).addEventListener("click", function(){ deleteItem(index, item) });
           // document.getElementById(moreBtnId).addEventListener("click", function(){ displayItemDetail(item) });
         });
 
@@ -455,48 +549,4 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
     } // end of member displayproduct
 }   //End of ProductsController class
 
-
-function diff_days(dt2, dt1)
- {
-
-  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
-  diff /= (60 * 60 * 24);
-  if ( Math.abs(Math.round(diff)) > 30)
-    return -1; // show actual time
-  return Math.abs(Math.round(diff));
-
- }
-
-function diff_hours(dt2, dt1)
- {
-
-  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
-  diff /= (60 * 60);
-  if (Math.abs(Math.round(diff)) > 24)
-    return -1; // check for days
-  return Math.abs(Math.round(diff));
-
- }
-
-
-function diff_minutes(dt2, dt1)
- {
-
-  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
-  diff /= (60);
-  if (Math.abs(Math.round(diff)) > 60)
-    return -1; // check for hours to display
-  return Math.abs(Math.round(diff));
-
- }
-
-function diff_seconds(dt2, dt1)
- {
-
-  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
-    if (Math.abs(Math.round(diff)) > 60)
-        return -1; // check for minutes to display
-    else
-        return Math.abs(Math.round(diff));
- }
 

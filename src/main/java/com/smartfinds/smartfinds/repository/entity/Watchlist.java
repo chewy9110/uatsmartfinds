@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+//@Table(name = "watchlist")
 public class Watchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +14,15 @@ public class Watchlist {
     private Integer userid;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "Product")
+//    @JoinColumn(name = "Product_productid", foreignKey = @ForeignKey(name = "fk_watchlist_product") )
     private Integer productid;
 
     private Date dateUpdated;
     private Boolean deleteStatus;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="productid", insertable=false, updatable=false)
+    private Product product;
 
     public Watchlist() {}
 
@@ -67,6 +72,24 @@ public class Watchlist {
     public void setDeleteStatus(boolean deleteStatus) {
         this.deleteStatus = deleteStatus;
     }
+
+// new getter setter for join query
+    public Long getOwnerId() { return product.getOwnerid(); }
+
+    public String getTitle() { return product.getTitle(); }
+
+    public String getDescription() { return product.getDescription(); }
+
+    public String getUrl1() { return product.getImageUrl1(); }
+    public String getUrl2() { return product.getImageUrl2(); }
+    public String getUrl3() { return product.getImageUrl3(); }
+
+    public Double getPrice() { return product.getPrice(); }
+
+    public Date getPdateUpdated() { return product.getDateUpdated(); }
+
+// new getter setter
+
 
 
     @Override

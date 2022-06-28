@@ -3,6 +3,7 @@ import com.smartfinds.smartfinds.controller.dto.MsgDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 //import java.util.Date;
 //import java.util.List;
@@ -40,7 +41,7 @@ public class Msg {
     //@UpdateTimestamp
     //  @Column(name = "msgTimestamp", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Column( nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime msgTimestamp;
+    private ZonedDateTime msgTimestamp;
 
     public Msg() {}
 
@@ -197,11 +198,11 @@ public class Msg {
 
      public void setMsgPrice(double msgPrice) {   this.msgPrice = msgPrice;  }
 
-    public LocalDateTime getMsgTimestamp() {
+    public ZonedDateTime  getMsgTimestamp() {
         return msgTimestamp;
     }
 
-    public void setMsgTimestamp(LocalDateTime msgTimestamp) {
+    public void setMsgTimestamp(ZonedDateTime  msgTimestamp) {
         this.msgTimestamp = msgTimestamp;
     }
 

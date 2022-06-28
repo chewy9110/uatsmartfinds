@@ -12,15 +12,14 @@ class MsgInboxRsClass {
      let  _msgDetail = [];
 
 
-  //  const _msgInboxName = msgUtilRemoteUserId(); // inside msgUtil
+    const _msgInboxName = msgUtilRemoteUserId(); // inside msgUtil 
     const _remoteHost  = msgUtilRemoteHostURL();  // inside msgUtil 
     const _remoteURL    = _remoteHost + "/msg/displayInboxMsg"
-   // const _remoteInboxAPI = _remoteURL + "/" + _msgInboxName
-    const _remoteInboxAPI = _remoteURL;
-
+    const _remoteInboxAPI = _remoteURL + "/" + _msgInboxName
+ 
    //fetch data from database using the REST API endpoint from Spring Boot
  //   msgUtilDisplayLoading("");
-  // console.log("_msgInboxName"+_msgInboxName)
+   console.log("_msgInboxName"+_msgInboxName)
    console.log(_remoteInboxAPI)
 
       await   fetch(_remoteInboxAPI)
@@ -30,7 +29,7 @@ class MsgInboxRsClass {
       // console.log("2. receive data")
       // console.log(data);
 
-         msgUtilHideLoading();
+   //     msgUtilHideLoading();
  
       data.forEach(function (item, index) {
       
@@ -60,7 +59,7 @@ class MsgInboxRsClass {
  
     .catch(function(error) {
         console.log(error);
-         msgUtilDisplayLoading(error);
+      //  msgUtilDisplayLoading(error);
     }
     
     );

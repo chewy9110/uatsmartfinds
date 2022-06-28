@@ -14,6 +14,7 @@ class MsgDetailRsClass {
    let  _msgInboxTo = [];
    let _msgDetail = [];
 
+
    _msgInboxTo = await this.getRemoteQueryId()
 
   const _msgInboxId = _msgInboxTo.msgInboxId;
@@ -120,11 +121,9 @@ class MsgDetailRsClass {
              else if  (msgFromUid != null) {
              // query from watchlist
                console.log("query from watchlist")
-                //  msgInboxTo = await this.readWatchlist(msgFromUid, msgToUid, msgProductId );
+                 msgInboxTo = await this.readWatchlist(msgFromUid, msgToUid, msgProductId );
 
-                msgInboxTo = this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
-                 let msgInboxName = item.msgInboxName;
-                 msgInboxTo = this.myMsgBox(msgInboxName, item)
+                // msgInboxTo = this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
               }
             else 
                msgInboxTo = [];
@@ -200,7 +199,9 @@ class MsgDetailRsClass {
 
   _msgInboxTo = [];
 
- 
+  msgFromUid=100
+  msgToUid=101
+  msgProductId=106
 
  const _remoteHost  = msgUtilRemoteHostURL();  // inside msgUtil 
  const _remoteURL   = _remoteHost + "/msg/displayMsginboxByID"
@@ -239,7 +240,15 @@ await  fetch(_remoteAPI)
   
     } );
 
- 
+
+   // after populate
+    
+    // const _msgDetailbox = new MsgDetailClass(_msgDetailList, _msgInboxTo, "Remote");
+    
+    // console.log ("inside fetch"+_msgDetailList);
+    
+    // _msgDetailbox.displayMsg();
+
  })
  .catch(function(error) {
    console.log(error);
@@ -247,35 +256,82 @@ await  fetch(_remoteAPI)
 
 
  console.log ("inside rsloadMsg"+_msgDetailList);
- return(_msgInboxTo);
+ return(_msgDetailList);
  
 } //loadRemoteWatchlist
 
 
-// async   readWatchlist(msgFromUid, msgToUid, msgProductId ) {
+   readWatchlist(msgFromUid, msgToUid, msgProductId ) {
       
-//            let product = msgUtilProduct(msgProductId);
-//            let userFrom = msgUtilUser(msgFromUid);
-//            let userTo = msgUtilUser(msgToUid);
+           let product = msgUtilProduct(msgProductId);
+           let userFrom = msgUtilUser(msgFromUid);
+           let userTo = msgUtilUser(msgToUid);
 
-//           // console.log (`product=${product}, userFrom=${userFrom}, userTo=${userTo}`)
+          // console.log (`product=${product}, userFrom=${userFrom}, userTo=${userTo}`)
   
-//           // let msgInboxName = userFrom.displayName;
+          // let msgInboxName = userFrom.displayName;
           
-//          //  console.log (`msgInboxName=${msgInboxName}, msgFromUid=${msgFromUid}, msgProductId=${msgProductId}`)
+         //  console.log (`msgInboxName=${msgInboxName}, msgFromUid=${msgFromUid}, msgProductId=${msgProductId}`)
  
-//            let msgInboxTo = [];
-// /// fetch --
-//            let item =  await this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
-//            let msgInboxName = item.msgInboxName;
-//            msgInboxTo = this.myMsgBox(msgInboxName, item)
-// /////           
-     
- 
-//            return(msgInboxTo)
- 
-//         } //readWatchlist
+           let msgInboxTo = [];
+/// fetch --
+           let item =   this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
+           let msgInboxName = item.msgInboxName;
+           msgInboxTo = this.myMsgBox(msgInboxName, item)
+/////           
+           
+        //   if (msgInboxTo == null)
+        //   {
+        //      // empty
+        //     //alert ("empty")
+        //      // empty inbox, will create one here.
+        //      msgInboxTo = [];
   
+        //     let msgInboxId = 0;
+        //    // let msgInboxName = userFrom.displayName; // declared above already
+
+        //     let msgInboxUid = msgFromUid  ;
+
+        //    // let msgFromUid = msgFromUid; //passed in
+        //    // let msgToUid = msgToUid;  //passed in
+        //    // let msgProductId =  msgProductId  //passed in
+
+        //     let msgProductTitle = product.title;
+        //     let msgProductImgURL = product.imageURL1;
+        //     let msgPrice = product.price;
+ 
+        //     let msgFromName = userFrom.displayName
+        //     let msgFromImg = msgUtilUserImgUrl(msgFromUid);  //member's profile image
+
+        //     let msgToName = userTo.displayName
+        //     let msgToImg = msgUtilUserImgUrl(msgToUid)   //member's profile image
+            
+        //     let msgLine = "" ;
+        //     let msgTimestamp = currentDate(); // today's date
+            
+        //     let msgInboxUFid = msgToUid; 
+
+        //     // addMsg ..MsgFormat
+        //      msgInboxTo  = msgData.MsgFormat(msgInboxId, msgInboxName,
+        //                         msgProductImgURL, msgFromName,  msgFromImg,
+        //                         msgToName,  msgToImg,  msgLine, 
+        //                         msgTimestamp, msgProductId, msgProductTitle, msgPrice, 
+        //                         msgInboxUid, msgFromUid, msgToUid,
+        //                         msgInboxUFid);
+
+        //      }
+
+
+        //  console.log(msgInboxTo)
+ 
+           return(msgInboxTo)
+ 
+        } //readWatchlist
+ 
+     
+    
+
+
 
 } // class MsgDetailLsClass
 

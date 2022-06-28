@@ -1,3 +1,3 @@
-function onloadInitAboutUs() {
-    publicPageCheck(); // handle login and navbar display
-}
+//function onloadInitAboutUs() {
+//    publicPageCheck(); // handle login and navbar display
+//}

@@ -39,6 +39,7 @@ newProductForm.addEventListener('submit', (event) => {
         return;
     }
     let imageUrl = [ "", "", ""];
+<<<<<<< HEAD
     if (btnFunction == "Update") {
         console.log("frame0 " + frame0.src);
         console.log("frame1 " + frame1.src);
@@ -60,6 +61,9 @@ newProductForm.addEventListener('submit', (event) => {
     console.log("[" + imageUrl[2] + "]");
     console.log("Form Event");
 
+=======
+//    console.log("getting url names");
+>>>>>>> aea429b6d2e779480dcf72e92c415adeec902463
     for (let i=0; i<file.files.length; i++) {
 //        console.log("filename " + file.files[i].name);
 //        imageUrl[i] = file.files[i].name.replace("C:\\fakepath\\", "");

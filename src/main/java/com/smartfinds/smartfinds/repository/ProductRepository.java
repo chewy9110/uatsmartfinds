@@ -31,6 +31,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
     List<Product> findNotByOwnerId(@Param("ownerid") Long ownerid);
 
 
+<<<<<<< HEAD
 
     @Query("SELECT p FROM Product p WHERE deleteStatus=false and soldStatus=false order by dateUpdated desc")
     List<Product> displayAll();
@@ -46,5 +47,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
 //    @Modifying
 //    @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
 //    void setDelete(@Param("productid") Integer productid);
+=======
+    @Modifying
+    @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
+    void setDelete(@Param("productid") Integer productid);
+>>>>>>> aea429b6d2e779480dcf72e92c415adeec902463
 
 }

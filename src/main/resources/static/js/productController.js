@@ -133,14 +133,15 @@ class ProductsController
 {
     constructor()
     {
-   // this.domainURL_Dev = "http://localhost:8080/";
-   // this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
 
-   // this.addItemAPI = this.domainURL_Prod + "product/add";
-   // this.allItemAPI = this.domainURL_Prod + "product/pagination?page=0&size=6";
+    this.domainURL_Dev = "http://localhost:8080/";
+    this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
 
-    this.nowActiveURL = activeURL + "product/add"
-    this.nowActiveURL2 = activeURL + "product/pagination?page=0&size=6"
+    this.addItemAPI = this.domainURL_Prod + "product/add";
+    this.allItemAPI = this.domainURL_Prod + "product/pagination?page=0&size=6";
+
+
+
         this._products = [];       //create an array to store the details of product items
 
         //this.currLoginID =  msgUtilLoginId();
@@ -248,8 +249,19 @@ class ProductsController
             formData.append('imagefile2',imageObject[1]);
             formData.append('imagefile3',imageObject[2]);
 
+<<<<<<< HEAD
                 // activeURL contains http://url/ defined in domain.js
                 fetch(activeURL + "product/add", {
+=======
+
+
+                 //  fetch('http://localhost:8080/product/add', {
+                   fetch(_remoteAPI, {
+              	
+
+                   fetch(this.addItemAPI, {
+
+>>>>>>> aea429b6d2e779480dcf72e92c415adeec902463
                          method: 'POST',
                          body: formData
                          })
@@ -291,8 +303,16 @@ class ProductsController
             API = API + _notOwner;
          }
         //fetch data from database using the REST API endpoint from Spring Boot
+<<<<<<< HEAD
           console.log("******" + API);
          fetch(API)
+=======
+// aboutus-feature
+        fetch(_remoteAPI)
+
+        fetch(this.allItemAPI)
+
+>>>>>>> aea429b6d2e779480dcf72e92c415adeec902463
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")

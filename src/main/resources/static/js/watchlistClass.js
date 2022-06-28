@@ -3,11 +3,8 @@ class WatchListClass {
     constructor ()
     {
         //Configuration of dev and prod URL - usually fetch a JSON file at API in the dev or prod environment
-        this.domainURL_Dev = "http://localhost:8080/";
-        this.domainURL_Prod = "https://.herokuapp.com/";
-
-        this.addWatchListAPI = this.domainURL_Prod + "watchlist/add";
-        this.allWatchListAPI = this.domainURL_Prod + "watchlist/all";
+        //this.addWatchListAPI = activeUrl + "watchlist/add";
+       // this.allWatchListAPI = activeUrl + "watchlist/all";
 
         this.allWatchList = [];
         this.watchListProduct = [];
@@ -49,12 +46,12 @@ class WatchListClass {
       //return productsByID;
     } //end of getProductList
   
-    displayMyProduct()
+    displayMyProduct(currid)
     {
       let watchlistClass = this;
       watchlistClass.watchListProduct = [];
 
-                    fetch('http://127.0.0.1:8080/watchlist/all')
+                    fetch(activeURL + 'watch/getbyuser/' + currid)
                                 .then((resp) => resp.json())    //default is get HTTP method
                                 .then(function(data) {
                                     console.log("2. receive data")
@@ -67,6 +64,14 @@ class WatchListClass {
                                             productid: watchlist.productid,
                                             dateUpdated: watchlist.dateUpdated,
                                             deleteStatus: watchlist.deleteStatus,
+                                            title: watchlist.title,
+                                            description: watchlist.description,
+                                            url1: watchlist.url1,
+                                            url2: watchlist.url2,
+                                            url3: watchlist.url3,
+                                            price: watchlist.price,
+                                            pdateUpdated: watchlist.pdateUpdated,
+                                            ownerId: watchlist.ownerId
                                        };
                                         watchlistClass.watchListProduct.push(watchlistObj);
                                   });
@@ -109,7 +114,7 @@ class WatchListClass {
           let item = products[i];
           showProductItem += `
             <div class="${ "item" + count.toString() }">
-              <div class="card h-90 shadow p-3 mb-5 bg-body rounded">
+              <div class="card h-100 shadow p-3 mb-5 bg-body rounded">
                 <img src="${item.imageURL1}" class="card-img-top" alt="item1" >
                 <div class="card-body">
                   <h5 class="card-title">${item.title}</h5>

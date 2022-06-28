@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <i id="binoBtnId" type="button" class="bi bi-binoculars-fill ms-auto" onclick="memberPageCheck()"></i>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto"></div>
 
         </div>
 
@@ -102,6 +102,26 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
   </div>
 </div>
   `;
+
+
+
+
+
+function addNumber(item) {
+
+    if(currLoginID.userId == null ) {
+
+        alert("Please log in before adding to watchlist!");
+                location.href = "./login";
+    } else  {
+
+              alert("Item added to watchlist!  " + item.title);
+
+
+          }
+
+
+}
 
 
 
@@ -395,6 +415,18 @@ class ProductsController
 
 
                 }
+
+                for(let o = 0; o<this._products.length; o++) {
+
+                      const item = this._products[o];
+
+                    console.log("*******" + item.title);
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item)});
+
+                }
+
+
+
     }
 
     whenUpdated(updateDate) {

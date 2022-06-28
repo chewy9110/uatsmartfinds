@@ -107,9 +107,7 @@ function msgUtilLoginId() {
 //return(item)
 //}
 
-function msgUtilRemoteHostURL() {
-    return("http://127.0.0.1:8080")
-}
+
 
 function msgUtilRemoteUserId() {
 //     <script th:inline="javascript">
@@ -210,9 +208,20 @@ function msgUtilShowServerStatus(msg){
      return(currLoginID);
 
 }
+
 function  msgUtilRemoteHostURL() {
-   //  remoteHostURL = "http://localhost:8080"
-     remoteHostURL = "https://smartfinds.herokuapp.com"
+
+ if ((typeof(this.activeURL_Prod ) == "undefined") ||
+     ( this.activeURL_Prod  == null)  ||
+      (this.activeURL_Prod == "") ) {
+          remoteHostURL = "https://smartfinds.herokuapp.com"
+   }
+  else {
+     remoteHostURL = this.activeURL_Prod;
+     console.log ("msgUtilRemoteHostURL - this.activeURL_Prod");
+     console.log (remoteHostURL) ;
+  }
+
     return(remoteHostURL)
 }
 

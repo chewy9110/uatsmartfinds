@@ -39,6 +39,27 @@ newProductForm.addEventListener('submit', (event) => {
         return;
     }
     let imageUrl = [ "", "", ""];
+    if (btnFunction == "Update") {
+        console.log("frame0 " + frame0.src);
+        console.log("frame1 " + frame1.src);
+        console.log("frame2 " + frame2.src);
+        imageUrl[0]=frame0.src.replace( (activeURL + "products/"), "");
+        imageUrl[1]=frame1.src.replace( (activeURL + "products/"), "");;
+        imageUrl[2]=frame2.src.replace( (activeURL + "products/"), "");;
+        if (imageUrl[0] == "placeholder.gif") // remove placeholder image before writing to DB
+            imageUrl[0] = "";
+        if (imageUrl[1] == "placeholder.gif")
+            imageUrl[1] = "";
+        if (imageUrl[2] == "placeholder.gif")
+            imageUrl[2] = "";
+    }
+
+    console.log("Form Event");
+    console.log("[" + imageUrl[0] + "]");
+    console.log("[" + imageUrl[1] + "]");
+    console.log("[" + imageUrl[2] + "]");
+    console.log("Form Event");
+
     for (let i=0; i<file.files.length; i++) {
 //        console.log("filename " + file.files[i].name);
 //        imageUrl[i] = file.files[i].name.replace("C:\\fakepath\\", "");
@@ -246,20 +267,46 @@ function setDefaultImage(position) {
 //}
 
 function editItem(idx, item) {
-    // console.log(item.description);
+//     console.log("editItem..............");
     // todo edit function
-    document.getElementById("frame0").src = item.imageUrl1;
-    document.getElementById("frame1").src = item.imageUrl2;
-    document.getElementById("frame2").src = item.imageUrl3;
+//    console.log("edititem [" + item.imageUrl1 +"]");
+//    console.log("edititem [" + item.imageUrl2 +"]");
+//    console.log("edititem [" + item.imageUrl3 +"]");
 
+    if (item.imageUrl1 == "") {
+//        console.log("img1 blank");
+        document.getElementById("frame0").src = "products/placeholder.gif";
+    }
+    else {
+//        console.log("img1 not blank [" + item.imageUrl1 + "]");
+        document.getElementById("frame0").src = item.imageUrl1;
+    }
+    if (item.imageUrl2 == "") {
+//        console.log("img2 blank");
+        document.getElementById("frame1").src = "products/placeholder.gif"
+    }
+    else {
+//        console.log("img2 not blank [" + item.imageUrl2 + "]");
+        document.getElementById("frame1").src = item.imageUrl2;
+    }
+    if (item.imageUrl3 == "") {
+//        console.log("img3 blank");
+        document.getElementById("frame2").src = "products/placeholder.gif"
+    }
+    else {
+//        console.log("img3 not blank [" + item.imageUrl3 + "]");
+        document.getElementById("frame2").src = item.imageUrl3;
+    }
     document.getElementById("newItemTitleInput").value = item.title;
     document.getElementById("newItemDescription").value = item.description;
     document.getElementById("newItemPrice").value = item.price;
 
     document.getElementById("btnSellUpdate").textContent = "Update";
-    curritem = item;
-    console.log(item.productid);
-    document.getElementById("btnSellUpdate").addEventListener("click", function(){ updateItem(index, item.productid) });
+    curritem = item; // save item to curritem for api call
+    location.href = "#newProductForm";
+
+//    console.log(item.productid);
+//    document.getElementById("btnSellUpdate").addEventListener("click", function(){ updateItem(index, item.productid) });
 }
 
 function clearItem() {

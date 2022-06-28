@@ -159,7 +159,7 @@ public class ProductController {
 
     @CrossOrigin
     @PutMapping("/update/{id}")
-    public Product setSold(@PathVariable Integer id,
+    public Product updateItem(@PathVariable Integer id,
                            @RequestParam(name="title", required = true) String title,
                            @RequestParam(name="description", required = true) String description,
                            @RequestParam(name="imageUrl1", required = false) String imageUrl1,
@@ -185,6 +185,9 @@ public class ProductController {
         }
 
         String url1 = "", url2 = "", url3 = "";
+        System.out.println(imageUrl1);
+        System.out.println(imageUrl2);
+        System.out.println(imageUrl3);
         if (! imageUrl1.equals("")) { // this is not to save url as products/ if filename is "" results in 404 error when retrieved
             url1 = imageFolder + "/" + imageUrl1.replaceAll("\\s", ""); // remove white space within a filename e.g. "file abc"
         }

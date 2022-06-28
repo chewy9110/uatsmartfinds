@@ -126,17 +126,7 @@ newProductForm.addEventListener('submit', (event) => {
     document.location.reload(true);
 });
 
-function getTimeStamp() {
-// format time stamp in yyyy/mm/dd hh:mm:ss format for MySQL input
-    const today = new Date();
-    return (today.getFullYear() + "/" +
-    String(today.getMonth() + 1).padStart(2,'0') + "/" +
-    String(today.getDate()).padStart(2,'0') + " " +
-    String(today.getHours()).padStart(2,'0') + ":" +
-    String(today.getMinutes()).padStart(2,'0') + ":" +
-    String(today.getSeconds()).padStart(2,'0')
-    );
-}
+
 
 // select file input
 const input = document.getElementById('file0');

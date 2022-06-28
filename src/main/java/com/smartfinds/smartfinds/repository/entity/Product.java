@@ -14,7 +14,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productid;
-    private Integer ownerid;
+    private Long ownerid;
     private String title;
     private String description;
     private String imageUrl1;
@@ -27,9 +27,14 @@ public class Product {
     private boolean deleteStatus; //do we need this?
 
 // join query
-@OneToMany(mappedBy = "productid")
-private List<Watchlist> watchlistList;
+    @OneToMany(mappedBy = "productid")
+    private List<Watchlist> watchlistList;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ownerid", insertable=false, updatable=false)
+    private User user;
 // join query
+
 
     public Product() {}
 
@@ -56,11 +61,11 @@ private List<Watchlist> watchlistList;
         this.productid = productid;
     }
 
-    public Integer getOwnerid() {
+    public Long getOwnerid() {
         return ownerid;
     }
 
-    public void setOwnerid(Integer ownerid) {
+    public void setOwnerid(Long ownerid) {
         this.ownerid = ownerid;
     }
 
@@ -144,6 +149,26 @@ private List<Watchlist> watchlistList;
     public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
+
+    public void updateProduct(String title, String description, String url1, String url2, String url3, Double price) {
+        this.title = title;
+        this.description = description;
+        this.imageUrl1 = url1;
+        this.imageUrl2 = url2;
+        this.imageUrl3 = url3;
+        this.price = price;
+    }
+
+// getter setter from watchlist join query
+    public List<Watchlist> getWatchlistId() { return watchlistList; }
+
+    public Long getUserid() { return user.getUserid(); }
+
+    public String getDisplayName() { return user.getDisplayName(); }
+
+    public String getUserImgUrl() { return user.getUserImgUrl(); }
+
+// getter setter from watchlist
 
     @Override
     public String toString()

@@ -176,6 +176,38 @@ class ProductsController
             console.log('Error:', error);
         });
     }
+    // method to update product item
+    // no changes to pictures or url is possible
+    updateItem(item, title, description, imageUrl1, imageUrl2, imageUrl3, price, imageObject) {
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('imageUrl1', imageUrl1);
+        formData.append('imageUrl2', imageUrl2);
+        formData.append('imageUrl3', imageUrl3);
+        formData.append('price', price);
+        formData.append('imagefile1',imageObject[0]);
+        formData.append('imagefile2',imageObject[1]);
+        formData.append('imagefile3',imageObject[2]);
+
+        console.log("updateItem " + item.productid);
+        fetch(activeURL + "product/update/" + item.productid, {
+            method: 'PUT',
+            body: formData
+        })
+        .then(function(response) {
+            console.log(response.status); // Will show you the status
+            if (response.ok) {
+                console.log("Successfully Added Product!");
+            }
+            else {
+                console.log("Fail to upload file!");
+            }
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
 
     //method to add the items into the array
     addItem(ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, imageObject)

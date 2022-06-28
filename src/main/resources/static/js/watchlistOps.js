@@ -1,5 +1,4 @@
-
-let watchList = new WatchListClass();
+const watchList = new WatchListClass();
 
 // start of watchlist
 /*
@@ -12,20 +11,13 @@ watchList.addWatchList(6, 2, 9, "2022-05-01 08:25:00");
 */
 function onloadInitWatchList()
 {
-//AS    memberPageCheck(); // handle login and navbar display
-
-    // filter watchlist based on login ID and get the user's productlist items to display
-/* AS    const products = watchList.getProductList(currLoginID.userID);
-    for (let i=0; i<products.length; i++) {
-        console.log("onloadInitWatchList() " + products[i].productID);
-    }*/
     restoreSessionInfo();
-    console.log("onloadInitWatchList");
-    console.log("Oninit" + currLoginID.userId);
+//    console.log("onloadInitWatchList");
+//    console.log("Oninit" + currLoginID.userId);
     watchList.displayMyProduct(currLoginID.userId);
-
 }
 
-function removeWatchItem() {
-    watchList.removeWatchList(localStorage.getItem("unwatchedItemId"));
+function removeWatchItemAAA() {
+    alert("will run delete");
+//    watchItem.removeWatchList(localStorage.getItem("unwatchedItemId"));
 }

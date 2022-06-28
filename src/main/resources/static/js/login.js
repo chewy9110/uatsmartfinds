@@ -28,8 +28,7 @@ function restoreSessionInfo() {
     tmpLoginDetails = window.sessionStorage.getItem("loginDetails"); // check if user is already login
     if (tmpLoginDetails == null) {
       // user access this webpage without going through a login, by default redirect user to index.html
-      /* alert("Can't get login info.");
-        location.href = "./login";  */
+      alert("Can't get login info.");
     }
     else {
       currLoginID = JSON.parse(tmpLoginDetails); // now can access custDetailObject as an array of object
@@ -37,7 +36,7 @@ function restoreSessionInfo() {
         console.log("loginDetails is null");
         location.href = "./login";
       }*/
-      console.log(currLoginID);
+      console.log("restoreSessionInfo " + currLoginID.userId);
     }
   }
   else {

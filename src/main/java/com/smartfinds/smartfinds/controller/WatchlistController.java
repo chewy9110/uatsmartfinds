@@ -2,6 +2,7 @@ package com.smartfinds.smartfinds.controller;
 
 import com.smartfinds.smartfinds.component.FileUploadUtil;
 import com.smartfinds.smartfinds.controller.dto.WatchlistDto;
+import com.smartfinds.smartfinds.repository.entity.Product;
 import com.smartfinds.smartfinds.repository.entity.Watchlist;
 import com.smartfinds.smartfinds.service.WatchlistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,18 +47,22 @@ public class WatchlistController {
     }
 
     @CrossOrigin
+    @PutMapping("/delete/{id}")
+    public Watchlist setDelete(@PathVariable Integer id,
+                           @RequestParam(name="deleteStatus", required = true) Boolean status
+    ) {
+        Watchlist wl = watchlistService.findById( id );
+        wl.setDeleteStatus(status);
+        return watchlistService.save(wl);
+    }
+
+    @CrossOrigin
     @PostMapping("/add")
     public void save(@RequestParam(name = "userid", required = true) Integer userid,
                      @RequestParam(name = "productid", required = true) Integer productid,
-                     @RequestParam(name="dateUpdated", required = true) Date dateUpdated,
-                     @RequestParam(name="deleteStatus", required = false) boolean deleteStatus) {
-//                     @RequestParam("imagefile") MultipartFile multipartFile) throws IOException { watchlist don't need to transfer file
+                     @RequestParam(name="dateUpdated", required = true) Date dateUpdated ) {
 
-//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//        FileUploadUtil.saveFile(imageFolder, fileName, multipartFile);
-
-//        String fullPath1 = imageFolder + "/";
-        WatchlistDto watchlistDto = new WatchlistDto(userid, productid, dateUpdated, deleteStatus);
+        WatchlistDto watchlistDto = new WatchlistDto(userid, productid, dateUpdated, false);
         watchlistService.save(new Watchlist(watchlistDto));
     }
 

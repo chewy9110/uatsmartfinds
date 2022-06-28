@@ -5,13 +5,14 @@ import com.smartfinds.smartfinds.controller.dto.UserDto;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
 public class User {
 
     @Id
-    @Column(name = "userid")
+    //@Column(name = "userid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userid;
     private String username;
@@ -21,6 +22,11 @@ public class User {
   //  private boolean enabled;
     private String displayName;
     private String userImgUrl;
+
+    // join query
+    @OneToMany(mappedBy = "ownerid")
+    private List<Product> productList;
+    // join query
 
     public User() {}
 
@@ -66,6 +72,10 @@ public class User {
     public void setUserImgUrl(String userImgUrl) {
         this.userImgUrl = userImgUrl;
     }
+// join query
+    public List<Product> getProductListId() { return productList; }
+
+// join query
 
 //    public String getPassword() {
 //        return password;

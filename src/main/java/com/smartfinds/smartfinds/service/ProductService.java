@@ -16,9 +16,9 @@ public interface ProductService {
 
     Product findById(int productid);
 
-    List<Product> findByOwnerId(int ownerid);
+    List<Product> findByOwnerId(Long ownerid);
 
-    List<Product> findNotByOwnerId(int ownerid);
+    List<Product> findNotByOwnerId(Long ownerid);
 
 //    Product setSold(int productid);
 

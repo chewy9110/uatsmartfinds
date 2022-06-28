@@ -72,8 +72,9 @@ public class Watchlist {
     public void setDeleteStatus(boolean deleteStatus) {
         this.deleteStatus = deleteStatus;
     }
-// new getter setter
-    public Integer getOwnerId() { return product.getOwnerid(); }
+
+// new getter setter for join query
+    public Long getOwnerId() { return product.getOwnerid(); }
 
     public String getTitle() { return product.getTitle(); }
 

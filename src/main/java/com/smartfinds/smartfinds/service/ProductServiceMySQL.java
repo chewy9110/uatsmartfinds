@@ -51,7 +51,7 @@ public class ProductServiceMySQL implements ProductService{
     }
 
     @Override
-    public List<Product> findByOwnerId(int ownerid) {
+    public List<Product> findByOwnerId(Long ownerid) {
         List<Product> result = new ArrayList<>();
         productRepository.findByOwnerId(ownerid).forEach(result :: add);
 
@@ -59,7 +59,7 @@ public class ProductServiceMySQL implements ProductService{
     }
 
     @Override
-    public List<Product> findNotByOwnerId(int ownerid) {
+    public List<Product> findNotByOwnerId(Long ownerid) {
         List<Product> result = new ArrayList<>();
         productRepository.findNotByOwnerId(ownerid).forEach(result :: add);
 

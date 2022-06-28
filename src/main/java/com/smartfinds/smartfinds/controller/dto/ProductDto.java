@@ -5,7 +5,7 @@ import java.util.Date;
 public class ProductDto {
 
     //private Integer productid;
-    private Integer ownerid;
+    private Long ownerid;
     private String title;
     private String description;
     private String imageUrl1;
@@ -18,7 +18,7 @@ public class ProductDto {
     private boolean deleteStatus;
 
 
-    public ProductDto(Integer ownerid, String title, String description, String imageUrl1, String imageUrl2, String imageUrl3, Integer defaultPic, double price, Date dateUpdated, boolean soldStatus, boolean deleteStatus)
+    public ProductDto(Long ownerid, String title, String description, String imageUrl1, String imageUrl2, String imageUrl3, Integer defaultPic, double price, Date dateUpdated, boolean soldStatus, boolean deleteStatus)
     {
         //this.productid = productid;
         this.ownerid = ownerid;
@@ -108,11 +108,11 @@ public class ProductDto {
         this.productid = productid;
     } */
 
-    public Integer getOwnerid() {
+    public Long getOwnerid() {
         return ownerid;
     }
 
-    public void setOwnerid(Integer ownerid) {
+    public void setOwnerid(Long ownerid) {
         this.ownerid = ownerid;
     }
 

@@ -3,6 +3,7 @@ const uploadImages = []; // array to hold all the pictures to be uploaded
 let memberProducts = []; // array to hold subset of productList, to be used by member.html only
 let storeImage = [];
 let currLoginIDx;
+let curritem = []; // temp variable to hold edited product item, to pass to backend functions for item.id
 //let storeImage = []; // for multiple image upload
 
 //When user clicks on 'Save Item', calls API to add items to the database
@@ -11,6 +12,15 @@ newProductForm.addEventListener('submit', (event) => {
     // Prevent default action
     event.preventDefault();
     // Select the inputs
+    let btnFunction = document.getElementById('btnSellUpdate').innerHTML;
+//    if (btnFunction=="Update") {
+        // file0 can be 0
+        // url can be not updated
+//    }
+//    else {
+        // file0 must be at least 1
+        // url must be at least 1
+//    }
     const file = document.getElementById('file0');
     const newItemTitleInput = document.querySelector('#newItemTitleInput');
     const newItemDescription = document.querySelector('#newItemDescription');
@@ -22,13 +32,13 @@ newProductForm.addEventListener('submit', (event) => {
     // Get the values of the inputs - variable names to be same as MySQL columns
 //    const imageUrl1 = file.value.replace("C:\\fakepath\\", "");
 
-    if (file.files.length == 0) {
+    if (file.files.length == 0 && btnFunction=="Sell") {
+    // if btnFunction=Sell, must have at least 1 picture
         resultMessage.innerHTML = "Choose an image for upload.";
         resultMessage.style.display = "block";
         return;
     }
     let imageUrl = [ "", "", ""];
-//    console.log("getting url names");
     for (let i=0; i<file.files.length; i++) {
 //        console.log("filename " + file.files[i].name);
 //        imageUrl[i] = file.files[i].name.replace("C:\\fakepath\\", "");
@@ -86,7 +96,12 @@ newProductForm.addEventListener('submit', (event) => {
     // defaultPic hardcode to 1, until we can manage the selection of picture as a defaultPic better
 //    productList.addItem(3, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage); for multiple file upload
     // fetch returns a promise, return result is undefined
-    productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage);
+    if (btnFunction=="Sell") {
+        productList.addItem(currLoginID.userId, title, description, imageUrl[0], imageUrl[1], imageUrl[2], 1, price, dateUpdated, storeImage);
+    }
+    else {
+        productList.updateItem(curritem, title, description, imageUrl[0], imageUrl[1], imageUrl[2], price, storeImage);
+    }
     document.location.reload(true);
 });
 
@@ -242,6 +257,7 @@ function editItem(idx, item) {
     document.getElementById("newItemPrice").value = item.price;
 
     document.getElementById("btnSellUpdate").textContent = "Update";
+    curritem = item;
     console.log(item.productid);
     document.getElementById("btnSellUpdate").addEventListener("click", function(){ updateItem(index, item.productid) });
 }

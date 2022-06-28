@@ -36,6 +36,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
     List<Product> displayAll();
 
 
+
+
+
 //    @Modifying
 //    @Query("update Product p set p.soldStatus = true where p.productid = :productid")
 //    Product setSold(@Param("productid") Integer productid);

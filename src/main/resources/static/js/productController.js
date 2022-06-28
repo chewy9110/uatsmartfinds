@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <i id="binoBtnId" type="button" class="bi bi-binoculars-fill ms-auto" onclick="memberPageCheck()"></i>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto"></div>
 
         </div>
 
@@ -102,6 +102,26 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
   </div>
 </div>
   `;
+
+
+
+
+
+function addNumber(item) {
+
+    if(currLoginID.userId == null ) {
+
+        alert("Please log in before adding to watchlist!");
+                location.href = "./login";
+    } else  {
+
+              alert("Item added to watchlist!  " + item.title);
+
+
+          }
+
+
+}
 
 
 
@@ -179,6 +199,14 @@ class ProductsController
     // method to update product item
     // no changes to pictures or url is possible
     updateItem(item, title, description, imageUrl1, imageUrl2, imageUrl3, price, imageObject) {
+        if (imageUrl1 == activeURL + "products/placeholder.gif")
+            imageUrl1 = "";
+        if (imageUrl2 == activeURL + "products/placeholder.gif")
+            imageUrl2 = "";
+        if (imageUrl3 == activeURL + "products/placeholder.gif")
+            imageUrl3 = "";
+        console.log("updateItem[" + imageUrl1 + "][" + imageUrl2 + "][" + imageUrl3 + "]");
+
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
@@ -387,6 +415,18 @@ class ProductsController
 
 
                 }
+
+                for(let o = 0; o<this._products.length; o++) {
+
+                      const item = this._products[o];
+
+                    console.log("*******" + item.title);
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item)});
+
+                }
+
+
+
     }
 
     whenUpdated(updateDate) {

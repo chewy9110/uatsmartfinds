@@ -179,6 +179,14 @@ class ProductsController
     // method to update product item
     // no changes to pictures or url is possible
     updateItem(item, title, description, imageUrl1, imageUrl2, imageUrl3, price, imageObject) {
+        if (imageUrl1 == activeURL + "products/placeholder.gif")
+            imageUrl1 = "";
+        if (imageUrl2 == activeURL + "products/placeholder.gif")
+            imageUrl2 = "";
+        if (imageUrl3 == activeURL + "products/placeholder.gif")
+            imageUrl3 = "";
+        console.log("updateItem[" + imageUrl1 + "][" + imageUrl2 + "][" + imageUrl3 + "]");
+
         const formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);

@@ -133,7 +133,7 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
 
      BtnId  = document.getElementById(binoBtnId)
 
-    if  (BtnId.style.color == "blue")
+    if  (BtnId.style.color == "blue") {
        //  BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
          BtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ 1 + "</span>";
      }

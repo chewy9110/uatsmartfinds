@@ -50,4 +50,9 @@ public class WatchlistServiceMySQL implements WatchlistService {
         watchlistRepository.findbyOwnerId(watchlistid).forEach(result :: add);
         return result;
     }
+
+    @Override
+    public Integer getCount(Integer productid) {
+        return watchlistRepository.getCount(productid);
+    }
 }

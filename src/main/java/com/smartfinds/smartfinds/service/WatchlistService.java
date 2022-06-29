@@ -16,5 +16,7 @@ public interface WatchlistService {
     Watchlist findById(int watchlistid);
 
     List<Watchlist> findbyOwnerId(int watchlistid);
+
+    Integer getCount(Integer productid);
 }
 

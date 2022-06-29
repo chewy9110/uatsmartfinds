@@ -72,4 +72,9 @@ public class WatchlistController {
         return watchlistService.findbyOwnerId(watchlistid);
     }
 
+    @CrossOrigin
+    @GetMapping("/getcount/{productid}")
+    public Integer getCount(@PathVariable Integer productid) {
+        return watchlistService.getCount(productid);
+    }
 }

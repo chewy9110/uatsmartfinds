@@ -111,9 +111,9 @@ display:none
 /* start of nav bar customisation
 /* -----------------------------------------------*/
 /* the entire bar frame */
-/*.navbar-custom {
+.navbar-custom {  
   background-color:    #e8d14e;   
- }   */
+ }   
  
  /* change the color of active or hovered links of dropdown menu*/
 .navbar-custom .nav-item   .dropdown-item.active  ,

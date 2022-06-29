@@ -29,11 +29,15 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
 
     @Query("SELECT p FROM Product p WHERE p.ownerid != :ownerid and deleteStatus=false and soldStatus=false order by dateUpdated desc")
     List<Product> findNotByOwnerId(@Param("ownerid") Long ownerid);
- 
+
+
 
     @Query("SELECT p FROM Product p WHERE deleteStatus=false and soldStatus=false order by dateUpdated desc")
     List<Product> displayAll();
- 
+
+
+
+
 
 //    @Modifying
 //    @Query("update Product p set p.soldStatus = true where p.productid = :productid")
@@ -42,10 +46,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
 //    @Modifying
 //    @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
 //    void setDelete(@Param("productid") Integer productid);
-    @Modifying
-    @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
-    void setDelete(@Param("productid") Integer productid);
-=======
- 
 
 }

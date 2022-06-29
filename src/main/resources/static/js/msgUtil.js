@@ -227,17 +227,6 @@ function msgUtilShowServerStatus(msg){
 }
 
 function  msgUtilRemoteHostURL() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-
- if ((typeof(this.activeURL_Prod ) == "undefined") ||
-     ( this.activeURL_Prod  == null)  ||
-      (this.activeURL_Prod == "") ) {
-          remoteHostURL = "https://smartfinds.herokuapp.com"
-   }
-  else {
-     remoteHostURL = this.activeURL_Prod;
-=======
    //  remoteHostURL = "http://localhost:8080"
  if ((typeof(this.activeURL_Prod ) == "undefined") ||
      ( this.activeURL_Prod  == null)  ||
@@ -248,18 +237,10 @@ function  msgUtilRemoteHostURL() {
   else {
      remoteHostURL = this.activeURL_Prod;
      remoteHostURL = remoteHostURL.replace(/\/+$/, '');
->>>>>>> main
      console.log ("msgUtilRemoteHostURL - this.activeURL_Prod");
      console.log (remoteHostURL) ;
   }
 
-<<<<<<< HEAD
-=======
-     remoteHostURL = "http://localhost:8080"
-   //  remoteHostURL = "https://smartfinds.herokuapp.com"
->>>>>>> main
-=======
->>>>>>> main
     return(remoteHostURL)
 }
 

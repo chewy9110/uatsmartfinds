@@ -39,13 +39,13 @@
  <!-- start of container -->
 
 
- <main class="container g-0 p-2">
+ <main class="container g-0 p-0"> 
      <!-- start of container -->
      <div id="ls" >
-      Inbox
+
     </div>
 
-    <div id="container" class="container-fluid m-2 ">
+    <div id="container" class="container-fluid m-1 ">
      <!-- <div class="row g-0 p-2 align-items-center  border border-success border-1 rounded-3">   -->
   
       <div id="loadingmsg" class="alert alert-warning" role="alert">
@@ -68,21 +68,12 @@
 </main> 
  <!-- end of container -->
 
-   <div class="spacer"></div>
-<div>
-
-<!--    <ul th:each="todo: ${currentuser}">-->
-<!--        <li th:text="${currentuser.username + ': ' + todo.userid + ': ' + todo.displayneme  + ': ' + todo.userImgUrl}"></li>-->
-<!--    </ul>-->
-
-</div>
-
-
-
-  <!-- footer-->
-  <div th:insert="fragments/footer.html :: footer"></div>
-    <!--<footer class="footerContent"></footer>-->
-
+   <div class="spacer"></div>  
+  
+    <!-- footer-->
+    <footer class="footerContent">
+   </footer>
+  
     <!-- script needs to be at the end of the page -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
@@ -91,11 +82,17 @@
  
  <!-- login script -->
 
+<<<<<<< HEAD
+=======
 
   <!--Dev or Prod domain .js-->
   <script src="./js/domain.js"></script>
 
 
+<<<<<<< HEAD
+>>>>>>> main
+=======
+>>>>>>> main
 <!-- <script src="./js/test.js"></script>-->
 <!-- <script src="./js/login.js"></script>-->
  
@@ -103,10 +100,11 @@
 <!-- <script src="./js/smartFindsClass.js"></script>-->
 <!-- <script src="./js/smartFindsOps.js"></script>-->
 
+  <!--Dev or Prod domain .js-->
+  <script src="./js/domain.js"></script>
+
   <!-- custom msgInbox script -->
   <script src="js/msgUtil.js"></script>
-
-
 
   <script src="js/msgRemoteStorageClass.js"></script>
   <script src="js/msgInboxRsClass.js"></script>

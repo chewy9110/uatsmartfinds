@@ -187,7 +187,7 @@ function  msgUtilRemoteHostURL() {
           remoteHostURL = "http://localhost:8080"
    }
   else {
-     remoteHostURL = this.activeURL;
+     remoteHostURL = activeURL;
      remoteHostURL = remoteHostURL.replace(/\/+$/, '');
      console.log ("msgUtilRemoteHostURL - this.activeURL");
      console.log (remoteHostURL) ;

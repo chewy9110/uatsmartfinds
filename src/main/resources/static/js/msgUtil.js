@@ -48,9 +48,7 @@ function formatDate(date){
 }
 
 function formatPrice(price) {
-   //   price = price.value.toFixed(2)
-    //  price =  price.replace(/$/g, '');
-     // price =  price.replace(/^/gm, "$");
+
       var price = "$" + Number(price).toFixed(2);
        return(price);
 }
@@ -228,16 +226,16 @@ function msgUtilShowServerStatus(msg){
 
 function  msgUtilRemoteHostURL() {
    //  remoteHostURL = "http://localhost:8080"
- if ((typeof(this.activeURL_Prod ) == "undefined") ||
-     ( this.activeURL_Prod  == null)  ||
-      (this.activeURL_Prod == "") ) {
+ if ((typeof(this.activeURL ) == "undefined") ||
+     ( this.activeURL  == null)  ||
+      (this.activeURL == "") ) {
           //remoteHostURL = "https://mysmartfinds.herokuapp.com"
           remoteHostURL = "http://localhost:8080"
    }
   else {
-     remoteHostURL = this.activeURL_Prod;
+     remoteHostURL = this.activeURL;
      remoteHostURL = remoteHostURL.replace(/\/+$/, '');
-     console.log ("msgUtilRemoteHostURL - this.activeURL_Prod");
+     console.log ("msgUtilRemoteHostURL - this.activeURL");
      console.log (remoteHostURL) ;
   }
 

@@ -38,18 +38,19 @@ public class MsgController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         boolean isAuthenticated = authentication.isAuthenticated();
+        System.out.println(currentPrincipalName);
 
        // if (isAuthenticated) {
         if (currentPrincipalName!="anonymousUser") {
             User user = userService.findByIdName(currentPrincipalName);
 
-            // System.out.println("----------------------------");
+             System.out.println("----------------------------");
             System.out.println(currentPrincipalName);
-            // System.out.println(user.getDisplayName());
-            // System.out.println(user.getUserid());
-            // System.out.println(user.getUserImgUrl());
-            // System.out.println(user.getUsername());
-            // System.out.println("----------------------------");
+             System.out.println(user.getDisplayName());
+             System.out.println(user.getUserid());
+             System.out.println(user.getUserImgUrl());
+             System.out.println(user.getUsername());
+             System.out.println("----------------------------");
 
             int userId = Math.toIntExact(user.getUserid());
 
@@ -66,16 +67,7 @@ public class MsgController {
 //    public List<Msg> displayMsgInbox(@PathVariable int msgInboxUid )
 //            throws IOException
 //    {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentPrincipalName = authentication.getName();
-//
-//        User user = userService.findByIdName(currentPrincipalName);
-//
-//        int userId = Math.toIntExact(user.getUserid());
-//
-//        // return msgService.displayMsgInbox(msgInboxUid);
-//        return msgService.displayMsgInbox(userId);
-//        //  return msgService.displayMsgInbox(Math.toIntExact(user.getUserid()));
+//         return msgService.displayMsgInbox(msgInboxUid);
 //    }
 
 //    @CrossOrigin

@@ -105,6 +105,8 @@ class WatchListClass {
       let showProductItem = "";
       let moreBtnId = "";
       let unwatchBtnId = "";
+      let btnReplyId = "";
+
       let count = 1;
 
       let products = this.watchListProduct;
@@ -123,7 +125,9 @@ class WatchListClass {
         {
           moreBtnId = "item" + i;
           unwatchBtnId = "UnWatchItem" + i;
-  
+
+          btnReplyId = "btnReplyId" + i;
+
           let item = products[i];
           showProductItem += `
             <div class="${ "item" + count.toString() }">
@@ -136,16 +140,24 @@ class WatchListClass {
                     <i class="bi2 bi-star-fill"></i>
                     <i class="bi3 bi-star-fill"></i>
                   </div>
-                  <small class="text-muted price">$${item.price}</small>
-                  <p class="card-text overflow-scroll" style="max-height: 3rem;">${item.description}</p>
-                  <div class="d-flex flex-row justify-content-between">
-                    <button type="button" id="${moreBtnId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">See full item details</button>
-                    <a href="msgDetail.html" class="btn">Chat now<img src="products/message.svg"></a>
-                    <button type="button" id="${unwatchBtnId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#unwatchModal" >
+                  <small class="text-muted price">${formatPrice(item.price)}</small>
+               <!--   <p class="card-text overflow-scroll" style="max-height: 3rem;">${item.description}</p> -->
+                 <p class="mt-3 p-3 border border-2 card-text overflow-scroll">${item.description}</p>
+
+               <div class="d-flex  justify-content-between g-2">
+                    <button type="button" id="${moreBtnId}" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">See full item details</button>
+
+                 <!--   <a href="msgDetail.html" class="btn">Chat now<img src="products/message.svg"></a> -->
+
+                     <a id="${btnReplyId}" href="msgDetail?FromUid=${item.userid}&ToUid=${item.ownerId}&FromProductId=${item.productid}"
+                        class="btn btn-primary"><img src="products/message_white.svg" >&nbspChat now</a>
+
+
+                    <button type="button" id="${unwatchBtnId}" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#unwatchModal" >
                     <img src="./products/remove_red_eye_black_24dp.svg" />
                     </button>
-                  </div>
                 </div>
+               </div>
                 <div class="card-footer">
                     <small class="text-muted">${whenUpdated(item.pdateUpdated)}</small>
                 </div>

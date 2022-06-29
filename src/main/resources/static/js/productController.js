@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${formatWatchlistCount("binoBtnId"+index, watchListCount)}</div>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${watchListCount}</div>
 
         </div>
 
@@ -107,12 +107,14 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 function formatWatchlistCount(binoBtnId, watchListCount) {
 
-console.log (binoBtnId)
+//console.log (binoBtnId)
+
      if (watchListCount > 1) {
-      document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+       binoBtnId.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+       binoBtnId.innerHTML = watchListCount;
      }
      else {
-        watchListCount = ""
+         binoBtnId.innerHTML = ""
        //this.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
      }
 
@@ -125,16 +127,16 @@ function addNumber(binoBtnId,item  ) {
         location.href = "./login";
     } else  {
 //        alert("Item added to watchlist!  " + item.title);
-      //  watchlistAdd(item);
-     //   document.location.reload(true);
+        watchlistAdd(item);
+         document.location.reload(true);
 
-     if (item.watchListCount > 1) {
-      document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
-     }
-     else {
-       watchlistAdd(item);
-       document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
-     }
+//     if (item.watchListCount > 1) {
+//      document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+//     }
+//     else {
+//       watchlistAdd(item);
+//       document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+//     }
     }
 }
 
@@ -442,7 +444,8 @@ class ProductsController
 
                     console.log("*******" + item.title);
                     document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber("binoBtnId"+o, item  )});
-
+                    let watchBtnId =  document.getElementById(`binoBtnId${o}`)
+                    formatWatchlistCount(watchBtnId, item.watchListCount)
                 }
 
 

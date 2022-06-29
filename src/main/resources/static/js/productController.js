@@ -110,8 +110,15 @@ function addNumber(item) {
         location.href = "./login";
     } else  {
 //        alert("Item added to watchlist!  " + item.title);
-        watchlistAdd(item);
-        document.location.reload(true);
+      //  watchlistAdd(item);
+     //   document.location.reload(true);
+     if (item.watchListCount > 1) {
+      this.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+     }
+     else {
+       watchlistAdd(item);
+       this.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+     }
     }
 }
 

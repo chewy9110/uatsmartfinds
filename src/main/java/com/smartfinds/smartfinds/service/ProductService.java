@@ -2,6 +2,8 @@ package com.smartfinds.smartfinds.service;
 
 import java.awt.print.Pageable;
 import java.util.List;
+
+import com.smartfinds.smartfinds.repository.ProductWatchList;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import org.springframework.data.domain.Page;
 
@@ -27,4 +29,10 @@ public interface ProductService {
 //    Product setDelete(int productid);
 
     //Page<Product> getProductPagination(int pageNo, int pageSize);
+
+    List<ProductWatchList> getProductWatchList(Long ownerid);
+
+    List<ProductWatchList> getProductWatchListNotUser(Long ownerid);
+
+    List<ProductWatchList> getProductWatchListAll();
 }

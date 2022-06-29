@@ -2,6 +2,7 @@ package com.smartfinds.smartfinds.service;
 
 
 import com.smartfinds.smartfinds.repository.ProductRepository;
+import com.smartfinds.smartfinds.repository.ProductWatchList;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -87,4 +88,24 @@ public class ProductServiceMySQL implements ProductService{
         Pageable pageable = PageRequest.of(pageNo -1, pageSize);
         return this.productRepository.findAll(pageable);
     }*/
+    @Override
+    public List<ProductWatchList> getProductWatchList(Long ownerid) {
+        List<ProductWatchList> result = new ArrayList<>();
+        productRepository.getProductWatchList(ownerid).forEach(result::add);
+        return result;
+    }
+
+    @Override
+    public List<ProductWatchList> getProductWatchListNotUser(Long ownerid) {
+        List<ProductWatchList> result = new ArrayList<>();
+        productRepository.getProductWatchListNotUser(ownerid).forEach(result::add);
+        return result;
+    }
+
+    @Override
+    public List<ProductWatchList> getProductWatchListAll() {
+        List<ProductWatchList> result = new ArrayList<>();
+        productRepository.getProductWatchListAll().forEach(result::add);
+        return result;
+    }
 }

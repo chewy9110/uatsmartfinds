@@ -47,4 +47,32 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
 //    @Query("update Product p set p.deleteStatus = true where p.productid = :productid")
 //    void setDelete(@Param("productid") Integer productid);
 
+    // this query is to get product list based on ownerid, owner image url, with watchlist count
+    @Query("SELECT p as product, COUNT(w) as watchListCount, u.displayName as userName, u.userImgUrl as userImgUrl " +
+            "FROM Product p " +
+            "LEFT JOIN Watchlist w on p.productid=w.productid " +
+            "LEFT JOIN User u on p.ownerid=u.userid " +
+            "WHERE p.ownerid = :ownerid GROUP " +
+            "BY p.productid order by p.dateUpdated desc")
+    List<ProductWatchList> getProductWatchList(@Param("ownerid") Long ownerid);
+
+    // query to get all product list that is not owned by ownerid
+    @Query("SELECT p as product, COUNT(w) as watchListCount, u.displayName as userName, u.userImgUrl as userImgUrl " +
+            "FROM Product p " +
+            "LEFT JOIN Watchlist w on p.productid=w.productid " +
+            "LEFT JOIN User u on p.ownerid=u.userid " +
+            "WHERE p.ownerid != :ownerid GROUP " +
+            "BY p.productid order by p.dateUpdated desc")
+    List<ProductWatchList> getProductWatchListNotUser(@Param("ownerid") Long ownerid);
+//and w.deleteStatus=false
+
+    // query to get all product list not based on any id
+    @Query("SELECT p as product, COUNT(w) as watchListCount, u.displayName as userName, u.userImgUrl as userImgUrl " +
+            "FROM Product p " +
+            "LEFT JOIN Watchlist w on p.productid=w.productid " +
+            "LEFT JOIN User u on p.ownerid=u.userid " +
+            "GROUP " +
+            "BY p.productid order by p.dateUpdated desc")
+    List<ProductWatchList> getProductWatchListAll();
+//where w.deleteStatus=false
 }

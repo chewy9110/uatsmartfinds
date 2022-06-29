@@ -10,8 +10,6 @@ import com.smartfinds.smartfinds.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -66,7 +64,7 @@ public class ProductController {
     }
 
 
-    @Autowired
+    /*@Autowired
     private ProductRepository productRepository;
     @CrossOrigin
     @GetMapping("/pagination")
@@ -75,21 +73,22 @@ public class ProductController {
         List<Product> list = (List<Product>) productRepository.findAll(pageable).getContent();
         return ResponseEntity.ok(list);
         //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
-    }
+    }*/
 
 
    /* @CrossOrigin
     @GetMapping("/product/{pageNo}")
-    public String getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
+    public ResponseEntity<List<Product>> getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
         int pageSize = 6;
+
         Page<Product> page = productService.getProductPagination(pageNo, pageSize);
         List<Product> listProduct = page.getContent();
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalProduct", page.getTotalElements());
         model.addAttribute("listProduct", listProduct);
-        return "index";
-    } */
+        return ResponseEntity.ok(listProduct);
+    }*/
 
 
 

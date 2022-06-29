@@ -1,6 +1,6 @@
 const prodUrl = "https://uatsmartfinds.herokuapp.com/";
 const devUrl = "http://localhost:8080/";
-#const activeURL = devUrl;
+//const activeURL = devUrl;
 const activeURL = prodUrl;
 
 function getTimeStamp() {

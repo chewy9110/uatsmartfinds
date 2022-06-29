@@ -82,4 +82,9 @@ function diff_seconds(dt2, dt1)
         return Math.abs(Math.round(diff));
  }
 
+function formatPrice(price) {
+
+      var price = "$" + Number(price).toFixed(2);
+       return(price);
+}
 

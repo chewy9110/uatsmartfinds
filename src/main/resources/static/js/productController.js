@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${formatWatchlistCount("binoBtnId"+index, watchListCount)}</div>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${formatWatchlistCount(this, watchListCount)}</div>
 
         </div>
 
@@ -105,10 +105,10 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
   `;
 
 
-function formatWatchlistCount(binoBtnId, watchListCount) {
+function formatWatchlistCount(this, watchListCount) {
 
      if (watchListCount > 1) {
-      document.querySelector(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+      this.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
      }
      else {
         watchListCount = ""
@@ -118,7 +118,7 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
     return(watchListCount)
 }
 
-function addNumber(item, binoBtnId) {
+function addNumber(binoBtnId,item  ) {
     if(currLoginID.userId == null ) {
         alert("Please log in before adding to watchlist!");
         location.href = "./login";
@@ -128,7 +128,7 @@ function addNumber(item, binoBtnId) {
      //   document.location.reload(true);
 
      if (item.watchListCount > 1) {
-      document.querySelector(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+      document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
      }
      else {
        watchlistAdd(item);
@@ -440,7 +440,7 @@ class ProductsController
                       const item = this._products[o];
 
                     console.log("*******" + item.title);
-                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item, "binoBtnId"+o)});
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber("binoBtnId"+o, item  )});
 
                 }
 

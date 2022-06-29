@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${formatWatchlistCount("binoBtnId${index}", watchListCount)}</div>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${formatWatchlistCount("binoBtnId"+index, watchListCount)}</div>
 
         </div>
 
@@ -107,6 +107,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
 function formatWatchlistCount(binoBtnId, watchListCount) {
 
+console.log (binoBtnId)
      if (watchListCount > 1) {
       document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
      }

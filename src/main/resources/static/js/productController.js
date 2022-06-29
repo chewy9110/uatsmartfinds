@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;formatWatchlistCount("binoBtnId${index}", ${watchListCount})</div>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${formatWatchlistCount("binoBtnId"+index, watchListCount)}</div>
 
         </div>
 
@@ -440,7 +440,7 @@ class ProductsController
                       const item = this._products[o];
 
                     console.log("*******" + item.title);
-                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item, "binoBtnId`${o}")});
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item, "binoBtnId"+o});
 
                 }
 

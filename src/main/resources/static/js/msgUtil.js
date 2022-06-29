@@ -61,7 +61,6 @@ function msgUtilLoginId() {
    // let  currLoginID =  { userID:"", displayName : "", email : "", pw : ""};
 
     let  sesslogin = window.sessionStorage.getItem("loginDetails");
-     
 
     if (  sesslogin  != null) {
          
@@ -76,53 +75,6 @@ function msgUtilLoginId() {
 ///////////////////////////////////////////
 // Profile Url image
 ///////////////////////////////////////////
-//function msgUtilUserImgUrl(uid) {
-//    const userList = [];
-//    let user = {userId:"", userDisplayName:"", userImgUrl:""};
-//
-//     user = {userId:"100", userDisplayName:"Cheong Yuen Thye", userImgUrl:"products/z01_male_placeholder.png"};
-//     userList.push(user);
-//
-//    user = {userId:"101", userDisplayName:"Desmond Chia", userImgUrl:"products/smartfindweblogo.jpg"};
-//    userList.push(user);
-//
-//    user = {userId:"102", userDisplayName:"Andrew Sim", userImgUrl:"products/z03_male_placeholder.png"};
-//    userList.push(user);
-//
-//    user = {userId:"103", userDisplayName:"Chew Kim Beng", userImgUrl:"products/placeholder.gif"};
-//    userList.push(user);
-//
-//    user = {userId:"104", userDisplayName:"Buyer1", userImgUrl:"products/salestag.jpg"};
-//    userList.push(user);
-//
-//    user = {userId:"105", userDisplayName:"Seller1", userImgUrl:"products/z03_male_placeholder.png"};
-//    userList.push(user);
-//
-//
-//    let item = userList.find((user)=>(user.userId==uid) )
-//
-//    return (item.userImgUrl)
-//
-//}
-
-//function msgUtilUser(userID){
-//    //userList from test.js
-//
-//   let item = userList.allUsers.find((id)=>(id.userID== userID ) )
-//
-//  return(item)
-//}
-//
- 
-
-//function msgUtilProduct(productID){
-//  //productList from smartFindsClass.js and smartFindsOps.js
-//
-//   let item = productList.allProducts.find((id)=>(id.productID== productID ) )
-//return(item)
-//}
-
-
 
 function msgUtilRemoteUserId() {
 //     <script th:inline="javascript">
@@ -193,6 +145,8 @@ function msgUtilShowServerStatus(msg){
     const _remoteURL   = _remoteHost + "/user/currentuser"
     const _remoteAPI = `${_remoteURL}`
 
+console.log(_remoteAPI);
+
     let currLoginID = [];
   await    fetch(_remoteAPI)
     .then((resp) => resp.json())
@@ -226,9 +180,9 @@ function msgUtilShowServerStatus(msg){
 
 function  msgUtilRemoteHostURL() {
    //  remoteHostURL = "http://localhost:8080"
- if ((typeof(this.activeURL ) == "undefined") ||
-     ( this.activeURL  == null)  ||
-      (this.activeURL == "") ) {
+ if ((typeof(activeURL ) == "undefined") ||
+     ( activeURL  == null)  ||
+      (activeURL == "") ) {
           //remoteHostURL = "https://mysmartfinds.herokuapp.com"
           remoteHostURL = "http://localhost:8080"
    }
@@ -238,6 +192,8 @@ function  msgUtilRemoteHostURL() {
      console.log ("msgUtilRemoteHostURL - this.activeURL");
      console.log (remoteHostURL) ;
   }
+
+  console.log (remoteHostURL) ;
 
     return(remoteHostURL)
 }

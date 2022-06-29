@@ -1,7 +1,7 @@
 const prodUrl = "https://uatsmartfinds.herokuapp.com/";
 const devUrl = "http://localhost:8080/";
 //const activeURL = devUrl;
-const activeURL = prodUrl;
+const activeURL = "https://uatsmartfinds.herokuapp.com/" // prodUrl;
 
 function getTimeStamp() {
 // format time stamp in yyyy/mm/dd hh:mm:ss format for MySQL input

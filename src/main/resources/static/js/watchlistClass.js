@@ -144,16 +144,16 @@ class WatchListClass {
                <!--   <p class="card-text overflow-scroll" style="max-height: 3rem;">${item.description}</p> -->
                  <p class="mt-3 p-3 border border-2 card-text overflow-scroll">${item.description}</p>
 
-               <div class="d-flex  justify-content-between g-2">
-                    <button type="button" id="${moreBtnId}" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">See full item details</button>
+               <div class="d-flex  justify-content-between">
+                    <button type="button" id="${moreBtnId}" class="btn btn-primary me-1" data-bs-toggle="modal" data-bs-target="#exampleModal">See full item details</button>
 
                  <!--   <a href="msgDetail.html" class="btn">Chat now<img src="products/message.svg"></a> -->
 
                      <a id="${btnReplyId}" href="msgDetail?FromUid=${item.userid}&ToUid=${item.ownerId}&FromProductId=${item.productid}"
-                        class="btn btn-primary"><img src="products/message_white.svg" >&nbspChat now</a>
+                        class="btn btn-primary me-1"><img src="products/message_white.svg" >&nbspChat now</a>
 
 
-                    <button type="button" id="${unwatchBtnId}" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#unwatchModal" >
+                    <button type="button" id="${unwatchBtnId}" class="btn btn-primary me-1 " data-bs-toggle="modal" data-bs-target="#unwatchModal" >
                     <img src="./products/remove_red_eye_black_24dp.svg" />
                     </button>
                 </div>

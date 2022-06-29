@@ -159,16 +159,17 @@ class MsgDetailClass {
         displayMsgImage(item) { 
          return ( `   
  
-             <div class="w-100">
+             <div class="w-100 .imgprod-small -small">
              <img src="${item.msgProductImgURL}"  class="img-fluid rounded-start"
              alt="item-interested">   
              </div>  
-             <div class="w-100">
+             <div class="w-100 titleprod-small">
              <h6 class="p-1 m-0  ">${item.msgProductTitle}</h6>
-             </div>
-             <div class="w-100">
+            <!--  </div>
+             <div class="w-100"> -->
              <h6 class="p-1 m-0 ">${formatPrice(item.msgPrice)}</h6>
              </div>
+
            `)
         }
  

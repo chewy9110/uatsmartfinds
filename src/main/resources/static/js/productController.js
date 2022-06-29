@@ -74,19 +74,19 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         See full item details
       </button>-->
 
+    <div class="d-flex flex-row  justify-content-around">
        <button type="button" id="item${index}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
          See full item details
        </button>
 
-      <i class="btn">  <!--  <img src="products/message.svg" >-->
-
+       <!--  <i class="btn"> --> <!--  <img src="products/message.svg" >-->
       <!-- send msg box  -->
        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"
         data-bs-item = '{"from":"${currLoginID_displayName}", "to":"${ownerDisplayName}", "url":"${imageUrl1}","productId":"${productid}","productTitle":"${title}", "price":"${price}", "inboxUid":"${currLoginID_userId}","fromUid":"${currLoginID_userId}","toUid":"${ownerid}"}'
         data-bs-dismiss="modal">
         <img src="products/message_white.svg" >&nbspChat now</a>
-
-      </i>
+      <!-- </i> -->
+      </div>
       </div>
       <div>
 
@@ -109,15 +109,15 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
 
 //console.log (binoBtnId)
 
-     if (watchListCount > 1) {
-       binoBtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
-       binoBtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+watchListCount + "</span>";
-
-     }
-     else {
-         binoBtnId.innerHTML = ""
-       //this.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
-     }
+//     if (watchListCount > 1) {
+//       binoBtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+//       binoBtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+watchListCount + "</span>";
+//
+//     }
+//     else {
+//         binoBtnId.innerHTML = ""
+//       //this.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
+//     }
 
     return(watchListCount)
 }
@@ -135,12 +135,12 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
 
     if  (BtnId.style.color == "blue") {
        //  BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
-         BtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ 1 + "</span>";
+     //    BtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ 1 + "</span>";
      }
      else {    watchlistAdd(item);
           let cnt = item.watchListCount + 1;
           BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
-          BtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ cnt + "</span>";
+       //   BtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ cnt + "</span>";
 
      }
     }

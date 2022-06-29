@@ -81,7 +81,7 @@ class MsgInboxClass {
                    <div class="card-body align-items-start ${this.bg_RtlLtr(item)} border-1 m-1 ms-3 p-3 w-75">
                       <div class="d-flex flex-row"  data-toggle="tooltip" data-placement="top"
                              title=" ${item.msgFromName}" ms-2 p-1>
-                           <img src="${item.msgFromImg}" width="25" height="25" class="border rounded-circle  " alt="img profile">
+                           <img src="${item.msgFromImg}" width="25" height="25" class="border rounded-circle  " alt=".">
                             <p class="my-0  me-1 ms-2 text-truncate p-1"  >
                             ${this.displayMe(item)}</p>
                      </div>

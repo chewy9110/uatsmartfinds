@@ -440,7 +440,7 @@ class ProductsController
                       const item = this._products[o];
 
                     console.log("*******" + item.title);
-                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item, "binoBtnId"+o});
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(item, "binoBtnId"+o)});
 
                 }
 

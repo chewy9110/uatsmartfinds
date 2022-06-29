@@ -131,12 +131,18 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
 //          watchlistAdd(item);
 //         document.location.reload(true);
 
+     BtnId  = document.getElementById(binoBtnId)
+
      if (item.watchListCount > 1) {
-      document.getElementById(binoBtnId).style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+        BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
      }
      else {
-       watchlistAdd(item);
-       document.getElementById(binoBtnId).style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+       if  (BtnId.style.color != "blue") {
+          watchlistAdd(item);
+          let cnt = item.watchListCount + 1;
+          BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+          binoBtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ cnt + "</span>";
+       }
      }
     }
 }

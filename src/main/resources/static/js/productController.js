@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${ formatWatchlistCount(watchListCount)}</div>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${ formatWatchlistCount(this, watchListCount)}</div>
 
         </div>
 
@@ -105,7 +105,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
   `;
 
 
-function formatWatchlistCount(watchListCount) {
+function formatWatchlistCount(this, watchListCount) {
 
      if (watchListCount > 1) {
       this.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
@@ -126,7 +126,7 @@ function addNumber(item, binoBtnId) {
 //        alert("Item added to watchlist!  " + item.title);
       //  watchlistAdd(item);
      //   document.location.reload(true);
-     
+
      if (item.watchListCount > 1) {
       document.querySelector(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
      }

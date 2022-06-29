@@ -1,4 +1,4 @@
-const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, ownerDisplayName, currLoginID_displayName, currLoginID_userId) =>
+const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1, imageUrl2, imageUrl3, defaultPic, price, dateUpdated, soldStatus, deleteStatus, watchListCount, userName, userImgUrl, ownerDisplayName, currLoginID_displayName, currLoginID_userId) =>
 
 `
 
@@ -60,7 +60,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
 
         <small class="text-muted price" style="margin-left:-20px;">${formatPrice(price)}</small>
 
-            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto"></div>
+            <div id="binoBtnId${index}" type="button" class="bi bi-binoculars-fill ms-auto">&nbsp;${watchListCount}</div>
 
         </div>
 
@@ -95,17 +95,14 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
           <small class="text-muted">${whenUpdated(dateUpdated)}</small>
         </div>
         <div  id="pOwner${index}" >
-          <span><small class="text-muted">${ownerDisplayName}</small></span><img src="" width="30" height="30" class="rounded-circle" alt="img profile">
+          <!-- <span><small class="text-muted">${ownerDisplayName}</small></span><img src="${userImgUrl}" width="30" height="30" class="rounded-circle" alt="img profile"> -->
+          <span><small class="text-muted">${userName}</small></span><img src="${userImgUrl}" width="30" height="30" class="rounded-circle" alt="img profile">
         </div>
       </div>
     </div>
   </div>
 </div>
   `;
-
-
-
-
 
 function addNumber(item) {
     if(currLoginID.userId == null ) {
@@ -280,8 +277,8 @@ class ProductsController
           //const _remoteHost  =  RemoteHostURL();
           //const _remoteAPI = _remoteHost + "/product/pagination?page=0&size=6"
 
-        const _notOwner = "/notowner/" + currid;
-        const _all = "/all";
+        const _notOwner = "/pwnotowner/" + currid;
+        const _all = "/pwall";
 
          let API = activeURL + "product";
 
@@ -301,18 +298,22 @@ class ProductsController
 
 
                     const itemObj = {
-                        productid: item.productid,
-                        ownerid: item.ownerid,
-                        title: item.title,
-                        description: item.description,
-                        imageUrl1: item.imageUrl1,
-                        imageUrl2: item.imageUrl2,
-                        imageUrl3: item.imageUrl3,
-                        defaultPic: item.defaultPic,
-                        price: item.price,
-                        dateUpdated: item.dateUpdated,
-                        soldStatus: item.soldStatus,
-                        deleteStatus: item.deleteStatus
+                        productid: item.product.productid,
+                        ownerid: item.product.ownerid,
+                        title: item.product.title,
+                        description: item.product.description,
+                        imageUrl1: item.product.imageUrl1,
+                        imageUrl2: item.product.imageUrl2,
+                        imageUrl3: item.product.imageUrl3,
+                        defaultPic: item.product.defaultPic,
+                        price: item.product.price,
+                        dateUpdated: item.product.dateUpdated,
+                        soldStatus: item.product.soldStatus,
+                        deleteStatus: item.product.deleteStatus,
+                        userName: item.userName,
+                        userImgUrl: item.userImgUrl,
+                        watchListCount: item.watchListCount
+
                    }
 
                     productController._products.push(itemObj);
@@ -334,7 +335,7 @@ class ProductsController
 
         //fetch data from database using the REST API endpoint from Spring Boot
         // activeURL contains http://url/ defined in domain.js
-       fetch(activeURL + "product/owner/" + currid)
+       fetch(activeURL + "product/pwuser/" + currid)
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")
@@ -343,20 +344,23 @@ class ProductsController
 
 //                if(index <= 5) { // this will limit the number of product displayed to 6
                     const itemObj = {
-                        productid: item.productid,
-                        ownerid: item.ownerid,
-                        title: item.title,
-                        description: item.description,
-                        imageUrl1: item.imageUrl1,
-                        imageUrl2: item.imageUrl2,
-                        imageUrl3: item.imageUrl3,
-                        defaultPic: item.defaultPic,
-                        price: item.price,
-                        dateUpdated: item.dateUpdated,
-                        soldStatus: item.soldStatus,
-                        deleteStatus: item.deleteStatus
+                        productid: item.product.productid,
+                        ownerid: item.product.ownerid,
+                        title: item.product.title,
+                        description: item.product.description,
+                        imageUrl1: item.product.imageUrl1,
+                        imageUrl2: item.product.imageUrl2,
+                        imageUrl3: item.product.imageUrl3,
+                        defaultPic: item.product.defaultPic,
+                        price: item.product.price,
+                        dateUpdated: item.product.dateUpdated,
+                        soldStatus: item.product.soldStatus,
+                        deleteStatus: item.product.deleteStatus,
+                        userName: item.userName,
+                        userImgUrl: item.userImgUrl,
+                        watchListCount: item.watchListCount
                    }
-
+//                    console.log(itemObj);
                     productController._products.push(itemObj);
 //                   }; //if(index <= 5) {
               });
@@ -380,8 +384,8 @@ class ProductsController
 
 
             let ownerDisplayName = ""
-            const productHTML = createHTMLList(i, item.productid, item.ownerid, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, ownerDisplayName,
-                                    this.currLoginID.displayName, this.currLoginID.userId           );
+            const productHTML = createHTMLList(i, item.productid, item.ownerid, item.title, item.description, item.imageUrl1, item.imageUrl2, item.imageUrl3, item.defaultPic, item.price, item.dateUpdated, item.soldStatus, item.deleteStatus, item.watchListCount, item.userName, item.userImgUrl,
+                                ownerDisplayName, this.currLoginID.displayName, this.currLoginID.userId);
 
 
             productHTMLList.push(productHTML);
@@ -474,7 +478,7 @@ class ProductsController
 
           <div  class="container d-flex flex-row">
             <small class="text-muted price" style="margin-left:-20px;">Price: $${price.toFixed(2)}</small>
-            <i class="bi bi-binoculars-fill ms-auto"></i>&nbsp;XXX
+            <i class="bi bi-binoculars-fill ms-auto"></i>&nbsp;${item.watchListCount}
           </div>
           <p class="card-text overflow-scroll" style="max-height: 5rem; margin-top: 30px;">${item.description}</p>
 
@@ -549,4 +553,25 @@ class ProductsController
     } // end of member displayproduct
 }   //End of ProductsController class
 
+function getWatchCount(productid) {
+    console.log("getWatchCount");
+    let count = [];
+    fetch(activeURL + "watch/getcount/" + productid)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log("2. receive data")
+            console.log(data);
+            data.forEach(function (item, index) {
+                const itemObj = {
+                    count: count
+                }
+                console.log("api " + itemObj);
+                count.push(itemObj);
+            });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
 
+    console.log("count " + productid + " " + count[0].count);
+}

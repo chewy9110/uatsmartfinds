@@ -30,9 +30,9 @@ public class Product {
     @OneToMany(mappedBy = "productid")
     private List<Watchlist> watchlistList;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ownerid", insertable=false, updatable=false)
-    private User user;
+//    @ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name="ownerid", insertable=false, updatable=false)
+//    private User user;
 // join query
 
 
@@ -160,13 +160,13 @@ public class Product {
     }
 
 // getter setter from watchlist join query
-    public List<Watchlist> getWatchlistId() { return watchlistList; }
+//    public List<Watchlist> getWatchlistId() { return watchlistList; }
 
-    public Long getUserid() { return user.getUserid(); }
+//    public Long getUserid() { return user.getUserid(); }
 
-    public String getDisplayName() { return user.getDisplayName(); }
+//    public String getDisplayName() { return user.getDisplayName(); }
 
-    public String getUserImgUrl() { return user.getUserImgUrl(); }
+//    public String getUserImgUrl() { return user.getUserImgUrl(); }
 
 // getter setter from watchlist
 

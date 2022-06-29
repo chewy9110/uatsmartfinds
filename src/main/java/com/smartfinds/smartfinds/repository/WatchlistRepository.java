@@ -22,4 +22,7 @@ public interface WatchlistRepository extends CrudRepository<Watchlist, Integer> 
     @Query("SELECT w, p FROM Watchlist w join Product p on w.productid=p.productid WHERE w.userid = :userid and w.deleteStatus=false order by w.dateUpdated desc")
     List<Watchlist> findbyOwnerId(@Param("userid") Integer userid);
 //, w.dateUpdated as wUpdated, p.dateUpdated as pUpdated
+
+    @Query("SELECT count(*), w.productid FROM Watchlist w WHERE w.productid = :productid and w.deleteStatus=false group by w.productid")
+    Integer getCount(@Param("productid") Integer productid);
 }

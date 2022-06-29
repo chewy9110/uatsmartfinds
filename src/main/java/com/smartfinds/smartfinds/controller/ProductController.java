@@ -4,6 +4,7 @@ package com.smartfinds.smartfinds.controller;
 import com.smartfinds.smartfinds.component.FileUploadUtil;
 import com.smartfinds.smartfinds.controller.dto.ProductDto;
 import com.smartfinds.smartfinds.repository.ProductRepository;
+import com.smartfinds.smartfinds.repository.ProductWatchList;
 import com.smartfinds.smartfinds.repository.entity.Product;
 import com.smartfinds.smartfinds.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -216,62 +217,24 @@ public class ProductController {
         return productService.save(product);
     }
 
+    @CrossOrigin
+    @GetMapping("/pwuser/{userid}")
+    public List<ProductWatchList> getProductWatchList(@PathVariable Long userid)
+    {
+        return productService.getProductWatchList(userid);
+    }
 
+    @CrossOrigin
+    @GetMapping("/pwnotowner/{userid}")
+    public List<ProductWatchList> getProductWatchListNotUser(@PathVariable Long userid)
+    {
+        return productService.getProductWatchListNotUser(userid);
+    }
 
-//    @CrossOrigin
-//    @PutMapping( "/updateAll/{id}" )
-//    public Item update(@PathVariable Integer id,
-//                       @RequestParam(name="name", required = true) String name,
-//                       @RequestParam(name="description", required = true) String description,
-//                       @RequestParam(name="imageUrl", required = true) String imageUrl,
-//                       @RequestParam(name="style", required = true) String style,
-//                       @RequestParam(name="price", required = true) double price,
-//                       @RequestParam("imagefile") MultipartFile multipartFile) throws IOException {
-//
-//
-//
-//        String uploadDir1 = "productImages/images";
-//
-//
-//
-//        Item item = itemService.findById( id );
-//        item.setName( name );
-//        item.setDescription( description );
-//        item.setStyle(style);
-//        item.setPrice(price);
-//
-//
-//
-//        System.out.println("Hello: " + multipartFile);
-//
-//
-//
-////check if required to upload/update image file
-//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-//        FileUploadUtil.saveFile(uploadDir1, fileName, multipartFile);
-//        item.setImageUrl( imageUrl );
-//
-//
-//
-//        return itemService.save( item );
-//    }
-
-//    fetch(fetchPath + getId, {
-//        method: 'PUT',
-//                body: formData
-//    })
-//            .then(response => response.json())
-//            .then(data => {
-//        console.log('Success:', data);
-//        alert("Successfully updated to Product")
-//        this.displayItem(productForm); //To display in the table from ProductForm.html
-//
-//
-//
-//        $('#productEditModal').modal('hide');
-//    })
-//            .catch((error) => {
-//        console.error('Error:', error);
-//        alert("Error updating to Product")
-//    });
+    @CrossOrigin
+    @GetMapping("/pwall")
+    public List<ProductWatchList> getProductWatchListAll()
+    {
+        return productService.getProductWatchListAll();
+    }
 }

@@ -110,8 +110,9 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
 //console.log (binoBtnId)
 
      if (watchListCount > 1) {
-       binoBtnId.style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
-       binoBtnId.innerHTML = watchListCount;
+       binoBtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+       binoBtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+watchListCount + "</span>";
+
      }
      else {
          binoBtnId.innerHTML = ""
@@ -121,22 +122,23 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
     return(watchListCount)
 }
 
-function addNumber(binoBtnId,item  ) {
+//function addNumber(binoBtnId,item  ) {
+ function addNumber(this, item  )
     if(currLoginID.userId == null ) {
         alert("Please log in before adding to watchlist!");
         location.href = "./login";
     } else  {
 //        alert("Item added to watchlist!  " + item.title);
-        watchlistAdd(item);
-         document.location.reload(true);
+//          watchlistAdd(item);
+//         document.location.reload(true);
 
-//     if (item.watchListCount > 1) {
-//      document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
-//     }
-//     else {
-//       watchlistAdd(item);
-//       document.getElementById(binoBtnId).style.color = "orange"; // (this.style.color==="orange")?"black":"orange";
-//     }
+     if (item.watchListCount > 1) {
+      this.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+     }
+     else {
+       watchlistAdd(item);
+       this.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+     }
     }
 }
 
@@ -443,8 +445,9 @@ class ProductsController
                       const item = this._products[o];
 
                     console.log("*******" + item.title);
-                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber("binoBtnId"+o, item  )});
-                    let watchBtnId =  document.getElementById(`binoBtnId${o}`)
+
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function (this) {addNumber(this,item)});
+                   let watchBtnId =  document.getElementById(`binoBtnId${o}`)
                     formatWatchlistCount(watchBtnId, item.watchListCount)
                 }
 

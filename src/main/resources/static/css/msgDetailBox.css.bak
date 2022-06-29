@@ -87,13 +87,11 @@
 
   .img-reducesize > div {
     padding-left: 5px;
-    font-size:smaller;
-     width:calc(100% - 1px);
 }    
 
 .banner {
   top:70px;
-  height: 17vh;
+  height: 16vh;
  /* border: 2px solid #4CAF50;   */
   background-color: whitesmoke;
   margin:0vh;

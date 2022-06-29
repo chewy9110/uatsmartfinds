@@ -96,7 +96,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
         </div>
         <div  id="pOwner${index}" >
           <!-- <span><small class="text-muted">${ownerDisplayName}</small></span><img src="${userImgUrl}" width="30" height="30" class="rounded-circle" alt="img profile"> -->
-          <span><small class="text-muted">${userName}</small></span><img src="${userImgUrl}" width="30" height="30" class="rounded-circle" alt=".">
+          <span><small class="text-muted">${userName}</small></span><img src="${userImgUrl}" width="30" height="30" class="rounded-circle" alt="img profile">
         </div>
       </div>
     </div>
@@ -401,14 +401,14 @@ class ProductsController
 
                     document.getElementById(`item${j}`).addEventListener("click", function() { displayProductDetail(item);} );
 
-//                (async () => {
-//
-//                    let  ownerD = await msgUtilUserDisplay(item.ownerid);
-//                    let pOwner =  document.getElementById(`pOwner${j}`)
-//                     pOwner.innerHTML = `
-//                        <span><small class="text-muted">${ownerD.displayName}</small></span><img src="${ownerD.userImgUrl}" width="30" height="30" class="rounded-circle" alt="i">
-//                         `
-//                 })();
+                (async () => {
+
+                    let  ownerD = await msgUtilUserDisplay(item.ownerid);
+                    let pOwner =  document.getElementById(`pOwner${j}`)
+                     pOwner.innerHTML = `
+                        <span><small class="text-muted">${ownerD.displayName}</small></span><img src="${ownerD.userImgUrl}" width="30" height="30" class="rounded-circle" alt="i">
+                         `
+                 })();
 
 
                 }

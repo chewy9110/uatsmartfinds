@@ -28,7 +28,7 @@ function restoreSessionInfo() {
     tmpLoginDetails = window.sessionStorage.getItem("loginDetails"); // check if user is already login
     if (tmpLoginDetails == null) {
       // user access this webpage without going through a login, by default redirect user to index.html
-      alert("Can't get login info.");
+      console.log("Can't get login info.");
     }
     else {
       currLoginID = JSON.parse(tmpLoginDetails); // now can access custDetailObject as an array of object

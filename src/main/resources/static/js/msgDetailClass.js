@@ -71,6 +71,9 @@ class MsgDetailClass {
         //remote  
         msgData.saveInbox( msgInboxTo );
       }
+
+       msgDetailSend.scrollToBottom('containerBottom');
+
 //      else {
 //        // local
 //         msgData.saveInbox( msgInboxTo );

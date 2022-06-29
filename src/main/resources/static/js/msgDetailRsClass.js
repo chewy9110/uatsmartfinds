@@ -120,11 +120,11 @@ class MsgDetailRsClass {
              else if  (msgFromUid != null) {
              // query from watchlist
                console.log("query from watchlist")
-                //  msgInboxTo = await this.readWatchlist(msgFromUid, msgToUid, msgProductId );
+                 msgInboxTo = await this.readWatchlist(msgFromUid, msgToUid, msgProductId );
 
-                msgInboxTo = this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
-                 let msgInboxName = item.msgInboxName;
-                 msgInboxTo = this.myMsgBox(msgInboxName, item)
+//                msgInboxTo = await this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
+//                 let msgInboxName = item.msgInboxName;
+//                 msgInboxTo = this.myMsgBox(msgInboxName, item)
               }
             else 
                msgInboxTo = [];
@@ -252,29 +252,29 @@ await  fetch(_remoteAPI)
 } //loadRemoteWatchlist
 
 
-// async   readWatchlist(msgFromUid, msgToUid, msgProductId ) {
+ async   readWatchlist(msgFromUid, msgToUid, msgProductId ) {
       
 //            let product = msgUtilProduct(msgProductId);
 //            let userFrom = msgUtilUser(msgFromUid);
 //            let userTo = msgUtilUser(msgToUid);
 
-//           // console.log (`product=${product}, userFrom=${userFrom}, userTo=${userTo}`)
+           // console.log (`product=${product}, userFrom=${userFrom}, userTo=${userTo}`)
   
-//           // let msgInboxName = userFrom.displayName;
+           // let msgInboxName = userFrom.displayName;
           
-//          //  console.log (`msgInboxName=${msgInboxName}, msgFromUid=${msgFromUid}, msgProductId=${msgProductId}`)
+          //  console.log (`msgInboxName=${msgInboxName}, msgFromUid=${msgFromUid}, msgProductId=${msgProductId}`)
  
-//            let msgInboxTo = [];
-// /// fetch --
-//            let item =  await this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
-//            let msgInboxName = item.msgInboxName;
-//            msgInboxTo = this.myMsgBox(msgInboxName, item)
-// /////           
+            let msgInboxTo = [];
+ /// fetch --
+            let item =  await this.loadRemoteWatchlist(msgFromUid, msgToUid, msgProductId)
+            let msgInboxName = item.msgInboxName;
+            msgInboxTo = this.myMsgBox(msgInboxName, item)
+ /////
      
  
-//            return(msgInboxTo)
+            return(msgInboxTo)
  
-//         } //readWatchlist
+         } //readWatchlist
   
 
 } // class MsgDetailLsClass

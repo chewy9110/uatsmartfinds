@@ -25,21 +25,26 @@
 
 
             <!-- dummy search button -->
-            <div class="input-group w-50  offset-lg-2 d-flex d-none d-sm-none d-lg-flex d-md-flex d-sm-none "  >
+            <div class="input-group offset-lg-2 d-flex d-none d-sm-none d-lg-flex d-md-flex d-sm-none " style="width:45%" >
               <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
                 <button class="btn btn-dark" type="button" id="button-addon1" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
             </div>
 
-
                 <!-- harburger menu -->
-                <button class="navbar-toggler navbar-dark " type="button"
+            <button class="navbar-toggler navbar-dark " type="button"
                         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span  class="navbar-toggler-icon"></span>
-                </button>
+            </button>
 
                 <div class="collapse navbar-collapse  " id="navbarSupportedContent">
 
-
+          <!--          <hr></hr>
+                    <div class="input-group w-50 mx-auto d-flex d-lg-none d-md-none d-sm-flex">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
+                        <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
+                    </div>
+                    <hr></hr>
+           -->
                     <ul class="navbar-nav ms-auto me-2 ">
                         <li class="home nav-item">
                             <a class="nav-link" th:href="@{index}"  aria-current="page">Home</a>
@@ -56,15 +61,16 @@
                         </div>
 
 
-                        <div class="input-group w-50 mx-auto d-flex d-lg-none d-md-none d-sm-flex">
-                            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
-                            <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
-                        </div>
+                        <!--    <div class="input-group w-50 mx-auto d-flex d-lg-none d-md-none d-sm-flex">
+                                   <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
+                                   <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
+                         </div> -->
 
-                        <!-- <li class="nav-item dropdown dropstart"> -->
-                        <div sec:authorize="isAuthenticated()">
+                               <!-- <li class="nav-item dropdown dropstart"> -->
+                      <div sec:authorize="isAuthenticated()">
 
                         <li class="nav-item dropdown">
+
 
                             <a   class="btn dropdown-toggle nav-link " data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
                              <span sec:authentication="principal.username"/>
@@ -97,11 +103,20 @@
 
 
                          </li>
-
+                      </div>
                     </ul>
-                </div>
 
-<!--            </div>-->
+
+                    <hr></hr>
+                    <div class="input-group w-50 mx-auto d-flex d-lg-none d-md-none d-sm-flex">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="Search"  title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">
+                        <button class="btn btn-dark" type="button" id="button-addon2" title="Future enhancement feature.."  data-bs-toggle="popover" data-bs-boundary="window" data-bs-placement="left" data-bs-trigger="hover" data-bs-content="Under Construction">Search</button>
+                    </div>
+                    <hr></hr>
+
+
+
+                </div>
           </nav>
 <!--        </div>-->
      <!-- </nav> -->

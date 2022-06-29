@@ -54,11 +54,10 @@ class MsgInboxClass {
 
                 showMsgItem +=`
                 <!-- start of row -->
-               <div class="row g-0 align-items-top mb-3 ">  
-                
-               <div class="d-flex flex-row col-md-10">
-                <div class="w-25  m-0 p-0 g-0">
-                   <div class="xs-img-small-inbox m-0 p-0 g-0 mx-auto">
+                <div class="d-flex flex-row g-0 align-items-top mb-3 "> 
+                <div class="w-25 m-0 p-0 g-0">
+                   <div class="xs-img-small-inbox m-0 p-0 g-0">
+      
                      <img src="${item.msgProductImgURL}"  class="img-fluid rounded-start" 
                      alt="item-interested">   
                      <h6 class="g-0 p-0 m-0">${item.msgProductTitle}</h6>
@@ -66,13 +65,13 @@ class MsgInboxClass {
                    </div>  
    
                 </div>
-              <div class="w-100 g-0 m-0 p-0 ">
+              <div class="w-100 g-0 m-0 p-0">
                 <div class="card align-items-start border-1 rounded-5 p-0 mx-2 my-0">
                   <div class="card-header text-end  m-1 "
                    data-toggle="tooltip" data-placement="top"
                     title=" ${this.displayName(item)}">  
                       <img src="${this.displayImg(item)}"  width="40"
-                         height="40"  class="border rounded-circle  border-dark " alt=".">
+                         height="40"  class="border rounded-circle  border-dark " alt="...">
                          ${this.displayName(item)}
                      
                   </div>
@@ -93,21 +92,18 @@ class MsgInboxClass {
 
                 </div>
               </div>
-              </div>
-
-              <div class="col-md-2 align-self-center pt-3">
+              <div class="w-25 align-self-center">
                 <div  class="xs-center-inbox">
-                   <!--   <a id="${btnReplyId}" href="msgDetail.html?FromInboxId=${item.msgInboxId}&FromName=${item.msgInboxName}&FromInboxUid=${item.msgInboxUid}" class="btn btn-primary">Message</a> 
-                    -->
+                <!--   <a id="${btnReplyId}" href="msgDetail?FromInboxId=${item.msgInboxId}&FromName=${item.msgInboxName}&FromInboxUid=${item.msgInboxUid}" class="btn btn-primary">Message</a>
+                -->
                 
                   <a id="${btnReplyId}" href='msgDetail?${encodeURIStr}'
-                   class="btn btn-primary">Message</a> 
+
+            class="btn btn-primary">Message</a> 
                 </div>
-               </div>
-          
-             
-             </div>
-           <hr>
+              </div>
+              </div>
+              <hr>
               <!-- end of row -->
               `
              });

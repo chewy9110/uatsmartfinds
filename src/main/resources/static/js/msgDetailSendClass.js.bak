@@ -9,8 +9,8 @@ class MsgDetailSendClass {
       let msgLine =   txtSendMsg.value.replace(/\n/g, '<br>\n');
 
       if (msgLine.length === 0) {return};
-
-       let msgTimestamp = new Date(); //  currentDate() ; // today's date
+ 
+      let msgTimestamp = currentDate(); // today's date
 
       msgDetail.sendMsg(msgLine,  msgTimestamp);   
  

@@ -1,11 +1,21 @@
-package com.smartfinds.smartfinds.controller.dto;
+package com.smartfinds.smartfinds.repository.entity;
+import com.smartfinds.smartfinds.controller.dto.MsgDto;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
 
-public class MsgDto {
+//import java.util.Date;
+//import java.util.List;
+
+@Entity
+@Table(name = "v_msgdetail")
+//@Where(clause = "msgInboxId = 2")
+public class Msg {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer vid;
+
     private Integer msgInboxId;
     private Integer msgInboxUid;
     private Integer msgInboxUFid;
@@ -13,49 +23,53 @@ public class MsgDto {
     private Integer msgProductId;
     private Integer msgFromUid;
     private Integer msgToUid;
+
     private String msgLine;
+
     private double msgPrice;
     private String msgInboxName;
     private String  msgFromName;
     private String  msgFromImg;
     private String msgToName;
     private String msgToImg;
+
     private String msgProductImgURL;
     private String  msgProductTitle;
-    private ZonedDateTime msgTimestamp;
 
+   // @CreationTimestamp
+    //@UpdateTimestamp
+    //  @Column(name = "msgTimestamp", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column( nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime msgTimestamp;
 
-    public MsgDto(Integer vid, Integer msgInboxId, Integer msgInboxUid,
-                  Integer msgInboxUFid,Integer msgProductId,
-                  Integer msgFromUid, Integer msgToUid,   String msgLine,
-                  ZonedDateTime  msgTimestamp,
-                  String msgInboxName,String msgFromName,
-                  String msgFromImg, String msgToName,
-                  String msgToImg,
-                  String msgProductImgURL ,
-                  String msgProductTitle, double msgPrice
-                  )
-    {
-        this.vid =  vid;
-        this.msgInboxUid =  msgInboxUid;
-        this.msgInboxUFid =  msgInboxUFid;
-        this.msgProductId = msgProductId;
+    public Msg() {}
 
-        this.msgFromUid =  msgFromUid;
-        this.msgToUid =  msgToUid;
+    public Msg(MsgDto msgDto) {
+        this.vid = msgDto.getVid();
 
-        this.msgLine = msgLine;
-        this.msgTimestamp =  msgTimestamp;
+        this.msgInboxId = msgDto.getMsgInboxId();
+        this.msgInboxUid = msgDto.getMsgInboxUid();
+        this.msgInboxUFid = msgDto.getMsgInboxUFid();
+        this.msgProductId = msgDto.getMsgProductId();
 
-        this.msgInboxName = msgInboxName;
-        this.msgFromName =  msgFromName;
-        this.msgFromImg =  msgFromImg;
-        this.msgToName = msgToName;
-        this.msgToImg = msgToImg;
+        this.msgFromUid = msgDto.getMsgFromUid();
+        this.msgToUid = msgDto.getMsgToUid();
 
-        this.msgProductImgURL = msgProductImgURL ;
-        this.msgProductTitle = msgProductTitle;
-        this.msgPrice = msgPrice;
+        this.msgLine = msgDto.getMsgLine();
+        this.msgTimestamp = msgDto.getMsgTimestamp();
+
+        this.msgInboxName = msgDto.getMsgInboxName ();
+        this.msgFromName = msgDto.getMsgFromName ();
+        this.msgFromImg = msgDto.getMsgFromImg ();
+        this.msgToName = msgDto.getMsgToName ();
+        this.msgToImg = msgDto.getMsgToImg ();
+
+        this.msgToImg = msgDto.getMsgToImg ();
+
+        this.msgProductImgURL = msgDto.getMsgProductImgURL ();
+        this.msgProductTitle = msgDto.getMsgProductTitle ();
+        this.msgPrice = msgDto.getMsgPrice ();
+
 
     }
 
@@ -74,7 +88,6 @@ public class MsgDto {
     public void setMsgInboxId(Integer msgInboxId) {
         this.msgInboxId = msgInboxId;
     }
-
 
     public Integer getMsgInboxUid() {
         return msgInboxUid;
@@ -122,14 +135,6 @@ public class MsgDto {
 
     public void setMsgInboxUFid(Integer msgInboxUFid) {
         this.msgInboxUFid = msgInboxUFid;
-    }
-
-    public double getMsgPrice() {
-        return msgPrice;
-    }
-
-    public void setMsgPrice(double msgPrice) {
-        this.msgPrice = msgPrice;
     }
 
     public String getMsgInboxName() {
@@ -188,13 +193,32 @@ public class MsgDto {
         this.msgProductTitle = msgProductTitle;
     }
 
-    public ZonedDateTime  getMsgTimestamp() {
+    public double getMsgPrice() { return msgPrice;  }
+
+     public void setMsgPrice(double msgPrice) {   this.msgPrice = msgPrice;  }
+
+    public LocalDateTime getMsgTimestamp() {
         return msgTimestamp;
     }
 
-    public void setMsgTimestamp(ZonedDateTime  msgTimestamp) {
+    public void setMsgTimestamp(LocalDateTime msgTimestamp) {
         this.msgTimestamp = msgTimestamp;
     }
+
+
+    @Override
+    public String toString()
+    {
+//        return "Item{" + "msginboxid=" + msginboxid + ", msgInboxUid='" + msgInboxUid + '\'' + ", msgFromUid='" + msgFromUid + '\'' + ", msgProductId='"
+//                + msgProductId + '\'' + ",msgLine='" + msgLine + '\'' + ",msgTimestamp='" + msgTimestamp + '\''  + ",msgPrice='" + msgPrice + '\''  + '}';
+
+//            return "Item{" + "msginboxid=" + msginboxid + ", msgInboxUid='" + msgInboxUid + '\'' + ", msgFromUid='" + msgFromUid + '\'' + ", msgProductId='"
+//                 + msgProductId + '\'' + ",msgLine='" + msgLine + '\'' + ",msgTimestamp='" + msgTimestamp + '\''    + '}';
+        return("abc");
+    }
+
 }
+
+
 
 

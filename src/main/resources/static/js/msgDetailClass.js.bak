@@ -71,16 +71,16 @@ class MsgDetailClass {
         //remote  
         msgData.saveInbox( msgInboxTo );
       }
-//      else {
-//        // local
-//         msgData.saveInbox( msgInboxTo );
-//
-//        //SaveMsg for Seller inbox
-//        // for local only
-//        msgInboxTo.msgInboxName =  msgInboxTo.msgToName ;
-//        msgData.saveInbox( msgInboxTo );
-//       ////////////////////////
-//      }
+      else {
+        // local
+         msgData.saveInbox( msgInboxTo );
+        
+        //SaveMsg for Seller inbox
+        // for local only
+        msgInboxTo.msgInboxName =  msgInboxTo.msgToName ;
+        msgData.saveInbox( msgInboxTo );
+       ////////////////////////
+      }
 
     } //sendMsg
 
@@ -121,10 +121,10 @@ class MsgDetailClass {
               showMsgImageItem += this.displayMsgImage(msgInboxTo) ;
              
             //
-             showMsgItem =  `  <div class="card border-0 m-3">
+             showMsgItem =  `  <div class="card border-0 ms-3 mt-3">   
                                  <div class=" d-flex align-items-start mb-1 p-wrap p-0 "> 
                                   <div class="d-flex flex-row card-header ">       
-                                     <img src="${msgInboxTo.msgToImg}"  width="40" height="40" class="border rounded-circle">
+                                     <img src="${msgInboxTo.msgToImg}"  width="70" height="70" class="border rounded-circle">  
                                   <div>
                                    <p class="my-0  me-1 ms-3 text-truncate bolder ">${msgInboxTo.msgToName}</p>
                                    <p class="my-0  me-1 ms-3 text-truncate">Very Responsive</p>
@@ -160,7 +160,7 @@ class MsgDetailClass {
          return ( `   
  
              <div class="w-100">
-             <img src="${item.msgProductImgURL}"  class="img-fluid rounded-start"
+             <img src="${item.msgProductImgURL}"  class="img-fluid rounded-start" 
              alt="item-interested">   
              </div>  
              <div class="w-100">
@@ -181,7 +181,7 @@ class MsgDetailClass {
                  title=" ${item.msgFromName}" > 
              
                    <div class="d-flex flex-row">    
-                   <img src="${item.msgFromImg}" width="25" height="25" class="border rounded-circle  " alt=".">
+                   <img src="${item.msgFromImg}" width="40" height="40" class="border rounded-circle  " alt="img profile">
                    <p class="my-0  me-1 ms-1 text-truncate  " >
                    ${item.msgFromName}</p>
                    </div>
@@ -215,7 +215,7 @@ class MsgDetailClass {
               title=" ${item.msgFromName}">
        
                <div class="d-flex flex-row">
-                <img src="${item.msgFromImg}" width="25" height="25" class="border rounded-circle   " alt=".">
+                <img src="${item.msgFromImg}" width="40" height="40" class="border rounded-circle   " alt="alt-profile">
                 <p class="my-0 me-1 ms-1 text-truncate   " 
                    >
                 Me</p>
@@ -284,7 +284,7 @@ class MsgDetailClass {
           console.log(  this._msgDetailList );
         
           msgDetail.displayMsg();
-          msgDetailSend.scrollToBottom('containerBottom');
+ 
         } // loadmsgR 
 
 

@@ -19,14 +19,31 @@ function currentDate(){
 }
 
 
-function formatDate(date){
-         var newDate = new Date(date);
-         var hours = newDate.getHours();
-         var ampm = hours >= 12 ? 'pm' : 'am';
-         let newDate1 = ('0' + newDate.getDate()).slice(-2) + '/' +('0' + (newDate.getMonth()+1)).slice(-2)+ '/' +  ('0' + newDate.getFullYear()).slice(-2) + ' '+newDate.getHours()+ ':'+('0' + (newDate.getMinutes())).slice(-2)+ ':'+ ('0' + newDate.getSeconds()).slice(-2)  + ' ' + ampm ;
 
- 		//LocalDateTime now = LocalDateTime.now();
- 		return(newDate1);
+
+function formatDate(date){
+
+     let newDate = new Date(date);
+
+    // options = {
+    //   year: 'numeric', month: 'numeric', day: 'numeric',
+    //   hour: 'numeric', minute: 'numeric', second: 'numeric',
+    //   hour12: false,
+    //   timeZone: 'Asia/Singapore'
+    // };
+
+      options = {
+      year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+      hour12: false,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    };
+
+    newDate = new Intl.DateTimeFormat('default', options).format(newDate)
+
+    // console.log (Intl.DateTimeFormat().resolvedOptions().timeZone)
+
+  return(newDate );
 
 }
 
@@ -107,9 +124,7 @@ function msgUtilLoginId() {
 //return(item)
 //}
 
-function msgUtilRemoteHostURL() {
-    return("http://127.0.0.1:8080")
-}
+
 
 function msgUtilRemoteUserId() {
 //     <script th:inline="javascript">
@@ -210,9 +225,22 @@ function msgUtilShowServerStatus(msg){
      return(currLoginID);
 
 }
+
 function  msgUtilRemoteHostURL() {
-     remoteHostURL = "http://localhost:8080"
-   //  remoteHostURL = "https://smartfinds.herokuapp.com"
+   //  remoteHostURL = "http://localhost:8080"
+ if ((typeof(this.activeURL_Prod ) == "undefined") ||
+     ( this.activeURL_Prod  == null)  ||
+      (this.activeURL_Prod == "") ) {
+          //remoteHostURL = "https://mysmartfinds.herokuapp.com"
+          remoteHostURL = "http://localhost:8080"
+   }
+  else {
+     remoteHostURL = this.activeURL_Prod;
+     remoteHostURL = remoteHostURL.replace(/\/+$/, '');
+     console.log ("msgUtilRemoteHostURL - this.activeURL_Prod");
+     console.log (remoteHostURL) ;
+  }
+
     return(remoteHostURL)
 }
 
@@ -232,12 +260,12 @@ function  msgUtilRemoteHostURL() {
 
     const _remoteAPI   = `${_remoteHost}/user/${id}`;
 
-console.log(_remoteAPI);
+    console.log(_remoteAPI);
 
-    if (userid = "" ) return;
+    if (userid != "" )  { 
 
       let currLoginID = [];
-    await    fetch(_remoteAPI)
+      await    fetch(_remoteAPI)
       .then((resp) => resp.json())
       .then(function(data) {
   //         console.log("2222. receive data")
@@ -267,6 +295,10 @@ console.log(_remoteAPI);
 
       // return(currLoginID.displayName);
         return(currLoginID);
+     }
+     else {
+         return;
+     }
   }
   
 

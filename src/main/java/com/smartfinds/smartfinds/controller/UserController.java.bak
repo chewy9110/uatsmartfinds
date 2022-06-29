@@ -18,7 +18,6 @@ package com.smartfinds.smartfinds.controller;
 
         import java.io.IOException;
         import java.security.Principal;
-        import java.util.Collections;
         import java.util.Date;
 
 @RestController
@@ -35,22 +34,9 @@ public class UserController {
     @GetMapping("/all")
     public Iterable<User> getUser()
     {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        boolean isAuthenticated = authentication.isAuthenticated();
-        String currentPrincipalName = authentication.getName();
-        System.out.println(currentPrincipalName);
-        if (currentPrincipalName!="anonymousUser") {
-            System.out.println("isAuthenticated");
-            return userService.all();
-        }
-        else {
-            System.out.println("isAuthenticated not" );
-            return Collections.emptyList();
-        }
-
-
+        return userService.all();
     }
+
 
      @CrossOrigin
      @GetMapping("/{userid}")
@@ -74,14 +60,8 @@ public class UserController {
     public User findByIdName() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        boolean isAuthenticated = authentication.isAuthenticated();
-
-     //   model.addAttribute("currentuser",  userService.findByIdName(currentPrincipalName));
-
 
         return userService.findByIdName(currentPrincipalName);
-
-
     }
 
 

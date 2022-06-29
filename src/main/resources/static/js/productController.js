@@ -133,16 +133,15 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
 
      BtnId  = document.getElementById(binoBtnId)
 
-     if (item.watchListCount > 1) {
-        BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+    if  (BtnId.style.color == "blue")
+       //  BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+         BtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ 1 + "</span>";
      }
-     else {
-       if  (BtnId.style.color != "blue") {
-          watchlistAdd(item);
+     else {    watchlistAdd(item);
           let cnt = item.watchListCount + 1;
           BtnId.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
-          binoBtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ cnt + "</span>";
-       }
+          BtnId.innerHTML = "<span style='color:black'>&nbsp&nbsp"+ cnt + "</span>";
+
      }
     }
 }

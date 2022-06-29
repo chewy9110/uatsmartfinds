@@ -122,8 +122,7 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
     return(watchListCount)
 }
 
-//function addNumber(binoBtnId,item  ) {
- function addNumber(this, item  )
+   function addNumber(binoBtnId,item  ) {
     if(currLoginID.userId == null ) {
         alert("Please log in before adding to watchlist!");
         location.href = "./login";
@@ -133,11 +132,11 @@ function formatWatchlistCount(binoBtnId, watchListCount) {
 //         document.location.reload(true);
 
      if (item.watchListCount > 1) {
-      this.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+      document.getElementById(binoBtnId).style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
      }
      else {
        watchlistAdd(item);
-       this.style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
+       document.getElementById(binoBtnId).style.color = "blue"; // (this.style.color==="orange")?"black":"orange";
      }
     }
 }
@@ -446,8 +445,10 @@ class ProductsController
 
                     console.log("*******" + item.title);
 
-                    document.getElementById("binoBtnId" + o).addEventListener("click", function (this) {addNumber(this,item)});
-                   let watchBtnId =  document.getElementById(`binoBtnId${o}`)
+                    let watchBtnIdx = "binoBtnId" + o
+                    document.getElementById("binoBtnId" + o).addEventListener("click", function () {addNumber(watchBtnIdx,item)});
+
+                    let watchBtnId =  document.getElementById(`binoBtnId${o}`)
                     formatWatchlistCount(watchBtnId, item.watchListCount)
                 }
 

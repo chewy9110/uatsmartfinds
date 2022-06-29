@@ -1,0 +1,246 @@
+ * {
+    box-sizing:border-box;
+ }   
+
+/* body {
+  background: #eff0f2
+}      */
+ 
+body {
+  background: #ffffff;
+  /* margin-top:-5px;
+  padding-bottom:0px; */
+  padding-top: 85px;
+  padding-bottom: 0px;
+  margin-bottom: -10px;
+}  
+
+/*eff0f2 grey*/
+/* 706f70 black*/
+/* c1ed3a lightgreen*/
+
+ /* about us - common */
+
+ h1 { font-size: 60px; }    
+ h2 { font-size: 48px; }
+ h3 { font-size: 18px;
+  /* font-family:  'Josefin Sans',  sans-serif, 'Signika Negative' !important;  */
+  font-family:   sans-serif, 'Signika Negative' !important;
+  line-break: normal;
+  line-height: 1.35em;;
+}  
+ h4 { font-size: 16px; }
+ h5 { font-size: 14px; }
+ p { font-size : 16px; 
+     /* font-family:  'Josefin Sans',  sans-serif, 'Signika Negative' !important;  */
+     font-family:   sans-serif, 'Signika Negative' !important;
+     }
+ 
+ h1, h2, h3, h4, h5 {
+    
+    /* font-family:  'Josefin Sans',  sans-serif, 'Signika Negative' !important;  */
+    font-family:   sans-serif, 'Signika Negative' !important;
+    font-weight:normal;
+     /* color:black; */
+     
+ }  
+ 
+
+ .text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-normal {
+  font-weight:normal;
+}
+ 
+ .spacer {
+    height:50px;    /* hardcoded */
+    width:100%;
+}
+ 
+ /* about us img header */
+.hr-padding{
+  margin-top:-10px;
+  width:100%;
+  color:white;
+}
+
+.bg-box-story-front {
+  background-color:#ffffff;
+} 
+
+.bg-box-story {
+    display: block;
+   
+ }   
+ .bg-box-story-sm {
+  display: none;
+  
+}  
+ 
+.bg-box-mission {
+ display: block;
+ z-index: -1;
+  /* height:90vh; */ 
+} 
+.bg-box-mission-sm {
+  display: none;
+  z-index: -1;
+}  
+
+.bg-box-vision {
+  display: block;
+  z-index: -1;
+  /* height:100vh; */
+}
+.bg-box-vision-sm {
+  display: none;
+  z-index: -1;
+}  
+
+.bg-meet-our-team {
+  background-image: url("../products/AboutUs04_GreenPlain.png");
+  min-height: 100%; 
+  background-attachment: relative;
+  background-position: center; 
+  background-repeat:  no-repeat; 
+  background-size: cover; 
+ 
+  object-fit: cover;
+  /* border-radius: 0px 0px 150px 0px; */
+} 
+ 
+ /* wrapper - to image size in card */
+.wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.wrapper:after {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+  .wrapper img {
+  width: auto;
+  height: 100%;
+  max-width: none;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}  
+/* 
+.wrapper img {
+   background-color: yellow;
+   max-height:120px;
+   width:auto;
+   display: block;
+   object-fit: cover;
+}   */
+
+/* card hover effect */
+.card{
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+padding: 14px 80px 18px 36px;
+cursor: pointer;
+}
+
+.card:hover{
+   transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+/* 
+.card:hover {
+  transform:scale(1.1);
+} */
+
+.card-img-rounded{
+  /* border-radius: 20%; */
+
+  border-radius: 0px 0px 150px 0px;
+}
+
+/* -----------------------------------------------*/
+/* start of nav bar customisation
+/* -----------------------------------------------*/
+
+/* the entire bar frame */
+ /* .navbar-custom {
+ background-color: #b7dc49;   
+  }  */
+
+ /* change the color of active or hovered links of dropdown menu*/
+.navbar-custom .nav-item   .dropdown-item.active  ,
+.navbar-custom .nav-item  .dropdown-item:hover 
+ { 
+    background-color:   #b7dc49;     
+ 
+} 
+/* -----------------------------------------------*/
+/* end of nav bar customisation
+/* -----------------------------------------------*/ 
+ 
+/* for mobile screen */
+
+  @media only screen and (max-width: 578px) { 
+ .reverse-column{
+  display:flex;
+  flex-direction:column-reverse;
+  
+  }
+
+  .bg-box-story {
+   display: none;
+ }
+ .bg-box-story-sm{
+  display: block; 
+} 
+
+  .bg-box-mission {
+     /* width: calc(45% - 1px);  */
+    /* margin-left: auto;
+    margin-right: auto; */
+    display: none;
+  }
+
+  .bg-box-mission-sm{
+    display: block; 
+ }  
+
+ .bg-box-vision {
+ display: none;
+}
+
+.bg-box-vision-sm{
+ display: block; 
+}  
+
+/*profile card image sizing*/
+  .wrapper { 
+    width: calc(70% - 1px);
+    margin-left: auto;
+    margin-right: auto;    
+  }
+
+}
+
+ 

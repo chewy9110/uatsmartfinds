@@ -67,14 +67,21 @@ public class ProductServiceMySQL implements ProductService{
     }
 
     @Override
-    public void setSold(int productid) {
-        productRepository.setSold(productid);
-    }
-    @Override
-    public void setDelete(int productid) {
-        productRepository.setDelete(productid);
+    public List<Product> displayAll() {
+        List<Product> result = new ArrayList<>();
+        productRepository.displayAll().forEach(result :: add);
+        return result;
     }
 
+//    @Override
+//    public Product setSold(int productid) {
+//        return productRepository.setSold(productid);
+//    }
+//    @Override
+//    public void setDelete(int productid) {
+//        productRepository.setDelete(productid);
+//    }
+//
       /* @Override
     public Page<Product> getProductPagination(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo -1, pageSize);

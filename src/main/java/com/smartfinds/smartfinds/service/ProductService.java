@@ -20,9 +20,11 @@ public interface ProductService {
 
     List<Product> findNotByOwnerId(Long ownerid);
 
-    void setSold(int productid);
+    List<Product> displayAll();
 
-    void setDelete(int productid);
+//    Product setSold(int productid);
+
+//    Product setDelete(int productid);
 
     //Page<Product> getProductPagination(int pageNo, int pageSize);
 }

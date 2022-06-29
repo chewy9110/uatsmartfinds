@@ -1,7 +1,6 @@
 package com.smartfinds.smartfinds.controller.dto;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class MsgDto {
@@ -22,13 +21,13 @@ public class MsgDto {
     private String msgToImg;
     private String msgProductImgURL;
     private String  msgProductTitle;
-    private ZonedDateTime msgTimestamp;
+    private LocalDateTime msgTimestamp;
 
 
     public MsgDto(Integer vid, Integer msgInboxId, Integer msgInboxUid,
                   Integer msgInboxUFid,Integer msgProductId,
                   Integer msgFromUid, Integer msgToUid,   String msgLine,
-                  ZonedDateTime  msgTimestamp,
+                  LocalDateTime msgTimestamp,
                   String msgInboxName,String msgFromName,
                   String msgFromImg, String msgToName,
                   String msgToImg,
@@ -188,11 +187,11 @@ public class MsgDto {
         this.msgProductTitle = msgProductTitle;
     }
 
-    public ZonedDateTime  getMsgTimestamp() {
+    public LocalDateTime getMsgTimestamp() {
         return msgTimestamp;
     }
 
-    public void setMsgTimestamp(ZonedDateTime  msgTimestamp) {
+    public void setMsgTimestamp(LocalDateTime msgTimestamp) {
         this.msgTimestamp = msgTimestamp;
     }
 }

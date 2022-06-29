@@ -133,6 +133,7 @@ class ProductsController
 {
     constructor()
     {
+<<<<<<< HEAD
 
     this.domainURL_Dev = "http://localhost:8080/";
     this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
@@ -142,6 +143,16 @@ class ProductsController
 
 
 
+=======
+   // this.domainURL_Dev = "http://localhost:8080/";
+   // this.domainURL_Prod = "https://smartfinds.herokuapp.com/";
+
+   // this.addItemAPI = this.domainURL_Prod + "product/add";
+   // this.allItemAPI = this.domainURL_Prod + "product/pagination?page=0&size=6";
+
+    this.nowActiveURL = activeURL + "product/add"
+    this.nowActiveURL2 = activeURL + "product/pagination?page=0&size=6"
+>>>>>>> main
         this._products = [];       //create an array to store the details of product items
 
         //this.currLoginID =  msgUtilLoginId();
@@ -248,6 +259,7 @@ class ProductsController
             formData.append('imagefile1',imageObject[0]);
             formData.append('imagefile2',imageObject[1]);
             formData.append('imagefile3',imageObject[2]);
+<<<<<<< HEAD
 
 <<<<<<< HEAD
                 // activeURL contains http://url/ defined in domain.js
@@ -262,6 +274,11 @@ class ProductsController
                    fetch(this.addItemAPI, {
 
 >>>>>>> aea429b6d2e779480dcf72e92c415adeec902463
+=======
+
+                // activeURL contains http://url/ defined in domain.js
+                fetch(activeURL + "product/add", {
+>>>>>>> main
                          method: 'POST',
                          body: formData
                          })
@@ -304,6 +321,7 @@ class ProductsController
          }
         //fetch data from database using the REST API endpoint from Spring Boot
 <<<<<<< HEAD
+<<<<<<< HEAD
           console.log("******" + API);
          fetch(API)
 =======
@@ -313,6 +331,10 @@ class ProductsController
         fetch(this.allItemAPI)
 
 >>>>>>> aea429b6d2e779480dcf72e92c415adeec902463
+=======
+          console.log("******" + API);
+         fetch(API)
+>>>>>>> main
             .then((resp) => resp.json())
             .then(function(data) {
                 console.log("2. receive data")

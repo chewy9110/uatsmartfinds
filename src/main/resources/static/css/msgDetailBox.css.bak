@@ -7,8 +7,8 @@
   background-color:  #706f70;      
 }    
   */
-
-
+ 
+  
  /* background container */
  .card-header {
   background-color: #f8f8ff;
@@ -43,7 +43,7 @@
 }
 
 .bg-ltr > p {
-  font-size:normal;
+  font-size:larger;
   color:black;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .bg-rtl > p {
-  font-size:normal;
+  font-size:larger;
   color:black;
 }
 /*  ---  */
@@ -71,13 +71,13 @@
 @media only screen and (max-width: 578px) {
   .xs-img-small {
     text-align:center;
-    width: calc(30% - 1px);
+    width: calc(40% - 1px);
     display:none;
   }
 
  
 .img-reducesize {
-
+  
   display: flex;
   flex-direction: row;
   width:calc(50% - 1px);
@@ -90,8 +90,7 @@
 }    
 
 .banner {
-  top:70px;
-  height: 16vh;
+  height: 20vh;
  /* border: 2px solid #4CAF50;   */
   background-color: whitesmoke;
   margin:0vh;
@@ -103,7 +102,7 @@
 .sticky {
   position: -webkit-sticky;
   position: sticky;
-  top : 13.5vh;
+  top : 15vh;
   height:100%;
   width:100%;
 

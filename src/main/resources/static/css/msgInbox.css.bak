@@ -91,7 +91,7 @@ width: 20%;
 }
 
 .bg-ltr > p {
-  font-size:normal;
+  font-size:larger;
   color:black;
 }
 
@@ -100,7 +100,7 @@ width: 20%;
 }
 
 .bg-rtl > p {
-  font-size:normal;
+  font-size:larger;
   color:black;
 }
 /*  ---  */
@@ -123,12 +123,11 @@ width: 20%;
 
     
     .xs-img-small-inbox {
-      text-align:center;
-      width: calc(100% - 5px);   
-      height:50%;
+      text-align:left;
+      width: calc(110% - 5px);  
+      height:100%;
      
-    } 
-  
-
+    }
+ 
 
   }

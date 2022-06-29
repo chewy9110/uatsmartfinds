@@ -76,6 +76,7 @@ public class ProductController {
         //http://localhost:8080/product/pagination?page=0&size=6 => for testing in thunderclient
     }
 
+
    /* @CrossOrigin
     @GetMapping("/product/{pageNo}")
     public String getProductPagination(@PathVariable (value = "pageNo") int pageNo, Model model){
@@ -88,6 +89,8 @@ public class ProductController {
         model.addAttribute("listProduct", listProduct);
         return "index";
     } */
+
+
 
     @CrossOrigin
     @PostMapping("/add")
@@ -106,8 +109,7 @@ public class ProductController {
             @RequestParam(name="deleteStatus", required = false) boolean deleteStatus,
             @RequestParam(name="imagefile1", required = true) MultipartFile multipartFile1,
             @RequestParam(name="imagefile2", required = false) MultipartFile multipartFile2,
-            @RequestParam(name="imagefile3", required = false) MultipartFile multipartFile3) throws IOException
-    {
+            @RequestParam(name="imagefile3", required = false) MultipartFile multipartFile3) throws IOException {
 // generate dateUpdated value from system date/time
         if (multipartFile1 != null) {
             String fileName1 = StringUtils.cleanPath(multipartFile1.getOriginalFilename());

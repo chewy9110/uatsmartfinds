@@ -33,7 +33,7 @@ public class UserMapController {
 
   //  @RequestMapping(value = "member", method = RequestMethod.GET)
     @GetMapping("/member")
-    public String member(Model model) {
+    public String currentuser(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 

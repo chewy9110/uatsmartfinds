@@ -14,12 +14,12 @@ public class ProductDto {
     private String imageUrl3;
     private Integer defaultPic;
     private double price;
-    private ZonedDateTime dateUpdated;
+    private Date dateUpdated;
     private boolean soldStatus;
     private boolean deleteStatus;
 
 
-    public ProductDto(Long ownerid, String title, String description, String imageUrl1, String imageUrl2, String imageUrl3, Integer defaultPic, double price, ZonedDateTime dateUpdated, boolean soldStatus, boolean deleteStatus)
+    public ProductDto(Long ownerid, String title, String description, String imageUrl1, String imageUrl2, String imageUrl3, Integer defaultPic, double price, Date dateUpdated, boolean soldStatus, boolean deleteStatus)
     {
         //this.productid = productid;
         this.ownerid = ownerid;
@@ -93,11 +93,11 @@ public class ProductDto {
         this.price = price;
     }
 
-    public ZonedDateTime getDateUpdated() {
+    public Date getDateUpdated() {
         return dateUpdated;
     }
 
-    public void setDateUpdated(ZonedDateTime dateUpdated) {
+    public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 

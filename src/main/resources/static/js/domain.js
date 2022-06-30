@@ -1,7 +1,7 @@
 const prodUrl = "https://uatsmartfinds.herokuapp.com/";
 const devUrl = "http://localhost:8080/";
 //const activeURL = devUrl;
-const activeURL =  prodUrl;
+ const activeURL =  prodUrl;
 
 function getTimeStamp() {
 // format time stamp in yyyy/mm/dd hh:mm:ss format for MySQL input
@@ -20,23 +20,27 @@ function whenUpdated(updateDate) {
     const uDate = new Date(updateDate);
     const todayDate = new Date();
 
+   let datestr = todayDate + ":" + updateDate;
+
     // console.log(uDate);
     let dispString = "";
     if ( (dispString = diff_seconds(todayDate, uDate)) != -1) {
-      return(dispString +" sec ago");
+      datestr = datestr + ":" + dispString +" sec ago" ;
     }
     else if ( (dispString = diff_minutes(todayDate, uDate)) != -1) {
-      return(dispString + " min ago");
+       datestr = datestr + ":" + dispString+ " min ago" ;
     }
     else if ( (dispString = diff_hours(todayDate, uDate)) != -1) {
-      return(dispString + " hour ago");
+       datestr = datestr + ":" + dispString  + " hour ago" ;
     }
     else if ( (dispString = diff_days(todayDate, uDate)) != -1) {
-      return(dispString + " day(s) ago");
+      datestr = datestr + ":" + dispString + " day(s) ago" ;
     }
     else {
-      return("since " + uDate.getFullYear() + " " + mth[uDate.getMonth()] + " " + uDate.getDate());
+      datestr = datestr + ":" +  "since " + uDate.getFullYear() + " " + mth[uDate.getMonth()] + " " + uDate.getDate() ;
     }
+
+     return(datestr)
 }
 
 function diff_days(dt2, dt1)

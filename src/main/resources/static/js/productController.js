@@ -78,7 +78,7 @@ const createHTMLList = (index, productid ,ownerid, title, description, imageUrl1
        <button type="button" id="item${index}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
          See full item details
        </button>
-
+       &nbsp
        <!--  <i class="btn"> --> <!--  <img src="products/message.svg" >-->
       <!-- send msg box  -->
        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sendboxmsgmodal"

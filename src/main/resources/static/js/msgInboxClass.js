@@ -89,9 +89,6 @@ class MsgInboxClass {
                        <p class="card-text">
                        <span class="timestamp-size ml-2">${formatDate(item.msgTimestamp)}</span><br>${item. msgLine}
                        </p>
-                        <p class="card-text">
-                          <span class="timestamp-size ml-2">${whenUpdated(item.msgTimestamp)}</span>
-                        </p>
                   </div>
 
                 </div>

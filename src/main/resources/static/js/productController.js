@@ -271,7 +271,7 @@ class ProductsController
             formData.append('imageUrl3', imageUrl3);
             formData.append('defaultPic', defaultPic);
             formData.append('price', price);
-            formData.append('dateUpdated', dateUpdated);
+            formData.append('dateUpdated', new date(dateUpdated));
             formData.append('imagefile1',imageObject[0]);
             formData.append('imagefile2',imageObject[1]);
             formData.append('imagefile3',imageObject[2]);

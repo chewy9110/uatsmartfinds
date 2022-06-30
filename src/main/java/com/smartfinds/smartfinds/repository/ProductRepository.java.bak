@@ -52,7 +52,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
             "FROM Product p " +
             "LEFT JOIN Watchlist w on p.productid=w.productid " +
             "LEFT JOIN User u on p.ownerid=u.userid " +
-            "WHERE p.ownerid = :ownerid and p.deleteStatus=false GROUP " +
+            "WHERE p.ownerid = :ownerid GROUP " +
             "BY p.productid order by p.dateUpdated desc")
     List<ProductWatchList> getProductWatchList(@Param("ownerid") Long ownerid);
 
@@ -61,7 +61,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
             "FROM Product p " +
             "LEFT JOIN Watchlist w on p.productid=w.productid " +
             "LEFT JOIN User u on p.ownerid=u.userid " +
-            "WHERE p.ownerid != :ownerid and p.deleteStatus=false and p.soldStatus=false GROUP " +
+            "WHERE p.ownerid != :ownerid GROUP " +
             "BY p.productid order by p.dateUpdated desc")
     List<ProductWatchList> getProductWatchListNotUser(@Param("ownerid") Long ownerid);
 //and w.deleteStatus=false
@@ -71,7 +71,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> { //J
             "FROM Product p " +
             "LEFT JOIN Watchlist w on p.productid=w.productid " +
             "LEFT JOIN User u on p.ownerid=u.userid " +
-            "where p.deleteStatus=false and p.soldStatus=false GROUP " +
+            "GROUP " +
             "BY p.productid order by p.dateUpdated desc")
     List<ProductWatchList> getProductWatchListAll();
 //where w.deleteStatus=false

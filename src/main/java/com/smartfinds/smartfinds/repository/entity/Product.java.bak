@@ -4,7 +4,6 @@ package com.smartfinds.smartfinds.repository.entity;
 import com.smartfinds.smartfinds.controller.dto.ProductDto;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class Product {
     private String imageUrl3;
     private Integer defaultPic; //do we need this in Dto?
     private double price;
-    private ZonedDateTime dateUpdated; //do we need this?
+    private Date dateUpdated; //do we need this?
     private boolean soldStatus; //do we need this?
     private boolean deleteStatus; //do we need this?
 
@@ -143,11 +142,11 @@ public class Product {
         this.deleteStatus = deleteStatus;
     }
 
-    public ZonedDateTime getDateUpdated() {
+    public Date getDateUpdated() {
         return dateUpdated;
     }
 
-    public void setDateUpdated(ZonedDateTime dateUpdated) {
+    public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 

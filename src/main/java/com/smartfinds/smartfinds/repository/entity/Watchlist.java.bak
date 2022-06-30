@@ -3,7 +3,6 @@ package com.smartfinds.smartfinds.repository.entity;
 import com.smartfinds.smartfinds.controller.dto.WatchlistDto;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
@@ -87,7 +86,7 @@ public class Watchlist {
 
     public Double getPrice() { return product.getPrice(); }
 
-    public ZonedDateTime getPdateUpdated() { return product.getDateUpdated(); }
+    public Date getPdateUpdated() { return product.getDateUpdated(); }
 
 // new getter setter
 

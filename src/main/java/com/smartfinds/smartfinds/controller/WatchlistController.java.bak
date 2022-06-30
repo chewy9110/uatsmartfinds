@@ -41,9 +41,9 @@ public class WatchlistController {
     }
 
     @CrossOrigin
-    @DeleteMapping("/remove/{watchlistid}")
-    public void delete(@PathVariable Integer watchlistid) {
-        watchlistService.delete(watchlistid);
+    @DeleteMapping("/{watchlistid}")
+    public void delete(@PathVariable Integer watchListID) {
+        watchlistService.delete(watchListID);
     }
 
     @CrossOrigin
